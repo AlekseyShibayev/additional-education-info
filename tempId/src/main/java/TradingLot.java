@@ -1,6 +1,4 @@
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class TradingLot {
@@ -12,7 +10,7 @@ public class TradingLot {
 
     TradingLot fillAndGet(List<String> strings) {
         TradingLot tradingLot = new TradingLot();
-        this. name = splitByDelimiterAndGetSecond(strings, "\"item-quality-fine\">", 0);
+        this. name = splitByDelimiterAndGetSecond(strings, "item-quality", 0);
         this. location = splitByDelimiterAndGetSecond(strings, "<div>", 5);
         this. guild = splitByDelimiterAndGetSecond(strings, "<div>", 6);
         this. createdDate = new Date();
@@ -45,8 +43,6 @@ public class TradingLot {
 
     @Override
     public String toString() {
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(createdDate);
-        return createdDate.toString() + " / " + name + " / " + location + " / " + guild;
+        return location + " / " + guild;
     }
 }

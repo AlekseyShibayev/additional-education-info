@@ -9,5 +9,8 @@
         <module name="tempId" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="tempId" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

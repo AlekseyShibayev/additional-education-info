@@ -4,6 +4,7 @@ import java.util.List;
 public class HtmlParser {
 
     public static TradingLot createTradingLot(String htmlResponse) {
+        //todo use normal html parser
         String htmlString = getStringWithLastTradingLot(htmlResponse);
 
         List<String> strings = new ArrayList<>();
@@ -21,7 +22,7 @@ public class HtmlParser {
 
     private static String getStringWithLastTradingLot(String htmlResponse) {
         String[] split = htmlResponse.split("<tr class=\"cursor-pointer\"");
-        // we need second
+        // we need always second
         return split[1];
     }
 }

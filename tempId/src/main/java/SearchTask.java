@@ -5,18 +5,26 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
-public class MyRunnable implements Runnable {
+public class SearchTask implements Runnable {
 
 	private static final String USER_AGENT = "Mozilla/5.0";
 	private static final long SLEEP_TIME = 60_000;
 
 	private Set<TradingLot> set;
 
+	public SearchTask() {
+		this.set = new HashSet<>();
+	}
+
 	public void run() {
 		try {
-			doLogic();
+			while (true) {
+				doLogic();
+				NotificationService.eventNotification(". . . . . . . . .");
+			}
         } catch (Exception e) {
-			e.printStackTrace();
+			NotificationService.errorNotification(e);
+			Thread.currentThread().interrupt();
 		}
 	}
 
@@ -24,28 +32,18 @@ public class MyRunnable implements Runnable {
 		Map<String, String> urls = getUrls();
         for (Map.Entry<String, String> entry : urls.entrySet()) {
             //todo randomizer
-            sendGET(entry.getKey(), entry.getValue());
+            executeSearch(entry.getKey(), entry.getValue());
             Thread.sleep(SLEEP_TIME);
         }
 	}
 
-	private void sendGET(String lotName, String urlName) throws IOException {
+	private void executeSearch(String lotName, String urlName) throws IOException {
 		String htmlResponse = getHtmlResponse(urlName);
-
-		String[] split = htmlResponse.split("<tr class=\"cursor-pointer\"");
-		// нам нужен всегда 1
-		String htmlString = split[1];
-
-		HtmlParser htmlParser = new HtmlParser();
-		TradingLot tradingLot = htmlParser.createTradingLot(htmlString);
-
-		if (set == null) {
-			set = new HashSet<>();
-		}
+		TradingLot tradingLot = HtmlParser.createTradingLot(htmlResponse);
 
 		if (!set.contains(tradingLot)) {
 			set.add(tradingLot);
-			System.out.println(lotName + ": " + tradingLot);
+			NotificationService.eventNotification(lotName + ": " + tradingLot);
 		}
 	}
 
@@ -65,8 +63,7 @@ public class MyRunnable implements Runnable {
 			}
 			in.close();
 		} else {
-			// todo log
-			System.out.println("GET request not worked");
+			NotificationService.eventNotification("GET request not worked");
 		}
 		return response.toString();
 	}

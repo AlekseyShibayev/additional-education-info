@@ -1,3 +1,5 @@
+package MainLogic;
+
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +10,7 @@ public class TradingLot {
     private String guild;
     private Date createdDate;
 
-    TradingLot fillAndGet(List<String> strings) {
+    public TradingLot fillAndGet(List<String> strings) {
         TradingLot tradingLot = new TradingLot();
         this. name = splitByDelimiterAndGetSecond(strings, "item-quality", 0);
         this. location = splitByDelimiterAndGetSecond(strings, "<div>", 5);
@@ -20,7 +22,7 @@ public class TradingLot {
     private String splitByDelimiterAndGetSecond(List<String> strings, String delimiter, int position) {
         String string = strings.get(position);
         String[] split = string.split(delimiter);
-        return split[1].trim();
+        return split[1].trim().replace("#39;", "");
     }
 
     @Override

@@ -1,7 +1,11 @@
+package Services;
+
+import MainLogic.TradingLot;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class HtmlParser {
+public class HtmlParserService {
 
     public static TradingLot createTradingLot(String htmlResponse) {
         //todo use normal html parser

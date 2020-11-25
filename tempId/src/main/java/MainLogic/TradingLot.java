@@ -12,10 +12,10 @@ public class TradingLot {
 
     public TradingLot fillAndGet(List<String> strings) {
         TradingLot tradingLot = new TradingLot();
-        this. name = splitByDelimiterAndGetSecond(strings, "item-quality", 0);
-        this. location = splitByDelimiterAndGetSecond(strings, "<div>", 5);
-        this. guild = splitByDelimiterAndGetSecond(strings, "<div>", 6);
-        this. createdDate = new Date();
+        this.name = splitByDelimiterAndGetSecond(strings, "item-quality", 0);
+        this.location = splitByDelimiterAndGetSecond(strings, "<div>", 5);
+        this.guild = splitByDelimiterAndGetSecond(strings, "<div>", 6);
+        this.createdDate = new Date();
         return tradingLot;
     }
 

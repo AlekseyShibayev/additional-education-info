@@ -7,7 +7,7 @@ import java.util.List;
 
 public class HtmlParserService {
 
-    public static TradingLot createTradingLot(String htmlResponse) {
+    public TradingLot createTradingLot(String htmlResponse) {
         //todo use normal html parser
         String htmlString = getStringWithLastTradingLot(htmlResponse);
 
@@ -24,7 +24,9 @@ public class HtmlParserService {
         return tradingLot;
     }
 
-    private static String getStringWithLastTradingLot(String htmlResponse) {
+    //todo need work with last lot time, say about lot if created time <30 min
+    private String getStringWithLastTradingLot(String htmlResponse) {
+        //<tr class="cursor-pointer"
         String[] split = htmlResponse.split("<tr class=\"cursor-pointer\"");
         // we need always second
         return split[1];

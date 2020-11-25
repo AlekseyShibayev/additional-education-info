@@ -22,9 +22,13 @@ public class NotificationService {
         }
     }
 
-    public void writeLog() {
+    public void showLog() {
         for (String s : log) {
             System.out.println(s);
         }
+    }
+
+    public void errorNotification(Exception e) {
+        e.printStackTrace();
     }
 }

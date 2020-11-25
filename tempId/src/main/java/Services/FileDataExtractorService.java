@@ -2,22 +2,22 @@ package Services;
 
 import com.google.common.collect.Maps;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 
 public class FileDataExtractorService {
 
-    //todo use absolute path
-    private static final String FILE_NAME = "C:\\Users\\АЕ\\Documents\\GitHub\\FutureSpringBootPractice\\tempId\\src\\main\\resources\\application.properties";
+    private static final String FILE_NAME = "application.properties";
 
-    public static Map<String, String> extract() {
+    public Map<String, String> extract() {
         Properties properties = new Properties();
-        try (FileInputStream fis = new FileInputStream(FILE_NAME)) {
-            properties.load(fis);
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        try (InputStream stream = classLoader.getResourceAsStream(FILE_NAME)) {
+            properties.load(stream);
         } catch (IOException e) {
-//            NotificationService.errorNotification(e);
+            //todo
         }
         return Maps.fromProperties(properties);
     }

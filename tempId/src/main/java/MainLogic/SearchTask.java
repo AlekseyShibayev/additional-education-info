@@ -1,10 +1,5 @@
 package MainLogic;
 
-import Services.CaptchaFighterService;
-import Services.FileDataExtractorService;
-import Services.HtmlParserService;
-import Services.NotificationService;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,41 +11,51 @@ public class SearchTask implements Runnable {
 
 	private static final String USER_AGENT = "Mozilla/5.0";
 
-	private Map<String, String> urls;
-	private List<String> lotNames;
+	private ApplicationHelper applicationHelper;
 	private Set<TradingLot> lots;
 	private int counter;
-	private NotificationService notificationService;
+	private Map<String, String> urls;
+	private List<String> lotNames;
 
 	SearchTask() {
+		applicationHelper = new ApplicationHelper();
 		this.lots = new HashSet<>();
 		this.counter = 0;
-		this.urls = FileDataExtractorService.extract();
+		this.urls = applicationHelper.getFileDataExtractorService().extract();
 		this.lotNames = getLotNames(urls);
-		this.notificationService = new NotificationService();
 	}
 
 	public void run() {
 		try {
 			while (true) {
 				if (counter == 0) {
-					notificationService.eventNotification("Application started. Searching: " + lotNames);
-					CaptchaFighterService.fight(30_000, 60_000);
+					preparingToWork();
 				}
-
 				doLogic();
-
-				notificationService.eventNotification(". . . . . .");
-				incrementCaptchaCounter();
-				notificationService.logNotification("finished: " + counter);
-				CaptchaFighterService.fight(500_000, 650_000);
+				doAfterRound();
 			}
         } catch (Exception e) {
-			notificationService.logNotification(String.valueOf(counter));
-			notificationService.logNotification(e);
-			notificationService.writeLog();
-			Thread.currentThread().interrupt();
+			doIfCatchAnyException(e);
 		}
+	}
+
+	private void preparingToWork() throws InterruptedException {
+		applicationHelper.getNotificationService().eventNotification("Application started. Searching: " + lotNames);
+		applicationHelper.getCaptchaFighterService().fight(30_000, 60_000);
+	}
+
+	private void doAfterRound() throws InterruptedException {
+		applicationHelper.getNotificationService().eventNotification(". . . . . .");
+		incrementCaptchaCounter();
+		applicationHelper.getNotificationService().logNotification("finished: " + counter);
+		applicationHelper.getCaptchaFighterService().fight(500_000, 650_000);
+	}
+
+	private void doIfCatchAnyException(Exception e) {
+		applicationHelper.getNotificationService().logNotification(String.valueOf(counter));
+		applicationHelper.getNotificationService().errorNotification(e);
+		applicationHelper.getNotificationService().showLog();
+		Thread.currentThread().interrupt();
 	}
 
 	private void incrementCaptchaCounter() {
@@ -58,22 +63,22 @@ public class SearchTask implements Runnable {
 	}
 
 	private void doLogic() throws Exception {
-		List<String> queue = CaptchaFighterService.getQueue(lotNames);
-		notificationService.logNotification("try started with request order: " + queue.toString());
+		List<String> queue = applicationHelper.getCaptchaFighterService().getQueue(lotNames);
+		applicationHelper.getNotificationService().logNotification("try started with request order: " + queue.toString());
 		workWithQueue(queue);
 	}
 
 	private void workWithQueue(List<String> queue) throws IOException, InterruptedException {
 		for (String currentKey : queue) {
-			notificationService.logNotification("try execute with: " + currentKey);
+			applicationHelper.getNotificationService().logNotification("try execute with: " + currentKey);
 			executeSearch(currentKey, urls.get(currentKey));
-			CaptchaFighterService.fight(30_000, 100_000);
+			applicationHelper.getCaptchaFighterService().fight(30_000, 100_000);
 		}
 	}
 
 	private void executeSearch(String lotName, String urlName) throws IOException {
 		String htmlResponse = getHtmlResponse(urlName);
-		TradingLot tradingLot = HtmlParserService.createTradingLot(htmlResponse);
+		TradingLot tradingLot = applicationHelper.getHtmlParserService().createTradingLot(htmlResponse);
 		if (isNotFoundEarlier(tradingLot)) {
 			doAction(lotName, tradingLot);
 		}
@@ -82,7 +87,7 @@ public class SearchTask implements Runnable {
 	private void doAction(String lotName, TradingLot tradingLot) {
 		lots.add(tradingLot);
 		if (counter != 0) {
-            notificationService.eventNotification(lotName + ": " + tradingLot);
+			applicationHelper.getNotificationService().eventNotification(lotName + ": " + tradingLot);
         }
 	}
 
@@ -106,7 +111,7 @@ public class SearchTask implements Runnable {
 			}
 			in.close();
 		} else {
-			notificationService.eventNotification("GET request not worked");
+			throw new RuntimeException("http request not 200");
 		}
 		return response.toString();
 	}

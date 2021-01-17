@@ -47,4 +47,11 @@ public class TradingLot {
     public String toString() {
         return location + " / " + guild;
     }
+
+    public TradingLot getEmptyTradingLot(TradingLot tradingLot) {
+        tradingLot.name = "empty";
+        tradingLot.location = "empty";
+        tradingLot.guild = "empty";
+        return tradingLot;
+    }
 }

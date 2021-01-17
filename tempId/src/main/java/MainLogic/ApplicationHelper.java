@@ -1,9 +1,6 @@
 package MainLogic;
 
-import Services.CaptchaFighterService;
-import Services.FileDataExtractorService;
-import Services.HtmlParserService;
-import Services.NotificationService;
+import Services.*;
 
 public class ApplicationHelper {
 
@@ -11,12 +8,22 @@ public class ApplicationHelper {
     private FileDataExtractorService fileDataExtractorService;
     private HtmlParserService htmlParserService;
     private CaptchaFighterService captchaFighterService;
+    private HtmlResponseExtractorService htmlResponseExtractorService;
 
     ApplicationHelper() {
         this.notificationService = new NotificationService();
         this.fileDataExtractorService = new FileDataExtractorService();
         this.htmlParserService = new HtmlParserService();
         this.captchaFighterService = new CaptchaFighterService();
+        this.htmlResponseExtractorService = new HtmlResponseExtractorService();
+    }
+
+    public HtmlResponseExtractorService getHtmlResponseExtractorService() {
+        return htmlResponseExtractorService;
+    }
+
+    public void setHtmlResponseExtractorService(HtmlResponseExtractorService htmlResponseExtractorService) {
+        this.htmlResponseExtractorService = htmlResponseExtractorService;
     }
 
     NotificationService getNotificationService() {

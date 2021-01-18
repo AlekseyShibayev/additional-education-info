@@ -1,7 +1,6 @@
 package MainLogic;
 
 import java.util.Date;
-import java.util.List;
 
 public class TradingLot {
 
@@ -9,21 +8,6 @@ public class TradingLot {
     private String location;
     private String guild;
     private Date createdDate;
-
-    public TradingLot fillAndGet(List<String> strings) {
-        TradingLot tradingLot = new TradingLot();
-        this.name = splitByDelimiterAndGetSecond(strings, "item-quality", 0);
-        this.location = splitByDelimiterAndGetSecond(strings, "<div>", 5);
-        this.guild = splitByDelimiterAndGetSecond(strings, "<div>", 6);
-        this.createdDate = new Date();
-        return tradingLot;
-    }
-
-    private String splitByDelimiterAndGetSecond(List<String> strings, String delimiter, int position) {
-        String string = strings.get(position);
-        String[] split = string.split(delimiter);
-        return split[1].trim().replace("#39;", "");
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -48,10 +32,42 @@ public class TradingLot {
         return location + " / " + guild;
     }
 
-    public TradingLot getEmptyTradingLot(TradingLot tradingLot) {
-        tradingLot.name = "empty";
-        tradingLot.location = "empty";
-        tradingLot.guild = "empty";
-        return tradingLot;
+    public TradingLot getEmptyTradingLot() {
+        this.name = "empty";
+        this.location = "empty";
+        this.guild = "empty";
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getGuild() {
+        return guild;
+    }
+
+    public void setGuild(String guild) {
+        this.guild = guild;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 }

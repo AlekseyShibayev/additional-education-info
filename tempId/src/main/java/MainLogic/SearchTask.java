@@ -42,7 +42,7 @@ public class SearchTask implements Runnable {
 		applicationHelper.getNotificationService().eventNotification(". . . . . .");
 		incrementCaptchaCounter();
 		applicationHelper.getNotificationService().logNotification("finished: " + counter);
-		applicationHelper.getCaptchaFighterService().fight(300_000, 450_000);
+		applicationHelper.getCaptchaFighterService().fight(50_000, 90_000);
 	}
 
 	private void doIfCatchAnyException(Exception e) {
@@ -67,7 +67,7 @@ public class SearchTask implements Runnable {
 		for (String currentKey : queue) {
 			applicationHelper.getNotificationService().logNotification("try execute with: " + currentKey);
 			executeSearch(currentKey, urls.get(currentKey));
-			applicationHelper.getCaptchaFighterService().fight(30_000, 100_000);
+			applicationHelper.getCaptchaFighterService().fight(15_000, 30_000);
 		}
 	}
 
@@ -80,13 +80,31 @@ public class SearchTask implements Runnable {
 	}
 
 	private void doAction(String lotName, TradingLot tradingLot) {
-		lots.add(tradingLot);
-		if (counter != 0) {
+        removeOldTradingLot(tradingLot);
+        addNewTradingLot(tradingLot);
+        doNotification(lotName, tradingLot);
+    }
+
+    private void doNotification(String lotName, TradingLot tradingLot) {
+        if (counter != 0) {
 			applicationHelper.getNotificationService().eventNotification(lotName + ": " + tradingLot);
         }
-	}
+    }
 
-	private boolean isNotFoundEarlier(TradingLot tradingLot) {
+    private void addNewTradingLot(TradingLot tradingLot) {
+        lots.add(tradingLot);
+    }
+
+    private void removeOldTradingLot(TradingLot tradingLot) {
+        String name = tradingLot.getName();
+        for (TradingLot lot : lots) {
+            if (name.equals(lot.getName())) {
+                lots.remove(lot);
+            }
+        }
+    }
+
+    private boolean isNotFoundEarlier(TradingLot tradingLot) {
 		return !lots.contains(tradingLot);
 	}
 

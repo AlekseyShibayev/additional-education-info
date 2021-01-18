@@ -1,37 +1,38 @@
 package Services;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.util.concurrent.TimeUnit;
 
 public class HtmlResponseExtractorService {
 
-    private static final String USER_AGENT = "Mozilla/5.0";
-
-    public String extractHtmlResponse(String urlName) throws IOException {
-        return getHtmlResponse(urlName);
+    public String extractHtmlResponse(String urlName) {
+        try {
+            return getHtmlResponse(urlName);
+        } catch (Exception e) {
+            return "null";
+        }
     }
 
-    private String getHtmlResponse(String urlName) throws IOException {
-        URL obj = new URL(urlName);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        StringBuilder response = new StringBuilder();
+    private String getHtmlResponse(String urlName) throws Exception {
+        //todo
+        System.setProperty("webdriver.chrome.driver", "G:\\chromedriver.exe");
 
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-        } else {
-            throw new RuntimeException("http request not 200");
-        }
-        return response.toString();
+        ChromeOptions options = new ChromeOptions();
+
+        WebDriver driver = new ChromeDriver(options);
+
+        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        driver.manage().window().setSize(new Dimension(1, 1));
+        driver.get(urlName);
+
+        Thread.sleep(15000);
+
+        String pageSource = driver.getPageSource();
+        driver.quit();
+        return pageSource;
     }
 }

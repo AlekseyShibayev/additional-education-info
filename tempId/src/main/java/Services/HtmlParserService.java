@@ -1,37 +1,41 @@
 package Services;
 
 import MainLogic.TradingLot;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.jsoup.select.Evaluator;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class HtmlParserService {
 
     public TradingLot createTradingLot(String htmlResponse) {
-        //todo use normal html parser
         TradingLot tradingLot = new TradingLot();
         try {
-            String htmlString = getStringWithLastTradingLot(htmlResponse);
-            List<String> strings = new ArrayList<>();
-            String[] split = htmlString.split(" <td class");
-            for (String s : split) {
-                String[] divSplit = s.split("</div>");
-                for (String s2 : divSplit) {
-                    strings.add(s2);
-                }
-            }
-            tradingLot.fillAndGet(strings);
-        } catch (Exception e) {
+            Element element = getFirstElement(htmlResponse);
+            tradingLot.setName(getValue(element.select("div"), 0));
+            tradingLot.setLocation(getValue(element.select("div"), 3));
+            tradingLot.setGuild(getValue(element.select("div"), 4));
+            tradingLot.setCreatedDate(new Date());
             return tradingLot;
+        } catch (Exception e) {
+            return tradingLot.getEmptyTradingLot();
         }
-        return tradingLot;
     }
 
-    //todo need work with last lot time, say about lot if created time <30 min
-    private String getStringWithLastTradingLot(String htmlResponse) {
-        //<tr class="cursor-pointer"
-        String[] split = htmlResponse.split("<tr class=\"cursor-pointer\"");
-        // we need always second
-        return split[1];
+    private String getValue(Elements elements, int index) {
+        return elements.get(index).ownText();
+    }
+
+    private Element getFirstElement(String htmlResponse) {
+        Document document = Jsoup.parse(htmlResponse);
+        document = Jsoup.parse(document.getElementById("search-result-view").outerHtml());
+        Element table = document.select("tbody").first();
+        Elements rows = table.select("tr");
+        return rows.get(0);
     }
 }

@@ -29,7 +29,7 @@ public class TradingLot {
 
     @Override
     public String toString() {
-        return location + " / " + guild;
+        return name + " : " + location + " / " + guild;
     }
 
     public TradingLot getEmptyTradingLot() {

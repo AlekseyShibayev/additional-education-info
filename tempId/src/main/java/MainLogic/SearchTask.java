@@ -1,21 +1,26 @@
 package MainLogic;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SearchTask implements Runnable {
 
+	private static final String LOTS_FILE_NAME = "lots.properties";
+
 	private ApplicationHelper applicationHelper;
-	private Set<TradingLot> lots;
+	private HashMap<String, TradingLot> lots;
 	private int counter;
 	private Map<String, String> urls;
 	private List<String> lotNames;
 
-	SearchTask() {
-		applicationHelper = new ApplicationHelper();
-		this.lots = new HashSet<>();
+	public SearchTask(ApplicationHelper applicationHelper) {
+		this.applicationHelper = applicationHelper;
+		this.lots = new HashMap<>();
 		this.counter = 0;
-		this.urls = applicationHelper.getFileDataExtractorService().extract();
+		this.urls = applicationHelper.getFileDataExtractorService().extract(LOTS_FILE_NAME);
 		this.lotNames = getLotNames(urls);
 	}
 
@@ -34,12 +39,12 @@ public class SearchTask implements Runnable {
 	}
 
 	private void preparingToWork() throws InterruptedException {
-		applicationHelper.getNotificationService().eventNotification("Application started. Searching: " + lotNames);
+		applicationHelper.getNotificationService().eventNotification("Application started.\nSearching: " + lotNames);
 //		applicationHelper.getCaptchaFighterService().fight(30_000, 60_000);
 	}
 
 	private void doAfterRound() throws InterruptedException {
-		applicationHelper.getNotificationService().eventNotification(". . . . . .");
+//		applicationHelper.getNotificationService().eventNotification(". . . . . .");
 		incrementCaptchaCounter();
 		applicationHelper.getNotificationService().logNotification("finished: " + counter);
 		applicationHelper.getCaptchaFighterService().fight(50_000, 90_000);
@@ -75,37 +80,30 @@ public class SearchTask implements Runnable {
 		String htmlResponse = applicationHelper.getHtmlResponseExtractorService().extractHtmlResponse(urlName);
 		TradingLot tradingLot = applicationHelper.getHtmlParserService().createTradingLot(htmlResponse);
 		if (isNotFoundEarlier(tradingLot)) {
-			doAction(lotName, tradingLot);
+			rewriteTradingLot(tradingLot);
+			doNotification(lotName, tradingLot);
 		}
 	}
 
-	private void doAction(String lotName, TradingLot tradingLot) {
-        removeOldTradingLot(tradingLot);
-        addNewTradingLot(tradingLot);
-        doNotification(lotName, tradingLot);
-    }
-
     private void doNotification(String lotName, TradingLot tradingLot) {
         if (counter != 0) {
-			applicationHelper.getNotificationService().eventNotification(lotName + ": " + tradingLot);
+			applicationHelper.getNotificationService().eventNotification(lotName + ":\n " + tradingLot);
+//			JOptionPane.showInputDialog(tradingLot.getName());
         }
     }
 
-    private void addNewTradingLot(TradingLot tradingLot) {
-        lots.add(tradingLot);
-    }
-
-    private void removeOldTradingLot(TradingLot tradingLot) {
-        String name = tradingLot.getName();
-        for (TradingLot lot : lots) {
-            if (name.equals(lot.getName())) {
-                lots.remove(lot);
-            }
-        }
+    private void rewriteTradingLot(TradingLot tradingLot) {
+		lots.put(tradingLot.getName(), tradingLot);
     }
 
     private boolean isNotFoundEarlier(TradingLot tradingLot) {
-		return !lots.contains(tradingLot);
+		String name = tradingLot.getName();
+		if (lots.containsKey(name)) {
+			TradingLot oldLot = lots.get(name);
+			return oldLot.equals(tradingLot) ? false : true;
+		} else {
+			return true;
+		}
 	}
 
 	private List<String> getLotNames(Map<String, String> map) {

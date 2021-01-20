@@ -10,7 +10,7 @@ public class ApplicationHelper {
     private CaptchaFighterService captchaFighterService;
     private HtmlResponseExtractorService htmlResponseExtractorService;
 
-    ApplicationHelper() {
+    public ApplicationHelper() {
         this.notificationService = new NotificationService();
         this.fileDataExtractorService = new FileDataExtractorService();
         this.htmlParserService = new HtmlParserService();
@@ -26,7 +26,7 @@ public class ApplicationHelper {
         this.htmlResponseExtractorService = htmlResponseExtractorService;
     }
 
-    NotificationService getNotificationService() {
+    public NotificationService getNotificationService() {
         return notificationService;
     }
 
@@ -34,7 +34,7 @@ public class ApplicationHelper {
         this.notificationService = notificationService;
     }
 
-    FileDataExtractorService getFileDataExtractorService() {
+    public FileDataExtractorService getFileDataExtractorService() {
         return fileDataExtractorService;
     }
 

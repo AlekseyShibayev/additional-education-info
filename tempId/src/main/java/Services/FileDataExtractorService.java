@@ -9,12 +9,10 @@ import java.util.Properties;
 
 public class FileDataExtractorService {
 
-    private static final String FILE_NAME = "application.properties";
-
-    public Map<String, String> extract() {
+    public Map<String, String> extract(String fileName) {
         Properties properties = new Properties();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        try (InputStream stream = classLoader.getResourceAsStream(FILE_NAME)) {
+        try (InputStream stream = classLoader.getResourceAsStream(fileName)) {
             properties.load(stream);
         } catch (IOException e) {
             //todo

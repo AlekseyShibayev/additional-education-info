@@ -5,11 +5,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.jsoup.select.Evaluator;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class HtmlParserService {
 

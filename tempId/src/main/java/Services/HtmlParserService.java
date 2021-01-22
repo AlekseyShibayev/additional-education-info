@@ -17,9 +17,12 @@ public class HtmlParserService {
             tradingLot.setName(getValue(element.select("div"), 0));
             tradingLot.setLocation(getValue(element.select("div"), 3));
             tradingLot.setGuild(getValue(element.select("div"), 4));
+            tradingLot.setPrice(getValue(element.select("span"), 1));
+            tradingLot.setLastSeen(getValue(element.select("td"), 4));
             tradingLot.setCreatedDate(new Date());
             return tradingLot;
         } catch (Exception e) {
+            //todo throw Exception
             return tradingLot.getEmptyTradingLot();
         }
     }

@@ -7,6 +7,8 @@ public class TradingLot {
     private String name;
     private String location;
     private String guild;
+    private String price;
+    private String lastSeen;
     private Date createdDate;
 
     @Override
@@ -29,7 +31,7 @@ public class TradingLot {
 
     @Override
     public String toString() {
-        return name + " : " + location + " / " + guild;
+        return name + " :\n " + location + " / " + guild + "\n" + price + " / " + lastSeen;
     }
 
     public TradingLot getEmptyTradingLot() {
@@ -69,5 +71,21 @@ public class TradingLot {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getLastSeen() {
+        return lastSeen;
+    }
+
+    public void setLastSeen(String lastSeen) {
+        this.lastSeen = lastSeen;
     }
 }

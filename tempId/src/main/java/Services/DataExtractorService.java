@@ -1,24 +1,41 @@
 package Services;
 
+import com.google.common.collect.Maps;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
-public class HtmlResponseExtractorService {
+public class DataExtractorService {
 
-    public String extractHtmlResponse(String urlName) {
+    public Map<String, String> getProperties(String fileName) {
+        Properties properties = new Properties();
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        try (InputStream stream = classLoader.getResourceAsStream(fileName)) {
+            properties.load(stream);
+        } catch (IOException e) {
+            //todo
+        }
+        return Maps.fromProperties(properties);
+    }
+
+    public String getHtmlResponse(String urlName) {
         try {
-            return getHtmlResponse(urlName);
-        } catch (Exception e) {
+            return  getHtmlPage(urlName);
+        } catch (InterruptedException e) {
+            //todo
             return "null";
         }
     }
 
-    private String getHtmlResponse(String urlName) throws Exception {
+    private String getHtmlPage(String urlName) throws InterruptedException {
         //todo
         System.setProperty("webdriver.chrome.driver", "G:\\chromedriver.exe");
 

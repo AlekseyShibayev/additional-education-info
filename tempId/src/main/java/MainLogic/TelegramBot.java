@@ -1,7 +1,5 @@
-package Bots;
+package MainLogic;
 
-import MainLogic.ApplicationHelper;
-import MainLogic.SearchTask;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -11,7 +9,7 @@ import java.util.Map;
 
 public class TelegramBot extends TelegramLongPollingCommandBot {
 
-    private static final String CHAT_PROPERTIES = "chats.properties";
+    private static final String CHAT_PROPERTIES = "chat.properties";
     private static final String TELEGRAM_PROPERTIES = "telegram.properties";
     private static final String NAME = "name";
     private static final String TOKEN = "token";
@@ -25,7 +23,7 @@ public class TelegramBot extends TelegramLongPollingCommandBot {
 
     public TelegramBot(ApplicationHelper applicationHelper) {
         this.applicationHelper = applicationHelper;
-        Map<String, String> telegramProperties = applicationHelper.getFileDataExtractorService().extract(TELEGRAM_PROPERTIES);
+        Map<String, String> telegramProperties = applicationHelper.getDataExtractorService().getProperties(TELEGRAM_PROPERTIES);
         this.name = telegramProperties.get(NAME);
         this.token = telegramProperties.get(TOKEN);
         this.startCommand = telegramProperties.get(START_COMMAND);
@@ -33,7 +31,7 @@ public class TelegramBot extends TelegramLongPollingCommandBot {
     }
 
     private Map<Long, String> getChats(ApplicationHelper applicationHelper) {
-        Map<String, String> chatProperties = applicationHelper.getFileDataExtractorService().extract(CHAT_PROPERTIES);
+        Map<String, String> chatProperties = applicationHelper.getDataExtractorService().getProperties(CHAT_PROPERTIES);
         Map<Long, String> result = new HashMap<>();
         for (Map.Entry<String, String> entry : chatProperties.entrySet()) {
             result.put(Long.parseLong(entry.getKey()), entry.getValue());

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class SearchTask implements Runnable {
 
-	private static final String LOTS_FILE_NAME = "lots.properties";
+	private static final String LOTS_FILE_NAME = "lot.properties";
 
 	private ApplicationHelper applicationHelper;
 	private HashMap<String, TradingLot> lots;
@@ -20,7 +20,7 @@ public class SearchTask implements Runnable {
 		this.applicationHelper = applicationHelper;
 		this.lots = new HashMap<>();
 		this.counter = 0;
-		this.urls = applicationHelper.getFileDataExtractorService().extract(LOTS_FILE_NAME);
+		this.urls = applicationHelper.getDataExtractorService().getProperties(LOTS_FILE_NAME);
 		this.lotNames = getLotNames(urls);
 	}
 
@@ -30,7 +30,7 @@ public class SearchTask implements Runnable {
 				if (counter == 0) {
 					preparingToWork();
 				}
-				doLogic();
+				doSearchLogic();
 				doAfterRound();
 			}
         } catch (Exception e) {
@@ -39,15 +39,14 @@ public class SearchTask implements Runnable {
 	}
 
 	private void preparingToWork() throws InterruptedException {
-		applicationHelper.getNotificationService().eventNotification("Application started.\nSearching: " + lotNames);
+		applicationHelper.getNotificationService().eventNotification("Application started with [" + urls.size() + "] parameters.\nSearching:\n" + lotNames);
 //		applicationHelper.getCaptchaFighterService().fight(30_000, 60_000);
 	}
 
 	private void doAfterRound() throws InterruptedException {
-//		applicationHelper.getNotificationService().eventNotification(". . . . . .");
 		incrementCaptchaCounter();
 		applicationHelper.getNotificationService().logNotification("finished: " + counter);
-		applicationHelper.getCaptchaFighterService().fight(50_000, 90_000);
+		applicationHelper.getCaptchaFighterService().fight(300_000, 450_000);
 	}
 
 	private void doIfCatchAnyException(Exception e) {
@@ -62,7 +61,7 @@ public class SearchTask implements Runnable {
 		counter++;
 	}
 
-	private void doLogic() throws Exception {
+	private void doSearchLogic() throws Exception {
 		List<String> queue = applicationHelper.getCaptchaFighterService().getQueue(lotNames);
 		applicationHelper.getNotificationService().logNotification("try started with request order: " + queue.toString());
 		workWithQueue(queue);
@@ -72,13 +71,18 @@ public class SearchTask implements Runnable {
 		for (String currentKey : queue) {
 			applicationHelper.getNotificationService().logNotification("try execute with: " + currentKey);
 			executeSearch(currentKey, urls.get(currentKey));
-			applicationHelper.getCaptchaFighterService().fight(15_000, 30_000);
+			doAfterSingleSearch();
 		}
 	}
 
+	private void doAfterSingleSearch() throws InterruptedException {
+		applicationHelper.getCaptchaFighterService().fight(30_000, 100_000);
+	}
+
 	private void executeSearch(String lotName, String urlName) throws IOException {
-		String htmlResponse = applicationHelper.getHtmlResponseExtractorService().extractHtmlResponse(urlName);
+		String htmlResponse = applicationHelper.getDataExtractorService().getHtmlResponse(urlName);
 		TradingLot tradingLot = applicationHelper.getHtmlParserService().createTradingLot(htmlResponse);
+		System.out.println(lotName + ": " + tradingLot);
 		if (isNotFoundEarlier(tradingLot)) {
 			rewriteTradingLot(tradingLot);
 			doNotification(lotName, tradingLot);
@@ -86,13 +90,12 @@ public class SearchTask implements Runnable {
 	}
 
     private void doNotification(String lotName, TradingLot tradingLot) {
-        if (counter != 0) {
+		if (applicationHelper.getNotificationService().isCorrectLotForShow(tradingLot)) {
 			applicationHelper.getNotificationService().eventNotification(lotName + ":\n " + tradingLot);
-//			JOptionPane.showInputDialog(tradingLot.getName());
-        }
+		}
     }
 
-    private void rewriteTradingLot(TradingLot tradingLot) {
+	private void rewriteTradingLot(TradingLot tradingLot) {
 		lots.put(tradingLot.getName(), tradingLot);
     }
 

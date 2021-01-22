@@ -1,7 +1,7 @@
 package MainLogic;
 
+import Services.DataExtractorService;
 import Services.HtmlParserService;
-import Services.HtmlResponseExtractorService;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,10 +12,10 @@ public class ApplicationStarterTest {
 
     @Test
     public void doFullApplicationTest() throws Exception {
-        HtmlResponseExtractorService htmlResponseExtractorService = new HtmlResponseExtractorService();
+        DataExtractorService dataExtractorService = new DataExtractorService();
         HtmlParserService htmlParserService = new HtmlParserService();
 
-        String htmlResponse = htmlResponseExtractorService.extractHtmlResponse(URL);
+        String htmlResponse = dataExtractorService.getHtmlResponse(URL);
         TradingLot tradingLot = htmlParserService.createTradingLot(htmlResponse);
 
         Assert.assertEquals(tradingLot.getName(), LOT_NAME);

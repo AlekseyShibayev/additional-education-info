@@ -5,25 +5,15 @@ import Services.*;
 public class ApplicationHelper {
 
     private NotificationService notificationService;
-    private FileDataExtractorService fileDataExtractorService;
+    private DataExtractorService dataExtractorService;
     private HtmlParserService htmlParserService;
     private CaptchaFighterService captchaFighterService;
-    private HtmlResponseExtractorService htmlResponseExtractorService;
 
     public ApplicationHelper() {
         this.notificationService = new NotificationService();
-        this.fileDataExtractorService = new FileDataExtractorService();
+        this.dataExtractorService = new DataExtractorService();
         this.htmlParserService = new HtmlParserService();
         this.captchaFighterService = new CaptchaFighterService();
-        this.htmlResponseExtractorService = new HtmlResponseExtractorService();
-    }
-
-    public HtmlResponseExtractorService getHtmlResponseExtractorService() {
-        return htmlResponseExtractorService;
-    }
-
-    public void setHtmlResponseExtractorService(HtmlResponseExtractorService htmlResponseExtractorService) {
-        this.htmlResponseExtractorService = htmlResponseExtractorService;
     }
 
     public NotificationService getNotificationService() {
@@ -34,12 +24,12 @@ public class ApplicationHelper {
         this.notificationService = notificationService;
     }
 
-    public FileDataExtractorService getFileDataExtractorService() {
-        return fileDataExtractorService;
+    public DataExtractorService getDataExtractorService() {
+        return dataExtractorService;
     }
 
-    public void setFileDataExtractorService(FileDataExtractorService fileDataExtractorService) {
-        this.fileDataExtractorService = fileDataExtractorService;
+    public void setDataExtractorService(DataExtractorService dataExtractorService) {
+        this.dataExtractorService = dataExtractorService;
     }
 
     HtmlParserService getHtmlParserService() {

@@ -15,10 +15,13 @@ public class TradingLot {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TradingLot that = (TradingLot) o;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (location != null ? !location.equals(that.location) : that.location != null) return false;
-        return guild != null ? guild.equals(that.guild) : that.guild == null;
+
+        TradingLot lot = (TradingLot) o;
+
+        if (name != null ? !name.equals(lot.name) : lot.name != null) return false;
+        if (location != null ? !location.equals(lot.location) : lot.location != null) return false;
+        if (guild != null ? !guild.equals(lot.guild) : lot.guild != null) return false;
+        return price != null ? price.equals(lot.price) : lot.price == null;
     }
 
     @Override
@@ -26,6 +29,7 @@ public class TradingLot {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (guild != null ? guild.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
         return result;
     }
 

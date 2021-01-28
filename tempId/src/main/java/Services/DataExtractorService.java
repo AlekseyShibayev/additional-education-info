@@ -1,10 +1,14 @@
 package Services;
 
 import com.google.common.collect.Maps;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +40,29 @@ public class DataExtractorService {
     }
 
     private String getHtmlPage(String urlName) throws InterruptedException {
-        //todo
+
+        System.setProperty("webdriver.gecko.driver", "tempId\\src\\main\\resources\\drivers\\geckodriver.exe");
+        System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
+        System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");
+
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.setHeadless(true);
+
+        WebDriver driver = new FirefoxDriver(firefoxOptions);
+        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        driver.manage().deleteAllCookies();
+
+        driver.get(urlName);
+
+        Thread.sleep(15000);
+
+        String pageSource = driver.getPageSource();
+        driver.quit();
+        return pageSource;
+    }
+
+    @Deprecated
+    private String getHtmlPage_Chrome(String urlName) throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "G:\\chromedriver.exe");
 
         System.setProperty("webdriver.chrome.silentOutput", "true");

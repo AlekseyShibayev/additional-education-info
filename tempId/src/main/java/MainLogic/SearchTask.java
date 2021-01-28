@@ -91,7 +91,7 @@ public class SearchTask implements Runnable {
 
     private void doNotification(String lotName, TradingLot tradingLot) {
 		if (applicationHelper.getNotificationService().isCorrectLotForShow(tradingLot)) {
-			applicationHelper.getNotificationService().eventNotification(lotName + ":\n " + tradingLot);
+			applicationHelper.getNotificationService().eventNotification(lotName + ":\n" + tradingLot);
 		}
     }
 

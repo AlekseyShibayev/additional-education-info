@@ -35,7 +35,7 @@ public class TradingLot {
 
     @Override
     public String toString() {
-        return name + " :\n " + location + " / " + guild + "\n" + price + " / " + lastSeen;
+        return name + "\n" + location + "\n" + guild + "\n" + price + "\n" + lastSeen;
     }
 
     public TradingLot getEmptyTradingLot() {

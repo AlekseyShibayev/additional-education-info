@@ -19,7 +19,7 @@ public class DataExtractorService {
         try (InputStream stream = classLoader.getResourceAsStream(fileName)) {
             properties.load(stream);
         } catch (IOException e) {
-            //todo
+            throw new RuntimeException("Can't read properties from file.");
         }
         return Maps.fromProperties(properties);
     }

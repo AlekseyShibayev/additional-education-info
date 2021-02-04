@@ -1,10 +1,16 @@
 package MainLogic;
 
 import Services.DataExtractorService;
+import Services.NotificationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,13 +24,20 @@ public class TelegramBot extends TelegramLongPollingCommandBot {
     private Map<Long, String> chats;
     private String name;
     private String token;
+    @Autowired
     private DataExtractorService dataExtractorService;
+    @Autowired
+    private NotificationService notificationService;
 
-    public void init() {
+    @PostConstruct
+    public void init() throws TelegramApiException {
         Map<String, String> telegramProperties = dataExtractorService.getProperties(TELEGRAM_PROPERTIES);
         this.name = telegramProperties.get(NAME);
         this.token = telegramProperties.get(TOKEN);
         this.chats = getAllChats();
+
+        TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+        botsApi.registerBot(this);
     }
 
     private Map<Long, String> getAllChats() {
@@ -46,9 +59,6 @@ public class TelegramBot extends TelegramLongPollingCommandBot {
         return token;
     }
 
-    /**
-     * Ответ на запрос, не являющийся командой
-     */
     @Override
     public void processNonCommandUpdate(Update update) {
         Message message = update.getMessage();
@@ -60,13 +70,5 @@ public class TelegramBot extends TelegramLongPollingCommandBot {
 
     public Map<Long, String> getChats() {
         return chats;
-    }
-
-    public DataExtractorService getDataExtractorService() {
-        return dataExtractorService;
-    }
-
-    public void setDataExtractorService(DataExtractorService dataExtractorService) {
-        this.dataExtractorService = dataExtractorService;
     }
 }

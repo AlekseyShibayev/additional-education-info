@@ -4,14 +4,16 @@ import Services.CaptchaFighterService;
 import Services.DataExtractorService;
 import Services.HtmlParserService;
 import Services.NotificationService;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SearchTask implements Runnable {
+public class SearchJob implements Runnable {
 
 	private static final String LOTS_FILE_NAME = "lot.properties";
 
@@ -19,11 +21,16 @@ public class SearchTask implements Runnable {
 	private int counter;
 	private Map<String, String> urls;
 	private List<String> lotNames;
+	@Autowired
 	private DataExtractorService dataExtractorService;
+	@Autowired
 	private NotificationService notificationService;
+	@Autowired
 	private CaptchaFighterService captchaFighterService;
+	@Autowired
 	private HtmlParserService htmlParserService;
 
+	@PostConstruct
 	public void init() {
 		this.lots = new HashMap<>();
 		this.counter = 0;
@@ -47,7 +54,6 @@ public class SearchTask implements Runnable {
 
 	private void preparingToWork() throws InterruptedException {
 		notificationService.eventNotification("Application started with [" + urls.size() + "] parameters.\nSearching:\n" + lotNames);
-//		applicationHelper.getCaptchaFighterService().fight(30_000, 60_000);
 	}
 
 	private void doAfterRound() throws InterruptedException {
@@ -122,37 +128,5 @@ public class SearchTask implements Runnable {
 			names.add(entry.getKey());
 		}
 		return names;
-	}
-
-	public DataExtractorService getDataExtractorService() {
-		return dataExtractorService;
-	}
-
-	public void setDataExtractorService(DataExtractorService dataExtractorService) {
-		this.dataExtractorService = dataExtractorService;
-	}
-
-	public NotificationService getNotificationService() {
-		return notificationService;
-	}
-
-	public void setNotificationService(NotificationService notificationService) {
-		this.notificationService = notificationService;
-	}
-
-	public CaptchaFighterService getCaptchaFighterService() {
-		return captchaFighterService;
-	}
-
-	public void setCaptchaFighterService(CaptchaFighterService captchaFighterService) {
-		this.captchaFighterService = captchaFighterService;
-	}
-
-	public HtmlParserService getHtmlParserService() {
-		return htmlParserService;
-	}
-
-	public void setHtmlParserService(HtmlParserService htmlParserService) {
-		this.htmlParserService = htmlParserService;
 	}
 }

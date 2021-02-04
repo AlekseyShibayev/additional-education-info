@@ -2,6 +2,7 @@ package Services;
 
 import MainLogic.TelegramBot;
 import MainLogic.TradingLot;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -18,6 +19,7 @@ public class NotificationService {
 
     private static final boolean logEnabled = true;
     private List<String> log;
+    @Autowired
     private TelegramBot telegramBot;
 
     public NotificationService() {
@@ -81,13 +83,5 @@ public class NotificationService {
 
     public void errorNotification(Exception e) {
         e.printStackTrace();
-    }
-
-    public TelegramBot getTelegramBot() {
-        return telegramBot;
-    }
-
-    public void setTelegramBot(TelegramBot telegramBot) {
-        this.telegramBot = telegramBot;
     }
 }

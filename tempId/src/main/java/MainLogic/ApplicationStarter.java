@@ -3,7 +3,6 @@ package MainLogic;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class ApplicationStarter {
@@ -13,11 +12,18 @@ public class ApplicationStarter {
 	public static void main(String[] args) {
 		try {
 			ApplicationContext context = new ClassPathXmlApplicationContext(SPRING_XML_PATH);
-			ApplicationHelper applicationHelper = context.getBean(ApplicationHelper.class);
-			TelegramBot telegramBot = new TelegramBot(applicationHelper);
+
+			TelegramBot telegramBot = context.getBean(TelegramBot.class);
+			telegramBot.init();
+
+			SearchTask searchTask = context.getBean(SearchTask.class);
+			searchTask.init();
+
 			TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
 			botsApi.registerBot(telegramBot);
-		} catch (TelegramApiException e) {
+
+			searchTask.run();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

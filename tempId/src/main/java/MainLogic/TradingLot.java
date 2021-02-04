@@ -42,6 +42,8 @@ public class TradingLot {
         this.name = "empty";
         this.location = "empty";
         this.guild = "empty";
+        this.price = "empty";
+        this.lastSeen = "empty";
         return this;
     }
 

@@ -4,6 +4,20 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="applicationHelper" class="MainLogic.ApplicationHelper"/>
+    <bean id="captchaFighterService" class="Services.CaptchaFighterService"/>
+    <bean id="dataExtractorService" class="Services.DataExtractorService"/>
+    <bean id="htmlParserService" class="Services.HtmlParserService"/>
+    <bean id="notificationService" class="Services.NotificationService">
+        <property name="telegramBot" ref="telegramBot"/>
+    </bean>
+    <bean id="searchTask" class="MainLogic.SearchTask">
+        <property name="captchaFighterService" ref="captchaFighterService"/>
+        <property name="dataExtractorService" ref="dataExtractorService"/>
+        <property name="htmlParserService" ref="htmlParserService"/>
+        <property name="notificationService" ref="notificationService"/>
+    </bean>
+    <bean id="telegramBot" class="MainLogic.TelegramBot">
+        <property name="dataExtractorService" ref="dataExtractorService"/>
+    </bean>
 
 </beans>

@@ -34,8 +34,7 @@ public class DataExtractorService {
         try {
             return  getHtmlPage(urlName);
         } catch (InterruptedException e) {
-            //todo
-            return "null";
+            throw new RuntimeException("Не смог распарсить html");
         }
     }
 
@@ -52,28 +51,6 @@ public class DataExtractorService {
         driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
         driver.manage().deleteAllCookies();
 
-        driver.get(urlName);
-
-        Thread.sleep(15000);
-
-        String pageSource = driver.getPageSource();
-        driver.quit();
-        return pageSource;
-    }
-
-    @Deprecated
-    private String getHtmlPage_Chrome(String urlName) throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "G:\\chromedriver.exe");
-
-        System.setProperty("webdriver.chrome.silentOutput", "true");
-        java.util.logging.Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
-
-        ChromeOptions options = new ChromeOptions();
-
-        WebDriver driver = new ChromeDriver(options);
-
-        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-        driver.manage().window().setPosition(new Point(-2000, 0));
         driver.get(urlName);
 
         Thread.sleep(15000);

@@ -17,7 +17,6 @@ public class NotificationService {
     private static final int VALUE = 60;
 
     private static final boolean logEnabled = true;
-
     private List<String> log;
     private TelegramBot telegramBot;
 
@@ -40,7 +39,6 @@ public class NotificationService {
             }
         } catch (TelegramApiException e) {
             //todo
-            //логируем сбой Telegram Bot API, используя userName
         }
     }
 
@@ -58,7 +56,9 @@ public class NotificationService {
 
     public boolean isCorrectLotForShow(TradingLot tradingLot) {
         boolean result = false;
-        if (tradingLot != null && !tradingLot.getGuild().equals(EMPTY)) {
+        if (tradingLot != null
+                && !tradingLot.getGuild().equals(EMPTY)
+                && !tradingLot.getLocation().equals(EMPTY)) {
             String lastSeen = tradingLot.getLastSeen();
             if (lastSeen.contains(NOW)) {
                 result = true;

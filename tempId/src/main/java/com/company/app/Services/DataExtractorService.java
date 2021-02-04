@@ -28,7 +28,7 @@ public class DataExtractorService {
         try {
             return  getHtmlPage(urlName);
         } catch (InterruptedException e) {
-            throw new RuntimeException("Can't parse html.");
+            throw new RuntimeException("Can't get html.");
         }
     }
 

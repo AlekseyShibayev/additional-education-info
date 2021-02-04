@@ -1,7 +1,7 @@
-package Services;
+package com.company.app.Services;
 
-import MainLogic.TelegramBot;
-import MainLogic.TradingLot;
+import com.company.app.MainLogic.TelegramBot;
+import com.company.app.MainLogic.TradingLot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -40,7 +40,7 @@ public class NotificationService {
                 telegramBot.execute(answer);
             }
         } catch (TelegramApiException e) {
-            //todo
+            throw new RuntimeException("NotificationService can't write messages.");
         }
     }
 

@@ -1,7 +1,7 @@
-package MainLogic;
+package com.company.app.MainLogic;
 
-import Services.DataExtractorService;
-import Services.HtmlParserService;
+import com.company.app.Services.DataExtractorService;
+import com.company.app.Services.HtmlParserService;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package MainLogic;
+package com.company.app.MainLogic;
 
 import java.util.Date;
 

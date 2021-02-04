@@ -1,6 +1,6 @@
-package Services;
+package com.company.app.Services;
 
-import MainLogic.TradingLot;
+import com.company.app.MainLogic.TradingLot;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -22,7 +22,6 @@ public class HtmlParserService {
             tradingLot.setCreatedDate(new Date());
             return tradingLot;
         } catch (Exception e) {
-            //todo throw Exception
             return tradingLot.getEmptyTradingLot();
         }
     }

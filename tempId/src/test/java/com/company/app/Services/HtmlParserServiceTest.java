@@ -1,6 +1,7 @@
-package Services;
+package com.company.app.Services;
 
-import MainLogic.TradingLot;
+
+import com.company.app.MainLogic.TradingLot;
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Test;

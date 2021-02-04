@@ -1,4 +1,4 @@
-package Services;
+package com.company.app.Services;
 
 import com.google.common.collect.Maps;
 import org.openqa.selenium.WebDriver;

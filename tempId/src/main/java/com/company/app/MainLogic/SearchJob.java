@@ -1,9 +1,9 @@
-package MainLogic;
+package com.company.app.MainLogic;
 
-import Services.CaptchaFighterService;
-import Services.DataExtractorService;
-import Services.HtmlParserService;
-import Services.NotificationService;
+import com.company.app.Services.CaptchaFighterService;
+import com.company.app.Services.DataExtractorService;
+import com.company.app.Services.HtmlParserService;
+import com.company.app.Services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;

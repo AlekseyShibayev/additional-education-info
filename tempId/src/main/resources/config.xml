@@ -9,11 +9,11 @@
 
     <context:annotation-config/>
 
-    <bean id="captchaFighterService" class="Services.CaptchaFighterService"/>
-    <bean id="dataExtractorService" class="Services.DataExtractorService"/>
-    <bean id="htmlParserService" class="Services.HtmlParserService"/>
-    <bean id="notificationService" class="Services.NotificationService"/>
-    <bean id="searchService" class="MainLogic.SearchJob"/>
-    <bean id="telegramBot" class="MainLogic.TelegramBot"/>
+    <bean id="captchaFighterService" class="com.company.app.Services.CaptchaFighterService"/>
+    <bean id="dataExtractorService" class="com.company.app.Services.DataExtractorService"/>
+    <bean id="htmlParserService" class="com.company.app.Services.HtmlParserService"/>
+    <bean id="notificationService" class="com.company.app.Services.NotificationService"/>
+    <bean id="searchService" class="com.company.app.MainLogic.SearchJob"/>
+    <bean id="telegramBot" class="com.company.app.MainLogic.TelegramBot"/>
 
 </beans>

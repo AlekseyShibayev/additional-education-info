@@ -1,4 +1,4 @@
-package MainLogic;
+package com.company.app.MainLogic;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

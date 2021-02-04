@@ -1,4 +1,4 @@
-package Services;
+package com.company.app.Services;
 
 import java.util.ArrayList;
 import java.util.Collections;

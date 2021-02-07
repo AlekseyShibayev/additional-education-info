@@ -10,6 +10,7 @@ public class TradingLot {
     private String price;
     private String lastSeen;
     private Date createdDate;
+    private boolean isReadyToPrint;
 
     @Override
     public boolean equals(Object o) {
@@ -36,15 +37,6 @@ public class TradingLot {
     @Override
     public String toString() {
         return name + "\n" + location + "\n" + guild + "\n" + price + "\n" + lastSeen;
-    }
-
-    public TradingLot getEmptyTradingLot() {
-        this.name = "empty";
-        this.location = "empty";
-        this.guild = "empty";
-        this.price = "empty";
-        this.lastSeen = "empty";
-        return this;
     }
 
     public String getName() {
@@ -93,5 +85,13 @@ public class TradingLot {
 
     public void setLastSeen(String lastSeen) {
         this.lastSeen = lastSeen;
+    }
+
+    public boolean isReadyToPrint() {
+        return isReadyToPrint;
+    }
+
+    public void setReadyToPrint(boolean readyToPrint) {
+        isReadyToPrint = readyToPrint;
     }
 }

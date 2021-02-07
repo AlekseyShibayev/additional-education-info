@@ -9,6 +9,10 @@ import org.jsoup.select.Elements;
 import java.util.Date;
 
 public class HtmlParserService {
+    private static final String EMPTY = "empty";
+    private static final String NOW = "Now";
+    private static final String MINUTE = "Minute";
+    private static final int VALUE = 60;
 
     public TradingLot createTradingLot(String htmlResponse) {
         TradingLot tradingLot = new TradingLot();
@@ -20,10 +24,29 @@ public class HtmlParserService {
             tradingLot.setPrice(getValue(element.select("span"), 1));
             tradingLot.setLastSeen(getValue(element.select("td"), 4));
             tradingLot.setCreatedDate(new Date());
+            tradingLot.setReadyToPrint(getCheckResult(tradingLot));
             return tradingLot;
         } catch (Exception e) {
-            return tradingLot.getEmptyTradingLot();
+            return getEmptyTradingLot();
         }
+    }
+
+    private boolean getCheckResult(TradingLot tradingLot) {
+        boolean result = false;
+        if (tradingLot.getGuild().equals("")
+                || tradingLot.getLocation().equals("")
+                || tradingLot.getName().equals("")) {
+            result = false;
+        } else {
+            String lastSeen = tradingLot.getLastSeen();
+            if (lastSeen.contains(NOW)) {
+                result = true;
+            }
+            if (lastSeen.contains(MINUTE)) {
+                result = isLastSeenGood(lastSeen);
+            }
+        }
+       return result;
     }
 
     private String getValue(Elements elements, int index) {
@@ -36,5 +59,25 @@ public class HtmlParserService {
         Element table = document.select("tbody").first();
         Elements rows = table.select("tr");
         return rows.get(0);
+    }
+
+    private TradingLot getEmptyTradingLot() {
+        TradingLot tradingLot = new TradingLot();
+        tradingLot.setName(EMPTY);
+        tradingLot.setLocation(EMPTY);
+        tradingLot.setGuild(EMPTY);
+        tradingLot.setPrice(EMPTY);
+        tradingLot.setLastSeen(EMPTY);
+        tradingLot.setReadyToPrint(false);
+        return tradingLot;
+    }
+
+    boolean isLastSeenGood(String lastSeen) {
+        boolean result = false;
+        String[] array = lastSeen.split("Minute");
+        if (Integer.parseInt(array[0].trim()) < VALUE) {
+            result = true;
+        }
+        return result;
     }
 }

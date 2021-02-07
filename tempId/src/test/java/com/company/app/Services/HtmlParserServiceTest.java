@@ -1,6 +1,5 @@
 package com.company.app.Services;
 
-
 import com.company.app.MainLogic.TradingLot;
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
@@ -29,6 +28,7 @@ public class HtmlParserServiceTest {
         Assert.assertEquals(tradingLot.getGuild(), LOT_GUILD);
         Assert.assertEquals(tradingLot.getPrice(), LOT_PRICE);
         Assert.assertEquals(tradingLot.getLastSeen(), LOT_LAST_SEEN);
+        Assert.assertEquals(tradingLot.isReadyToPrint(), true);
     }
 
     private String getTestHtmlResponse() throws Exception {
@@ -38,6 +38,15 @@ public class HtmlParserServiceTest {
             result = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
         }
         return result;
+    }
+
+    @Test
+    public void isLastSeenGoodTest() throws Exception {
+        HtmlParserService htmlParserService = new HtmlParserService();
+        String lastSeen = "13 Minute ago";
+        String lastSeen2 = "61 Minute ago";
+        Assert.assertTrue(htmlParserService.isLastSeenGood(lastSeen));
+        Assert.assertFalse(htmlParserService.isLastSeenGood(lastSeen2));
     }
 }
 

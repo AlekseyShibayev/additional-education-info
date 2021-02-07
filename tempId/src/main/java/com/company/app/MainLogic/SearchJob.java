@@ -103,7 +103,7 @@ public class SearchJob implements Runnable {
 	}
 
     private void doNotification(String lotName, TradingLot tradingLot) {
-		if (notificationService.isCorrectLotForShow(tradingLot)) {
+		if (tradingLot.isReadyToPrint()) {
 			notificationService.eventNotification(lotName + ":\n" + tradingLot);
 		}
     }

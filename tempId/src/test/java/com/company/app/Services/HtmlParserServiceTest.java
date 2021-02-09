@@ -1,6 +1,7 @@
 package com.company.app.Services;
 
 import com.company.app.MainLogic.TradingLot;
+import com.company.app.Services.HtmlParserService;
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,10 +1,13 @@
 package com.company.app.Services;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+@Component
 public class CaptchaFighterService {
 
     public void fight(int of, int to) throws InterruptedException {

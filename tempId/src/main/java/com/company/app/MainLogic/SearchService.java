@@ -5,6 +5,7 @@ import com.company.app.Services.DataExtractorService;
 import com.company.app.Services.HtmlParserService;
 import com.company.app.Services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -13,7 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SearchJob implements Runnable {
+@Component
+public class SearchService implements Runnable {
 
 	private static final String LOTS_FILE_NAME = "lot.properties";
 

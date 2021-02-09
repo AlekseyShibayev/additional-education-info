@@ -5,9 +5,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 public class HtmlParserService {
     private static final String EMPTY = "empty";
     private static final String NOW = "Now";

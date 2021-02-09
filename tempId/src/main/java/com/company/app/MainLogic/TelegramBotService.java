@@ -3,6 +3,7 @@ package com.company.app.MainLogic;
 import com.company.app.Services.DataExtractorService;
 import com.company.app.Services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -14,7 +15,8 @@ import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TelegramBot extends TelegramLongPollingCommandBot {
+@Component
+public class TelegramBotService extends TelegramLongPollingCommandBot {
 
     private static final String CHAT_PROPERTIES = "chat.properties";
     private static final String TELEGRAM_PROPERTIES = "telegram.properties";

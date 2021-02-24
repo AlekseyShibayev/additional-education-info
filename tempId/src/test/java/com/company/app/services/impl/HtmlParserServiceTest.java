@@ -1,7 +1,8 @@
-package com.company.app.Services;
+package com.company.app.services.impl;
 
-import com.company.app.MainLogic.TradingLot;
-import com.company.app.Services.HtmlParserService;
+import com.company.app.mainLogic.TradingLot;
+
+import com.company.app.services.api.HtmlParserService;
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +21,7 @@ public class HtmlParserServiceTest {
 
     @Test
     public void createTradingLotTest() throws Exception {
-        HtmlParserService htmlParserService = new HtmlParserService();
+        HtmlParserService htmlParserService = new HtmlParserServiceImpl();
         String testHtmlResponse = getTestHtmlResponse();
         TradingLot tradingLot = htmlParserService.createTradingLot(testHtmlResponse);
 
@@ -43,7 +44,7 @@ public class HtmlParserServiceTest {
 
     @Test
     public void isLastSeenGoodTest() throws Exception {
-        HtmlParserService htmlParserService = new HtmlParserService();
+        HtmlParserServiceImpl htmlParserService = new HtmlParserServiceImpl();
         String lastSeen = "13 Minute ago";
         String lastSeen2 = "61 Minute ago";
         Assert.assertTrue(htmlParserService.isLastSeenGood(lastSeen));

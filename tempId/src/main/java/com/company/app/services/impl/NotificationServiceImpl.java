@@ -1,7 +1,7 @@
-package com.company.app.Services;
+package com.company.app.services.impl;
 
-
-import com.company.app.MainLogic.TelegramBotService;
+import com.company.app.mainLogic.TelegramBotService;
+import com.company.app.services.api.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -12,14 +12,15 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class NotificationService {
+public class NotificationServiceImpl implements NotificationService {
 
+    //todo stateless
     private static final boolean logEnabled = true;
     private List<String> log;
     @Autowired
     private TelegramBotService bot;
 
-    public NotificationService() {
+    public NotificationServiceImpl() {
         this.log = new ArrayList<>();
     }
 

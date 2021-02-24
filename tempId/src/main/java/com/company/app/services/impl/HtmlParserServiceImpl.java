@@ -1,6 +1,7 @@
-package com.company.app.Services;
+package com.company.app.services.impl;
 
-import com.company.app.MainLogic.TradingLot;
+import com.company.app.mainLogic.TradingLot;
+import com.company.app.services.api.HtmlParserService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,12 +11,13 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class HtmlParserService {
+public class HtmlParserServiceImpl implements HtmlParserService {
     private static final String EMPTY = "empty";
     private static final String NOW = "Now";
     private static final String MINUTE = "Minute";
     private static final int VALUE = 60;
 
+    @Override
     public TradingLot createTradingLot(String htmlResponse) {
         TradingLot tradingLot = new TradingLot();
         try {
@@ -48,7 +50,7 @@ public class HtmlParserService {
                 result = isLastSeenGood(lastSeen);
             }
         }
-       return result;
+        return result;
     }
 
     private String getValue(Elements elements, int index) {

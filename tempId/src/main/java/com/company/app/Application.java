@@ -1,6 +1,6 @@
 package com.company.app;
 
-import com.company.app.MainLogic.SearchService;
+import com.company.app.mainLogic.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

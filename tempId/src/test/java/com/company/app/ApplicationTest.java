@@ -1,8 +1,10 @@
 package com.company.app;
 
-import com.company.app.MainLogic.TradingLot;
-import com.company.app.Services.DataExtractorService;
-import com.company.app.Services.HtmlParserService;
+import com.company.app.mainLogic.TradingLot;
+import com.company.app.services.api.DataExtractorService;
+import com.company.app.services.impl.DataExtractorServiceImpl;
+import com.company.app.services.api.HtmlParserService;
+import com.company.app.services.impl.HtmlParserServiceImpl;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -16,8 +18,8 @@ public class ApplicationTest {
     @Ignore
     @Test
     public void doFullApplicationTest() throws Exception {
-        DataExtractorService dataExtractorService = new DataExtractorService();
-        HtmlParserService htmlParserService = new HtmlParserService();
+        DataExtractorService dataExtractorService = new DataExtractorServiceImpl();
+        HtmlParserService htmlParserService = new HtmlParserServiceImpl();
 
         String htmlResponse = dataExtractorService.getHtmlResponse(URL);
         TradingLot tradingLot = htmlParserService.createTradingLot(htmlResponse);

@@ -1,9 +1,9 @@
-package com.company.app.MainLogic;
+package com.company.app.mainLogic;
 
-import com.company.app.Services.CaptchaFighterService;
-import com.company.app.Services.DataExtractorService;
-import com.company.app.Services.HtmlParserService;
-import com.company.app.Services.NotificationService;
+import com.company.app.services.api.CaptchaFighterService;
+import com.company.app.services.api.DataExtractorService;
+import com.company.app.services.api.HtmlParserService;
+import com.company.app.services.api.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

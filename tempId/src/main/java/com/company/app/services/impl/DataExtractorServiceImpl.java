@@ -1,5 +1,6 @@
-package com.company.app.Services;
+package com.company.app.services.impl;
 
+import com.company.app.services.api.DataExtractorService;
 import com.google.common.collect.Maps;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,8 +14,9 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 @Component
-public class DataExtractorService {
+public class DataExtractorServiceImpl implements DataExtractorService {
 
+    @Override
     public Map<String, String> getProperties(String fileName) {
         Properties properties = new Properties();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -26,6 +28,7 @@ public class DataExtractorService {
         return Maps.fromProperties(properties);
     }
 
+    @Override
     public String getHtmlResponse(String urlName) {
         try {
             return  getHtmlPage(urlName);

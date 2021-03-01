@@ -125,10 +125,6 @@ public class SearchService implements Runnable {
 	}
 
 	private List<String> getLotNames(Map<String, String> map) {
-		List<String> names = new ArrayList<>();
-		for (Map.Entry<String, String> entry : map.entrySet()) {
-			names.add(entry.getKey());
-		}
-		return names;
+		return new ArrayList<>(map.keySet());
 	}
 }

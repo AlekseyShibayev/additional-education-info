@@ -66,7 +66,6 @@ public class TelegramBotService extends TelegramLongPollingCommandBot {
         Message message = update.getMessage();
         Long chatId = message.getChatId();
         String text = message.getText();
-
         System.out.println(text + " " + chatId);
     }
 

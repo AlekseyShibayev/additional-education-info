@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 @Component
 public class NotificationServiceImpl implements NotificationService {
@@ -33,8 +34,8 @@ public class NotificationServiceImpl implements NotificationService {
 
     private void sendToALL(Map<Long, String> chats, SendMessage answer) {
         try {
-            for (Map.Entry<Long, String> entry : chats.entrySet()) {
-                answer.setChatId(entry.getKey().toString());
+            for (Long entry : chats.keySet()) {
+                answer.setChatId(entry.toString());
                 bot.execute(answer);
             }
         } catch (TelegramApiException e) {

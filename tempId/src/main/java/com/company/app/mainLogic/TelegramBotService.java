@@ -74,8 +74,7 @@ public class TelegramBotService extends TelegramLongPollingCommandBot {
         return chats;
     }
 
-    public void sendAll(Object o) {
-        SendMessage answer = (SendMessage) o;
+    public void sendAnswer(SendMessage answer) {
         try {
             this.execute(answer);
         } catch (TelegramApiException e) {

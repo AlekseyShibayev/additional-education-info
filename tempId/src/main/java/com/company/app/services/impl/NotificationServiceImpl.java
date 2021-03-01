@@ -8,7 +8,6 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 @Component
 public class NotificationServiceImpl implements NotificationService {
@@ -25,13 +24,13 @@ public class NotificationServiceImpl implements NotificationService {
 
     public void eventNotification(Object message) {
         bot.getChats().keySet().stream()
-                .map((Function<Long, Object>) chatId -> {
+                .map(chatId -> {
                     SendMessage answer = new SendMessage();
                     answer.setText(message.toString());
                     answer.setChatId(chatId.toString());
                     return answer;
                 })
-                .forEach(bot::sendAll);
+                .forEach(bot::sendAnswer);
     }
 
     public void logNotification(Object message) {

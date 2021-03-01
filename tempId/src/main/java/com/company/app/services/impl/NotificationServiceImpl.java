@@ -5,12 +5,10 @@ import com.company.app.services.api.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 @Component
 public class NotificationServiceImpl implements NotificationService {
@@ -26,21 +24,14 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     public void eventNotification(Object message) {
-        Map<Long, String> chats = bot.getChats();
-        SendMessage answer = new SendMessage();
-        answer.setText(message.toString());
-        sendToALL(chats, answer);
-    }
-
-    private void sendToALL(Map<Long, String> chats, SendMessage answer) {
-        try {
-            for (Long entry : chats.keySet()) {
-                answer.setChatId(entry.toString());
-                bot.execute(answer);
-            }
-        } catch (TelegramApiException e) {
-            throw new RuntimeException("NotificationService can't write messages.");
-        }
+        bot.getChats().keySet().stream()
+                .map((Function<Long, Object>) aLong -> {
+                    SendMessage answer = new SendMessage();
+                    answer.setText(message.toString());
+                    answer.setChatId(aLong.toString());
+                    return answer;
+                })
+                .forEach(bot::sendAll);
     }
 
     public void logNotification(Object message) {

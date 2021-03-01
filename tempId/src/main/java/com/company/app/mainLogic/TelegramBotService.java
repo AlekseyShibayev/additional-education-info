@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -71,5 +72,14 @@ public class TelegramBotService extends TelegramLongPollingCommandBot {
 
     public Map<Long, String> getChats() {
         return chats;
+    }
+
+    public void sendAll(Object o) {
+        SendMessage answer = (SendMessage) o;
+        try {
+            this.execute(answer);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException("NotificationService can't write messages.");
+        }
     }
 }

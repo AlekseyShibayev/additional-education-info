@@ -25,10 +25,10 @@ public class NotificationServiceImpl implements NotificationService {
 
     public void eventNotification(Object message) {
         bot.getChats().keySet().stream()
-                .map((Function<Long, Object>) aLong -> {
+                .map((Function<Long, Object>) chatId -> {
                     SendMessage answer = new SendMessage();
                     answer.setText(message.toString());
-                    answer.setChatId(aLong.toString());
+                    answer.setChatId(chatId.toString());
                     return answer;
                 })
                 .forEach(bot::sendAll);

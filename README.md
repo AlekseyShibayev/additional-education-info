@@ -1,7 +1,9 @@
 # FutureSpringBootPractice
 
 sudo apt-get install default-jdk
+
 java -version
+
 javac -version
 
 sudo nano /etc/environment

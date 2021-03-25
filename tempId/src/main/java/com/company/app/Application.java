@@ -18,7 +18,6 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... strings) throws Exception {
-//		searchService.run();
-		System.out.println("Hello from docker!!!");
+		searchService.run();
 	}
 }

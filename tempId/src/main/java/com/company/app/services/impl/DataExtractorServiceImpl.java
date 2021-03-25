@@ -7,14 +7,19 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 @Component
 public class DataExtractorServiceImpl implements DataExtractorService {
+
+    private static final String FIRST_DRIVER_PATH = "drivers/geckodriver";
+    private static final String SECOND_DRIVER_PATH = "/usr/local/bin/geckodriver";
 
     @Override
     public Map<String, String> getProperties(String fileName) {
@@ -39,8 +44,14 @@ public class DataExtractorServiceImpl implements DataExtractorService {
 
     private String getHtmlPage(String urlName) throws InterruptedException {
 
-//        System.setProperty("webdriver.gecko.driver", "tempId\\src\\main\\resources\\drivers\\geckodriver.exe");
-        System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver");
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        URL path = loader.getResource(FIRST_DRIVER_PATH);
+        File file = new File(path.getPath());
+        if (file.exists()) {
+            System.setProperty("webdriver.gecko.driver", path.getPath());
+        } else {
+            System.setProperty("webdriver.gecko.driver", SECOND_DRIVER_PATH);
+        }
 
         System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
         System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "/dev/null");

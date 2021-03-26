@@ -2,12 +2,15 @@ package com.company.app;
 
 import com.company.app.services.api.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @SpringBootApplication
-public class Application implements CommandLineRunner {
+@RestController
+public class Application {
 
 @Autowired
 private NotificationService notificationService;
@@ -16,8 +19,8 @@ private NotificationService notificationService;
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Override
-	public void run(String... strings) throws Exception {
-		notificationService.eventNotification("Hello world");
+	@PostMapping(value = "/")
+	public void interceptAll(@RequestBody Map<String, Object> lookupRequestObject) {
+		notificationService.eventNotification(lookupRequestObject.toString());
 	}
 }

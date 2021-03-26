@@ -1,4 +1,4 @@
-# FutureSpringBootPractice
+# TelegramNotificationService
 
 sudo apt-get install default-jdk (java -version / javac -version )
 

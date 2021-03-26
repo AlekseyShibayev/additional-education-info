@@ -8,6 +8,4 @@ import java.util.Map;
 public interface DataExtractorService {
 
     Map<String, String> getProperties(String fileName);
-
-    String getHtmlResponse(String urlName);
 }

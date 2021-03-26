@@ -27,6 +27,7 @@ public class TelegramBotService extends TelegramLongPollingCommandBot {
     private Map<Long, String> chats;
     private String name;
     private String token;
+
     @Autowired
     private DataExtractorService dataExtractorService;
     @Autowired
@@ -67,7 +68,7 @@ public class TelegramBotService extends TelegramLongPollingCommandBot {
         Message message = update.getMessage();
         Long chatId = message.getChatId();
         String text = message.getText();
-        System.out.println(text + " " + chatId);
+        System.out.println(chatId + ": " + text);
     }
 
     public Map<Long, String> getChats() {

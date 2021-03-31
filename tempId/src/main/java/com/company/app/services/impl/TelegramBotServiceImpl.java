@@ -1,7 +1,8 @@
-package com.company.app.mainLogic;
+package com.company.app.services.impl;
 
 import com.company.app.services.api.DataExtractorService;
 import com.company.app.services.api.NotificationService;
+import com.company.app.services.api.TelegramBotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
@@ -17,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class TelegramBotService extends TelegramLongPollingCommandBot {
+public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implements TelegramBotService {
 
     private static final String CHAT_PROPERTIES = "chat.properties";
     private static final String TELEGRAM_PROPERTIES = "telegram.properties";

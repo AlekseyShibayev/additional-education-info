@@ -13,3 +13,6 @@ ENTRYPOINT ["java", "-jar", "/application.jar"]
 #docker build --tag "bot:0" .
 #docker run -p 8080:8080 -p 5005:5005 bot:0
 
+# default for postman test is:
+#   http://localhost:8080
+#   http://127.0.0.1:8080

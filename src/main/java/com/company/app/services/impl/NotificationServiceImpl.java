@@ -14,9 +14,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     public void eventNotification(Object message) {
         bot.getChats().keySet().stream()
-                .map(chatId -> {
-                    return getSendMessage(message, chatId);
-                })
+                .map(chatId -> getSendMessage(message, chatId))
                 .forEach(bot::sendAnswer);
     }
 

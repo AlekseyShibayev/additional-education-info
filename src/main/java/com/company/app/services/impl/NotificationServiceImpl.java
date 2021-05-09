@@ -15,11 +15,15 @@ public class NotificationServiceImpl implements NotificationService {
     public void eventNotification(Object message) {
         bot.getChats().keySet().stream()
                 .map(chatId -> {
-                    SendMessage answer = new SendMessage();
-                    answer.setText(message.toString());
-                    answer.setChatId(chatId.toString());
-                    return answer;
+                    return getSendMessage(message, chatId);
                 })
                 .forEach(bot::sendAnswer);
+    }
+
+    private SendMessage getSendMessage(Object message, Long chatId) {
+        SendMessage answer = new SendMessage();
+        answer.setText(message.toString());
+        answer.setChatId(chatId.toString());
+        return answer;
     }
 }

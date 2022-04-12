@@ -16,3 +16,7 @@ sudo apt install maven (mvn -version)
 
 # default for postman test is:
 # http://localhost:8080 or http://127.0.0.1:8080
+
+upd:
+docker save -o mf.tar mf:0
+

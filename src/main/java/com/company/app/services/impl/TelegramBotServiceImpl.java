@@ -1,5 +1,6 @@
 package com.company.app.services.impl;
 
+import com.company.app.services.api.ChatService;
 import com.company.app.services.api.DataExtractorService;
 import com.company.app.services.api.NotificationService;
 import com.company.app.services.api.TelegramBotService;
@@ -14,13 +15,11 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
 import java.util.Map;
 
 @Component
 public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implements TelegramBotService {
 
-    private static final String CHAT_PROPERTIES = "chat.properties";
     private static final String TELEGRAM_PROPERTIES = "telegram.properties";
     private static final String NAME = "name";
     private static final String TOKEN = "token";
@@ -33,25 +32,17 @@ public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implem
     private DataExtractorService dataExtractorService;
     @Autowired
     private NotificationService notificationService;
+    @Autowired
+    private ChatService chatService;
 
     @PostConstruct
     public void init() throws TelegramApiException {
         Map<String, String> telegramProperties = dataExtractorService.getProperties(TELEGRAM_PROPERTIES);
         this.name = telegramProperties.get(NAME);
         this.token = telegramProperties.get(TOKEN);
-        this.chats = getAllChats();
-
+        this.chats = chatService.getChats();
         TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
         botsApi.registerBot(this);
-    }
-
-    private Map<Long, String> getAllChats() {
-        Map<String, String> chatProperties = dataExtractorService.getProperties(CHAT_PROPERTIES);
-        Map<Long, String> result = new HashMap<>();
-        for (Map.Entry<String, String> entry : chatProperties.entrySet()) {
-            result.put(Long.parseLong(entry.getKey()), entry.getValue());
-        }
-        return result;
     }
 
     @Override

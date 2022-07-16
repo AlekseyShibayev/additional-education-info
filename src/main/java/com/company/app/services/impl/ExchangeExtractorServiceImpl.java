@@ -3,11 +3,13 @@ package com.company.app.services.impl;
 import com.company.app.data.Exchange;
 import com.company.app.services.api.ExchangeExtractorService;
 import com.company.app.tools.api.DataExtractorService;
+import lombok.Setter;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@Setter
 public class ExchangeExtractorServiceImpl implements ExchangeExtractorService {
 
     @Autowired

@@ -1,7 +1,7 @@
 package com.company.app.services.impl;
 
 import com.company.app.services.api.ChatService;
-import com.company.app.services.api.DataExtractorService;
+import com.company.app.tools.api.DataExtractorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -2,7 +2,6 @@ package com.company.app.services.impl;
 
 import com.company.app.services.api.ChatService;
 import com.company.app.services.api.DataExtractorService;
-import com.company.app.services.api.NotificationService;
 import com.company.app.services.api.TelegramBotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,8 +29,6 @@ public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implem
 
     @Autowired
     private DataExtractorService dataExtractorService;
-    @Autowired
-    private NotificationService notificationService;
     @Autowired
     private ChatService chatService;
 

@@ -20,6 +20,6 @@ public class ExchangeExtractorServiceImplTest {
 
     @Test
     public void extractCurseTest() throws IOException {
-        exchangeExtractorService.extractCurse();
+        System.out.println(exchangeExtractorService.extractCurse());
     }
 }

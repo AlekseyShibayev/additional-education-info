@@ -1,5 +1,6 @@
 package com.company.app.services.impl;
 
+import com.company.app.data.Exchange;
 import com.company.app.services.api.*;
 import com.company.app.tools.api.DataExtractorService;
 import org.springframework.beans.factory.annotation.Autowired;

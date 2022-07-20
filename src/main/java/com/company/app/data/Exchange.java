@@ -6,11 +6,15 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Builder
 public class Exchange {
 
     private String stockExchange;
-    private String aliExpressExchange;
+    private AliExpressExchange aliExpressExchange;
     private String centralBankExchange;
+
+    @Override
+    public String toString() {
+        return stockExchange + "/" + aliExpressExchange + "/" + centralBankExchange;
+    }
 }

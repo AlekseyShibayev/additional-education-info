@@ -23,7 +23,7 @@ public class DataExtractorServiceImpl implements DataExtractorService {
 	@Override
 	public JSONObject getJsonObject(JSONObject jsonObject, String searchString) {
 		JsonSearcher jsonSearcher = new JsonSearcher();
-		jsonSearcher.doRecursive(jsonObject, searchString);
+		jsonSearcher.doRecursiveSearch(jsonObject, searchString);
 		return jsonSearcher.getResult();
 	}
 

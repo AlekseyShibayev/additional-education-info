@@ -11,29 +11,33 @@ import java.util.Iterator;
 @Setter
 public class JsonSearcher {
 
-	JSONObject result;
-	int counter;
+	private JSONObject result;
+	private int counter;
 
-	public void doRecursive(JSONObject jsonObject, String search) {
+	public void doRecursiveSearch(JSONObject jsonObject, String search) {
 		Iterator<String> keys = jsonObject.keys();
 		while (keys.hasNext()) {
 			String key = keys.next();
-			if (key.equals(search)) {
-				this.setResult((JSONObject) jsonObject.get(key));
-				this.setCounter(counter++);
-			}
+			check(jsonObject, search, key);
+			execute(jsonObject.get(key), search);
+		}
+	}
 
-			Object o = jsonObject.get(key);
-			if (o instanceof JSONObject) {
-				JSONObject o1 = (JSONObject) o;
-				doRecursive(o1, search);
-			} else if (o instanceof JSONArray) {
-				JSONArray jsonArray = (JSONArray) o;
-				for (Object o1 : jsonArray) {
-					JSONObject o11 = (JSONObject) o1;
-					doRecursive(o11, search);
-				}
+	private void execute(Object jsonObject, String search) {
+		if (jsonObject instanceof JSONObject) {
+			doRecursiveSearch((JSONObject) jsonObject, search);
+		} else if (jsonObject instanceof JSONArray) {
+			JSONArray jsonArray = (JSONArray) jsonObject;
+			for (Object object : jsonArray) {
+				doRecursiveSearch((JSONObject) object, search);
 			}
+		}
+	}
+
+	private void check(JSONObject jsonObject, String search, String key) {
+		if (key.equals(search)) {
+			this.setResult((JSONObject) jsonObject.get(key));
+			this.setCounter(counter++);
 		}
 	}
 }

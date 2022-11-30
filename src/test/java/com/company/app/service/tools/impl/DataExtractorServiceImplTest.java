@@ -25,7 +25,7 @@ public class DataExtractorServiceImplTest {
 		String string = dataExtractorService.getFileAsString(FILE_NAME);
 		JSONObject jsonObject = new JSONObject(string);
 		JsonSearcher jsonSearcher = new JsonSearcher();
-		jsonSearcher.doRecursive(jsonObject, "activityAmount");
+		jsonSearcher.doRecursiveSearch(jsonObject, "activityAmount");
 
 		JSONObject result = jsonSearcher.getResult();
 		Object value = result.getDouble("value");

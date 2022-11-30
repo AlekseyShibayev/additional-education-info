@@ -1,8 +1,6 @@
 package com.company.app.services.impl;
 
 import com.company.app.services.api.ChatService;
-import com.company.app.services.api.ExchangeExtractorService;
-import com.company.app.services.api.NotificationService;
 import com.company.app.services.api.TelegramBotService;
 import com.company.app.tools.api.DataExtractorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +31,6 @@ public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implem
 	private DataExtractorService dataExtractorService;
 	@Autowired
 	private ChatService chatService;
-	@Autowired
-	private ExchangeExtractorService curseExtractorService;
-	@Autowired
-	private NotificationService notificationService;
 
 	@PostConstruct
 	public void init() throws TelegramApiException {
@@ -64,10 +58,6 @@ public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implem
 		Long chatId = message.getChatId();
 		String text = message.getText();
 		System.out.println(chatId + ": " + text);
-
-		if (text.equals("1")) {
-			notificationService.eventNotification(curseExtractorService.extractCurse());
-		}
 	}
 
 	public Map<Long, String> getChats() {

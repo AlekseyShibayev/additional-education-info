@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface TelegramBotService {
 
-    void sendAnswer(SendMessage answer);
+	void sendAnswer(SendMessage answer);
 
-    Map<Long, String> getChats();
+	Map<Long, String> getChats();
 }

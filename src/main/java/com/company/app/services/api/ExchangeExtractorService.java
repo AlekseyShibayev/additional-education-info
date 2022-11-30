@@ -6,5 +6,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface ExchangeExtractorService {
 
-    public Exchange extractCurse();
+	public Exchange extractCurse();
 }

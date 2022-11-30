@@ -11,11 +11,11 @@ import java.util.Map;
 @RestController
 public class MainController {
 
-    @Autowired
-    private NotificationService notificationService;
+	@Autowired
+	private NotificationService notificationService;
 
-    @PostMapping(value = "/")
-    public void interceptAll(@RequestBody Map<String, Object> lookupRequestObject) {
-        notificationService.eventNotification(lookupRequestObject.toString());
-    }
+	@PostMapping(value = "/")
+	public void interceptAll(@RequestBody Map<String, Object> lookupRequestObject) {
+		notificationService.eventNotification(lookupRequestObject.toString());
+	}
 }

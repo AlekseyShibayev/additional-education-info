@@ -7,5 +7,5 @@ import java.util.Map;
 @Component
 public interface ChatService {
 
-    Map<Long, String> getChats();
+	Map<Long, String> getChats();
 }

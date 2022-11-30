@@ -1,20 +1,11 @@
 package com.company.app.data;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Builder
 public class Exchange {
 
-    private String stockExchange;
-    private AliExpressExchange aliExpressExchange;
-    private String centralBankExchange;
-
-    @Override
-    public String toString() {
-        return stockExchange + "/" + aliExpressExchange + "/" + centralBankExchange;
-    }
+	private String aliExpressExchange;
 }

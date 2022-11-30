@@ -11,16 +11,16 @@ import java.util.Map;
 @Component
 public class ChatServiceImpl implements ChatService {
 
-    private static final String CHAT_PROPERTIES = "chat.properties";
+	private static final String CHAT_PROPERTIES = "chat.properties";
 
-    @Autowired
-    private DataExtractorService dataExtractorService;
+	@Autowired
+	private DataExtractorService dataExtractorService;
 
-    @Override
-    public Map<Long, String> getChats() {
-        Map<Long, String> result = new HashMap<>();
-        dataExtractorService.getProperties(CHAT_PROPERTIES)
-                .forEach((key, value) -> result.put(Long.parseLong(key), value));
-        return result;
-    }
+	@Override
+	public Map<Long, String> getChats() {
+		Map<Long, String> result = new HashMap<>();
+		dataExtractorService.getProperties(CHAT_PROPERTIES)
+				.forEach((key, value) -> result.put(Long.parseLong(key), value));
+		return result;
+	}
 }

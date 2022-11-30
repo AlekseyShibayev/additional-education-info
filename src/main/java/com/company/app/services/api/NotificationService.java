@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface NotificationService {
 
-    void eventNotification(Object message);
+	void eventNotification(Object message);
 }

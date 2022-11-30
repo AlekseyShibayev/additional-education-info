@@ -1,6 +1,6 @@
-package com.company.app.services.impl;
+package com.company.app.services.telegram.impl;
 
-import com.company.app.services.api.ChatService;
+import com.company.app.services.telegram.api.ChatService;
 import com.company.app.tools.api.DataExtractorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

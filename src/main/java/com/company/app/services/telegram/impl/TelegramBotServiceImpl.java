@@ -1,14 +1,13 @@
-package com.company.app.services.impl;
+package com.company.app.services.telegram.impl;
 
-import com.company.app.services.api.ChatService;
-import com.company.app.services.api.TelegramBotService;
+import com.company.app.services.telegram.api.ChatService;
+import com.company.app.services.telegram.api.TelegramBotService;
+import com.company.app.services.telegram.api.TelegramHandler;
 import com.company.app.tools.api.DataExtractorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
@@ -31,6 +30,8 @@ public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implem
 	private DataExtractorService dataExtractorService;
 	@Autowired
 	private ChatService chatService;
+	@Autowired
+	private TelegramHandler telegramHandler;
 
 	@PostConstruct
 	public void init() throws TelegramApiException {
@@ -54,21 +55,10 @@ public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implem
 
 	@Override
 	public void processNonCommandUpdate(Update update) {
-		Message message = update.getMessage();
-		Long chatId = message.getChatId();
-		String text = message.getText();
-		System.out.println(chatId + ": " + text);
+		telegramHandler.process(update);
 	}
 
 	public Map<Long, String> getChats() {
 		return chats;
-	}
-
-	public void sendAnswer(SendMessage answer) {
-		try {
-			this.execute(answer);
-		} catch (TelegramApiException e) {
-			throw new RuntimeException("NotificationService can't write messages.");
-		}
 	}
 }

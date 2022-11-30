@@ -1,5 +1,7 @@
 package com.company.app.services.impl;
 
+import com.company.app.entity.History;
+import com.company.app.repository.HistoryRepository;
 import com.company.app.services.api.NotificationService;
 import com.company.app.services.api.TelegramBotService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,16 @@ public class NotificationServiceImpl implements NotificationService {
 
 	@Autowired
 	private TelegramBotService bot;
+	@Autowired
+	private HistoryRepository historyRepository;
 
 	public void eventNotification(Object message) {
+
+		History history = History.builder()
+				.message(String.valueOf(message))
+				.build();
+		historyRepository.save(history);
+
 		bot.getChats().keySet().stream()
 				.map(chatId -> getSendMessage(message, chatId))
 				.forEach(bot::sendAnswer);

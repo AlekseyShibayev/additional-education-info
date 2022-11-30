@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
+import java.util.Date;
+
 @Component
 public class NotificationServiceImpl implements NotificationService {
 
@@ -17,9 +19,9 @@ public class NotificationServiceImpl implements NotificationService {
 	private HistoryRepository historyRepository;
 
 	public void eventNotification(Object message) {
-
 		History history = History.builder()
 				.message(String.valueOf(message))
+				.date(new Date())
 				.build();
 		historyRepository.save(history);
 

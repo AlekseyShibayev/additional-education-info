@@ -13,16 +13,16 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "history")
-public class History {
+@Table(name = "exchange")
+public class Exchange {
 
 	@Id
 	@GeneratedValue
 	@Column(name = "id", nullable = false)
 	private Long id;
 
-	@Column(name = "message")
-	private String message;
+	@Column(name = "aliexpress_exchange")
+	private String aliexpressExchange;
 
 	@Column(name = "date")
 	private Date date;

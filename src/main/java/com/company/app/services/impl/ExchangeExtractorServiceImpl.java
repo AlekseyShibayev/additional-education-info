@@ -1,6 +1,7 @@
 package com.company.app.services.impl;
 
-import com.company.app.data.Exchange;
+import com.company.app.entity.Exchange;
+import com.company.app.repository.ExchangeRepository;
 import com.company.app.services.api.ExchangeExtractorService;
 import com.company.app.tools.api.DataExtractorService;
 import lombok.Setter;
@@ -12,6 +13,8 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 @Setter
 public class ExchangeExtractorServiceImpl implements ExchangeExtractorService {
@@ -20,13 +23,18 @@ public class ExchangeExtractorServiceImpl implements ExchangeExtractorService {
 
 	@Autowired
 	private DataExtractorService dataExtractorService;
+	@Autowired
+	private ExchangeRepository exchangeRepository;
 
 	@SneakyThrows
 	@Override
 	public Exchange extractCurse() {
-		return Exchange.builder()
-				.aliExpressExchange(getExchange(dataExtractorService.getHtmlResponse(URL)))
+		Exchange exchange = Exchange.builder()
+				.aliexpressExchange(getExchange(dataExtractorService.getHtmlResponse(URL)))
+				.date(new Date())
 				.build();
+		exchangeRepository.save(exchange);
+		return exchange;
 	}
 
 	public String getExchange(String htmlResponse) {

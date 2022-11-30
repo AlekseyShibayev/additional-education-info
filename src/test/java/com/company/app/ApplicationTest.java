@@ -1,6 +1,9 @@
 package com.company.app;
 
+import com.company.app.entity.History;
+import com.company.app.repository.HistoryRepository;
 import com.company.app.services.api.NotificationService;
+import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,17 @@ public class ApplicationTest extends AbstractTest {
 	private NotificationService notificationService;
 	@Autowired
 	private TestRestTemplate testRestTemplate;
+	@Autowired
+	private HistoryRepository historyRepository;
+
+	@Test
+	public void historyRepositorySmokeTest() {
+		historyRepository.deleteAll();
+		historyRepository.save(History.builder()
+				.message("0. Успешное сохранение в бд.")
+				.build());
+		Assert.assertEquals(Lists.newArrayList(historyRepository.findAll()).size(), 1);
+	}
 
 	@Test
 	public void notificationServiceSmokeTest() {

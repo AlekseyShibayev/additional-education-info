@@ -1,12 +1,16 @@
 package com.company.app.services.impl;
 
 import com.company.app.tools.impl.DataExtractorServiceImpl;
+import lombok.SneakyThrows;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 
 public class ExchangeExtractorServiceImplTest {
+
+    private static final String FILE_NAME = "AliexpressUsdResponseExample.html";
 
     private ExchangeExtractorServiceImpl exchangeExtractorService;
     private DataExtractorServiceImpl dataExtractorService;
@@ -18,8 +22,10 @@ public class ExchangeExtractorServiceImplTest {
         exchangeExtractorService.setDataExtractorService(dataExtractorService);
     }
 
+    @SneakyThrows
     @Test
     public void extractCurseTest() throws IOException {
-        System.out.println(exchangeExtractorService.extractCurse());
+        String fileAsString = dataExtractorService.getFileAsString(FILE_NAME);
+        Assert.assertEquals("65.85", exchangeExtractorService.getExchange(fileAsString));
     }
 }

@@ -1,7 +1,10 @@
 package com.company.app.tools.impl;
 
+import com.company.app.tools.JsonSearcher;
 import com.company.app.tools.api.DataExtractorService;
 import com.google.common.collect.Maps;
+import org.apache.commons.io.IOUtils;
+import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -10,11 +13,31 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Properties;
 
 @Component
 public class DataExtractorServiceImpl implements DataExtractorService {
+
+    @Override
+    public JSONObject getJsonObject(JSONObject jsonObject, String searchString) {
+        JsonSearcher jsonSearcher = new JsonSearcher();
+        jsonSearcher.doRecursive(jsonObject, searchString);
+        return jsonSearcher.getResult();
+    }
+
+    @Override
+    public String getFileAsString(String fileName) {
+        String result;
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        try (InputStream inputStream = classLoader.getResourceAsStream(fileName)) {
+            result = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            throw new RuntimeException("Can't read from file.", e);
+        }
+        return result;
+    }
 
     @Override
     public Map<String, String> getProperties(String fileName) {
@@ -23,20 +46,24 @@ public class DataExtractorServiceImpl implements DataExtractorService {
         try (InputStream stream = classLoader.getResourceAsStream(fileName)) {
             properties.load(stream);
         } catch (IOException e) {
-            throw new RuntimeException("Can't read properties from file.");
+            throw new RuntimeException("Can't read properties from file.", e);
         }
         return Maps.fromProperties(properties);
     }
 
     @Override
-    public String getHtmlResponse(String urlName) throws IOException {
+    public String getHtmlResponse(String urlName) {
         StringBuilder response = new StringBuilder();
-        URL url = new URL(urlName);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            fillResponse(connection, response);
-        } else {
-            throw new RuntimeException("http request is not 200.");
+        try {
+            URL url = new URL(urlName);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                fillResponse(connection, response);
+            } else {
+                throw new RuntimeException("http request is not 200.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Can't read html from URL.", e);
         }
         return response.toString();
     }

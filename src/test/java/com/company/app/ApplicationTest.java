@@ -20,13 +20,13 @@ public class ApplicationTest extends AbstractTest {
 	private TestRestTemplate testRestTemplate;
 
 	@Test
-	public void smokeTest() {
+	public void notificationServiceSmokeTest() {
 		notificationService.eventNotification("1. Тестовое приложение поднялось.");
 		System.out.println("Тестовое приложение поднялось.");
 	}
 
 	@Test
-	public void accessApplication() {
+	public void controllerSmokeTest() {
 		String message = String.format("2. На порту %s успешно поднялось тестовое приложение.", port);
 		ResponseEntity<Object> forEntity = testRestTemplate.getForEntity(String.format("/bot?message=%s", message), Object.class);
 		Assert.assertEquals(forEntity.getStatusCode(), HttpStatus.OK);

@@ -1,5 +1,6 @@
 package com.company.app.services.telegram.impl;
 
+import com.company.app.services.telegram.api.ChatService;
 import com.company.app.services.telegram.api.TelegramFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,13 +12,13 @@ import java.util.Map;
 public class TelegramFacadeImpl implements TelegramFacade {
 
 	@Autowired
-	private TelegramBotServiceImpl telegramBotService;
+	private ChatService chatService;
 	@Autowired
 	private TelegramHandlerImpl telegramHandler;
 
 	@Override
 	public Map<Long, String> getChats() {
-		return telegramBotService.getChats();
+		return chatService.getChats();
 	}
 
 	@Override

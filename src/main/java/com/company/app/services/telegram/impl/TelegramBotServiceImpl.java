@@ -22,7 +22,6 @@ public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implem
 	private static final String NAME = "name";
 	private static final String TOKEN = "token";
 
-	private Map<Long, String> chats;
 	private String name;
 	private String token;
 
@@ -38,7 +37,6 @@ public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implem
 		Map<String, String> telegramProperties = dataExtractorService.getProperties(TELEGRAM_PROPERTIES);
 		this.name = telegramProperties.get(NAME);
 		this.token = telegramProperties.get(TOKEN);
-		this.chats = chatService.getChats();
 		TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
 		botsApi.registerBot(this);
 	}
@@ -56,9 +54,5 @@ public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implem
 	@Override
 	public void processNonCommandUpdate(Update update) {
 		telegramHandler.process(update);
-	}
-
-	public Map<Long, String> getChats() {
-		return chats;
 	}
 }

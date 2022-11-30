@@ -14,13 +14,12 @@ import org.springframework.scheduling.annotation.Scheduled;
 public class SchedulerConfig {
 
 	@Autowired
-	NotificationService notificationService;
-
+	private NotificationService notificationService;
 	@Autowired
 	private ExchangeExtractorService exchangeExtractorService;
 
-	@Scheduled(fixedDelay = 300000)
-	public void temp() {
+	@Scheduled(fixedDelayString = "${writeExchange.timeout}")
+	public void writeExchange() {
 		notificationService.eventNotification(exchangeExtractorService.extractCurse());
 	}
 }

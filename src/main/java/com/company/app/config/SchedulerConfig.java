@@ -14,8 +14,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 public class SchedulerConfig {
 
 	@Autowired
-	NotificationService notificationService;
-
+	private NotificationService notificationService;
 	@Autowired
 	private ExchangeExtractorService exchangeExtractorService;
 

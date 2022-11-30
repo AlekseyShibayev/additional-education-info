@@ -15,7 +15,7 @@ public class DataExtractorServiceImplTest {
 	private DataExtractorServiceImpl dataExtractorService;
 
 	@Before
-	public void init(){
+	public void init() {
 		dataExtractorService = new DataExtractorServiceImpl();
 	}
 

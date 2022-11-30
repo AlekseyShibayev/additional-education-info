@@ -38,6 +38,10 @@
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+				<exclusion>
 					<groupId>org.skyscreamer</groupId>
 					<artifactId>jsonassert</artifactId>
 				</exclusion>

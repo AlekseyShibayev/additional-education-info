@@ -12,6 +12,7 @@ import java.util.Iterator;
 public class JsonSearcher {
 
 	JSONObject result;
+	int counter;
 
 	public void doRecursive(JSONObject jsonObject, String search) {
 		Iterator<String> keys = jsonObject.keys();
@@ -19,6 +20,7 @@ public class JsonSearcher {
 			String key = keys.next();
 			if (key.equals(search)) {
 				this.setResult((JSONObject) jsonObject.get(key));
+				this.setCounter(counter++);
 			}
 
 			Object o = jsonObject.get(key);

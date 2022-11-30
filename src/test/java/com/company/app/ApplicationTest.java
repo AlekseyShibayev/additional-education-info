@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class ApplicationTest extends AbstractTest {
 
-//	@Autowired
+	@Autowired
 	private NotificationService notificationService;
 
-//	@Test
+	@Test
 	public void smokeTest() {
 		notificationService.eventNotification("Тестовое приложение поднялось.");
 		System.out.println("Тестовое приложение поднялось.");

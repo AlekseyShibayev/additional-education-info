@@ -2,9 +2,7 @@ package com.company.app.controllers;
 
 import com.company.app.services.api.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -17,5 +15,10 @@ public class MainController {
 	@PostMapping(value = "/")
 	public void interceptAll(@RequestBody Map<String, Object> lookupRequestObject) {
 		notificationService.eventNotification(lookupRequestObject.toString());
+	}
+
+	@GetMapping(value = "/bot", produces = "application/json")
+	public void writeBot(@RequestParam(required = true) String message) {
+		notificationService.eventNotification(message);
 	}
 }

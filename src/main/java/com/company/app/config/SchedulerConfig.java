@@ -1,7 +1,7 @@
 package com.company.app.config;
 
-import com.company.app.services.api.ExchangeExtractorService;
-import com.company.app.services.api.NotificationService;
+import com.company.app.service.other.api.ExchangeExtractorService;
+import com.company.app.service.other.api.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;

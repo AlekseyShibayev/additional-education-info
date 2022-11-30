@@ -2,7 +2,7 @@ package com.company.app;
 
 import com.company.app.entity.History;
 import com.company.app.repository.HistoryRepository;
-import com.company.app.services.api.NotificationService;
+import com.company.app.service.other.api.NotificationService;
 import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Test;

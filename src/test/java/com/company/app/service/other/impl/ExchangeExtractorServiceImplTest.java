@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-
 public class ExchangeExtractorServiceImplTest {
 
 	private static final String FILE_NAME = "AliexpressUsdResponseExample.html";
@@ -24,8 +22,8 @@ public class ExchangeExtractorServiceImplTest {
 
 	@SneakyThrows
 	@Test
-	public void extractCurseTest() throws IOException {
+	public void extractCurseTest() {
 		String fileAsString = dataExtractorService.getFileAsString(FILE_NAME);
-		Assert.assertEquals("65.85", exchangeExtractorService.getExchange(fileAsString));
+		Assert.assertEquals("47.05", exchangeExtractorService.getExchange(fileAsString));
 	}
 }

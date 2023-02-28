@@ -19,7 +19,7 @@ import java.util.Date;
 @Setter
 public class ExchangeExtractorServiceImpl implements ExchangeExtractorService {
 
-	private static final String URL = "https://aliexpress.ru/item/1005004176116159.html?sku_id=12000028287776246";
+	private static final String URL = "https://aliexpress.ru/item/1005001763324443.html?sku_id=12000017469965735";
 
 	@Autowired
 	private DataExtractorService dataExtractorService;
@@ -40,7 +40,7 @@ public class ExchangeExtractorServiceImpl implements ExchangeExtractorService {
 	public String getExchange(String htmlResponse) {
 		Document document = Jsoup.parse(htmlResponse);
 		Elements scripts = document.getElementsByTag("script");
-		String s = scripts.get(4).childNodes().get(0).attributes().get("#data"); //todo сделать в общем виде
+		String s = scripts.get(3).childNodes().get(0).attributes().get("#data"); //todo сделать в общем виде
 		JSONObject jsonObject = new JSONObject(s);
 
 		JSONObject activityAmount = dataExtractorService.getJsonObject(jsonObject, "activityAmount");

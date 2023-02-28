@@ -24,6 +24,6 @@ public class ExchangeExtractorServiceImplTest {
 	@Test
 	public void extractCurseTest() {
 		String fileAsString = dataExtractorService.getFileAsString(FILE_NAME);
-		Assert.assertEquals("47.05", exchangeExtractorService.getExchange(fileAsString));
+		Assert.assertEquals("78.17", exchangeExtractorService.getExchange(fileAsString));
 	}
 }

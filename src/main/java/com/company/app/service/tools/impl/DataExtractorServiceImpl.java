@@ -4,6 +4,7 @@ import com.company.app.service.tools.JsonSearcher;
 import com.company.app.service.tools.api.DataExtractorService;
 import com.google.common.collect.Maps;
 import org.apache.commons.io.IOUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,13 @@ public class DataExtractorServiceImpl implements DataExtractorService {
 		JsonSearcher jsonSearcher = new JsonSearcher();
 		jsonSearcher.doRecursiveSearch(jsonObject, searchString);
 		return jsonSearcher.getResult();
+	}
+
+	@Override
+	public JSONArray getJsonArray(JSONObject jsonObject, String searchString) {
+		JsonSearcher jsonSearcher = new JsonSearcher();
+		jsonSearcher.doRecursiveSearch(jsonObject, searchString);
+		return jsonSearcher.getResultArray();
 	}
 
 	@Override

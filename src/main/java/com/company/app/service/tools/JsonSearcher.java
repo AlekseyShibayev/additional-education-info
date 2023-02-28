@@ -12,6 +12,7 @@ import java.util.Iterator;
 public class JsonSearcher {
 
 	private JSONObject result;
+	private JSONArray resultArray;
 	private int counter;
 
 	public void doRecursiveSearch(JSONObject jsonObject, String search) {
@@ -29,14 +30,21 @@ public class JsonSearcher {
 		} else if (jsonObject instanceof JSONArray) {
 			JSONArray jsonArray = (JSONArray) jsonObject;
 			for (Object object : jsonArray) {
-				doRecursiveSearch((JSONObject) object, search);
+				if (object instanceof JSONObject) {
+					doRecursiveSearch((JSONObject) object, search);
+				}
 			}
 		}
 	}
 
 	private void check(JSONObject jsonObject, String search, String key) {
 		if (key.equals(search)) {
-			this.setResult((JSONObject) jsonObject.get(key));
+			Object object = jsonObject.get(key);
+			if (object instanceof JSONObject) {
+				this.setResult((JSONObject) jsonObject.get(key));
+			} else if (object instanceof JSONArray) {
+				this.setResultArray((JSONArray) jsonObject.get(key));
+			}
 			this.setCounter(counter++);
 		}
 	}

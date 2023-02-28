@@ -1,5 +1,6 @@
 package com.company.app.service.tools.api;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
@@ -15,4 +16,6 @@ public interface DataExtractorService {
 	String getHtmlResponse(String urlName);
 
 	JSONObject getJsonObject(JSONObject jsonObject, String searchString);
+
+	JSONArray getJsonArray(JSONObject jsonObject, String searchString);
 }

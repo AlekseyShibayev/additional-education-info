@@ -3,24 +3,25 @@ package com.company.app.service.wildberries.components;
 import com.company.app.entity.Lot;
 import com.company.app.repository.LotRepository;
 import com.company.app.service.application.tools.api.DataExtractorService;
+import com.company.app.service.application.tools.api.SerializationService;
 import com.company.app.service.application.tools.impl.DataExtractorServiceImpl;
+import com.company.app.service.application.tools.impl.SerializationServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.List;
-import java.util.Map;
 
 public class WildberriesServiceImplTest {
 
-	private static final String FILE_NAME = "wildberries/wildberries.properties";
+	public static final String FILE_NAME = "src/test/resources/wildberries/lot.json";
 
 	WildberriesServiceImpl wildberriesService;
 	DataExtractorService dataExtractorService;
 	WildberriesPriceExtractor wildberriesPriceExtractor;
 	LotRepository lotRepository;
-	WildberriesLotCreator wildberriesLotCreator;
+	SerializationService<Lot> serializationService;
 
 	@Before
 	public void init() {
@@ -34,15 +35,13 @@ public class WildberriesServiceImplTest {
 		wildberriesService.setWildberriesPriceExtractor(wildberriesPriceExtractor);
 		wildberriesService.setLotRepository(lotRepository);
 
-		wildberriesLotCreator = new WildberriesLotCreator();
-
 		wildberriesPriceExtractor.setDataExtractorService(dataExtractorService);
+		serializationService = new SerializationServiceImpl<>();
 	}
 
 	@Test
 	public void getDesiredLots() {
-		Map<String, String> properties = dataExtractorService.getProperties(FILE_NAME);
-		List<Lot> lots = wildberriesLotCreator.createFromProperties(properties);
+		List<Lot> lots = serializationService.load(FILE_NAME, Lot[].class);
 		Mockito.when(lotRepository.findAll()).thenReturn(lots);
 
 		List<Lot> desiredLots = wildberriesService.getDesiredLots();

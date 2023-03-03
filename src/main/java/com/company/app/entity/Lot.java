@@ -25,4 +25,7 @@ public class Lot {
 
 	@Column(name = "price")
 	private String price;
+
+	@Column(name = "discount")
+	private String discount;
 }

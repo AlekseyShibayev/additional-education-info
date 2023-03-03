@@ -1,5 +1,7 @@
 package com.company.app.service.wildberries.components;
 
+import com.company.app.entity.Lot;
+
 import java.util.List;
 
 public class WildberriesURLCreator {
@@ -10,11 +12,9 @@ public class WildberriesURLCreator {
 		return URL_BONE + id;
 	}
 
-	public static String getUrlForPriceSearch(List<String> ids) {
-		String unitedString = "";
-		for (String id : ids) {
-			unitedString = unitedString + id + ";";
-		}
-		return URL_BONE + unitedString;
+	public static String getUrlForPriceSearch(List<Lot> lots) {
+		StringBuilder stringBuilder = new StringBuilder();
+		lots.forEach(lot -> stringBuilder.append(lot.getName()).append(";"));
+		return getUrlForPriceSearch(stringBuilder.toString());
 	}
 }

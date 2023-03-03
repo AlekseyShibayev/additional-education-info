@@ -1,6 +1,6 @@
 package com.company.app.service.wildberries.components;
 
-import com.company.app.service.tools.impl.DataExtractorServiceImpl;
+import com.company.app.service.application.tools.impl.DataExtractorServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

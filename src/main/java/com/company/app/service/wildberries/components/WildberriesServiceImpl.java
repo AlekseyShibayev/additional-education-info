@@ -1,13 +1,16 @@
 package com.company.app.service.wildberries.components;
 
-import com.company.app.service.other.api.NotificationService;
-import com.company.app.service.tools.impl.DataExtractorServiceImpl;
-import com.google.common.collect.Lists;
+import com.company.app.entity.Lot;
+import com.company.app.repository.LotRepository;
+import com.company.app.service.application.tools.api.DataExtractorService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 @Setter
@@ -18,22 +21,28 @@ public class WildberriesServiceImpl {
 	@Autowired
 	private WildberriesPriceExtractor wildberriesPriceExtractor;
 	@Autowired
-	private DataExtractorServiceImpl dataExtractorService;
+	private DataExtractorService dataExtractorService;
 	@Autowired
-	private NotificationService notificationService;
+	private LotRepository lotRepository;
+	@Autowired
+	private WildberriesLotCreator wildberriesLotCreator;
 
-	public void doMainLogic() {
+	@PostConstruct
+	void init() {
 		Map<String, String> properties = dataExtractorService.getProperties(WILDBERRIES_PROPERTIES);
-		String url = WildberriesURLCreator.getUrlForPriceSearch(Lists.newArrayList(properties.keySet()));
-		String htmlResponse = dataExtractorService.getHtmlResponse(url);
+		List<Lot> lots = wildberriesLotCreator.createFromProperties(properties);
+		lotRepository.saveAll(lots);
+	}
 
-		for (Map.Entry<String, String> entry : properties.entrySet()) {
-			String id = entry.getKey();
-			String price = entry.getValue() + "00";
-			String currentPrice = wildberriesPriceExtractor.extract(htmlResponse, id);
-			if (Integer.parseInt(currentPrice) < Integer.parseInt(price)) {
-				notificationService.eventNotification(id);
-			}
-		}
+	public List<Lot> getDesiredLots() {
+		List<Lot> lots = lotRepository.findAll();
+		String url = WildberriesURLCreator.getUrlForPriceSearch(lots);
+		String htmlResponse = dataExtractorService.getHtmlResponse(url);
+		return lots.stream().filter(lot -> isDesireLot(htmlResponse, lot)).collect(Collectors.toList());
+	}
+
+	private boolean isDesireLot(String htmlResponse, Lot lot) {
+		String currentPrice = wildberriesPriceExtractor.extract(htmlResponse, lot.getName());
+		return Integer.parseInt(currentPrice) < Integer.parseInt(lot.getPrice() + "00");
 	}
 }

@@ -1,6 +1,6 @@
 package com.company.app.controller;
 
-import com.company.app.service.other.api.NotificationService;
+import com.company.app.service.application.main.api.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ public class MainController {
 	}
 
 	@GetMapping(value = "/bot", produces = "application/json")
-	public void writeBot(@RequestParam(required = true) String message) {
+	public void writeBot(@RequestParam String message) {
 		notificationService.eventNotification(message);
 	}
 }

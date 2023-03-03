@@ -1,13 +1,17 @@
 package com.company.app.config;
 
-import com.company.app.service.other.api.ExchangeExtractorService;
-import com.company.app.service.other.api.NotificationService;
+import com.company.app.entity.Lot;
+import com.company.app.service.application.main.api.ExchangeExtractorService;
+import com.company.app.service.application.main.api.NotificationService;
 import com.company.app.service.wildberries.WildberriesFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 @Configuration
 @EnableScheduling
@@ -28,6 +32,9 @@ public class SchedulerConfig {
 
 	@Scheduled(fixedDelayString = "${wildberries.timeout}")
 	public void searchWildberriesLots() {
-		wildberriesFacade.doMainLogic();
+		List<Lot> desiredLots = wildberriesFacade.getDesiredLots();
+		if (!CollectionUtils.isEmpty(desiredLots)) {
+			notificationService.eventNotification(desiredLots);
+		}
 	}
 }

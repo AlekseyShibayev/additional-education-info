@@ -1,24 +1,21 @@
 package com.company.app.service.wildberries;
 
-import com.company.app.service.wildberries.components.WildberriesServiceImpl;
-import org.junit.Before;
-import org.junit.Ignore;
+import com.company.app.AbstractTest;
+import com.company.app.entity.Lot;
+import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class WildberriesFacadeTest {
+import java.util.List;
 
+public class WildberriesFacadeTest extends AbstractTest {
+
+	@Autowired
 	private WildberriesFacade wildberriesFacade;
-	private WildberriesServiceImpl wildberriesService;
 
-	@Before
-	public void init() {
-		wildberriesFacade = new WildberriesFacade();
-		wildberriesFacade.setWildberriesService(new WildberriesServiceImpl());
-	}
-
-	@Ignore // todo
 	@Test
-	public void doMainLogic() {
-		wildberriesFacade.doMainLogic();
+	public void doMainLogicTest() {
+		List<Lot> desiredLots = wildberriesFacade.getDesiredLots();
+		Assert.assertEquals(desiredLots.size(), 1);
 	}
 }

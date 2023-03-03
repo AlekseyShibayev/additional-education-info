@@ -1,8 +1,8 @@
 package com.company.app.config;
 
-import com.company.app.entity.Exchange;
+import com.company.app.entity.ExchangeRate;
 import com.company.app.entity.Lot;
-import com.company.app.service.application.main.api.ExchangeExtractorService;
+import com.company.app.service.exchangeRate.ExchangeRateFacade;
 import com.company.app.service.application.main.api.NotificationService;
 import com.company.app.service.wildberries.WildberriesFacade;
 import com.company.app.service.wildberries.components.WildberriesURLCreator;
@@ -23,14 +23,14 @@ public class SchedulerConfig {
 	@Autowired
 	private NotificationService notificationService;
 	@Autowired
-	private ExchangeExtractorService exchangeExtractorService;
+	private ExchangeRateFacade exchangeRateFacade;
 	@Autowired
 	private WildberriesFacade wildberriesFacade;
 
 	@Scheduled(fixedDelayString = "${writeExchange.timeout}")
 	public void writeExchange() {
-		Exchange exchange = exchangeExtractorService.extractCurse();
-		notificationService.eventNotification("курс али: " + exchange.getAliexpressExchange());
+		ExchangeRate exchangeRate = exchangeRateFacade.extract();
+		notificationService.eventNotification(exchangeRate.getAliexpressExchangeRate() + " (курс али)");
 	}
 
 	@Scheduled(fixedDelayString = "${wildberries.timeout}")

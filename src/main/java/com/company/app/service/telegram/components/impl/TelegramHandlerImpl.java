@@ -1,6 +1,6 @@
 package com.company.app.service.telegram.components.impl;
 
-import com.company.app.entity.Exchange;
+import com.company.app.entity.ExchangeRate;
 import com.company.app.entity.History;
 import com.company.app.repository.ExchangeRepository;
 import com.company.app.repository.HistoryRepository;
@@ -43,7 +43,7 @@ public class TelegramHandlerImpl implements TelegramHandler {
 		System.out.println(chatId + ": " + text);
 
 		if (text.startsWith("$1")) {
-			Exchange exchange = exchangeRepository.findAllByOrderByDateDesc().get(0);
+			ExchangeRate exchange = exchangeRepository.findAllByOrderByDateDesc().get(0);
 			notificationService.eventNotification(exchange);
 		} else if (text.startsWith("$2")) {
 			wildberriesBinder.bind(text);

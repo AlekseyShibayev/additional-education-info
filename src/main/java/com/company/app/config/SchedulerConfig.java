@@ -1,9 +1,11 @@
 package com.company.app.config;
 
+import com.company.app.entity.Exchange;
 import com.company.app.entity.Lot;
 import com.company.app.service.application.main.api.ExchangeExtractorService;
 import com.company.app.service.application.main.api.NotificationService;
 import com.company.app.service.wildberries.WildberriesFacade;
+import com.company.app.service.wildberries.components.WildberriesURLCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
@@ -27,14 +29,15 @@ public class SchedulerConfig {
 
 	@Scheduled(fixedDelayString = "${writeExchange.timeout}")
 	public void writeExchange() {
-		notificationService.eventNotification(exchangeExtractorService.extractCurse());
+		Exchange exchange = exchangeExtractorService.extractCurse();
+		notificationService.eventNotification("курс али: " + exchange.getAliexpressExchange());
 	}
 
 	@Scheduled(fixedDelayString = "${wildberries.timeout}")
 	public void searchWildberriesLots() {
 		List<Lot> desiredLots = wildberriesFacade.getDesiredLots();
 		if (!CollectionUtils.isEmpty(desiredLots)) {
-			notificationService.eventNotification(desiredLots);
+			desiredLots.forEach(lot -> notificationService.eventNotification(WildberriesURLCreator.getUrlForResponse(lot.getName())));
 		}
 	}
 }

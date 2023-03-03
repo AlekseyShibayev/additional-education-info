@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 public class WildberriesBinderTest {
 
-	private static final String TEST_STRING = "2 59509066=500;61939396=500";
+	private static final String TEST_STRING = "$2 59509066=500;61939396=500";
 
 	WildberriesBinder wildberriesBinder;
 

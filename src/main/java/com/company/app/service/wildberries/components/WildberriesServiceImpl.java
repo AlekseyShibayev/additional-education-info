@@ -38,7 +38,8 @@ public class WildberriesServiceImpl {
 		List<Lot> lots = lotRepository.findAll();
 		String url = WildberriesURLCreator.getUrlForPriceSearch(lots);
 		String htmlResponse = dataExtractorService.getHtmlResponse(url);
-		return lots.stream().filter(lot -> isDesireLot(htmlResponse, lot)).collect(Collectors.toList());
+		lots = lots.stream().filter(lot -> isDesireLot(htmlResponse, lot)).collect(Collectors.toList());
+		return lots;
 	}
 
 	private boolean isDesireLot(String htmlResponse, Lot lot) {

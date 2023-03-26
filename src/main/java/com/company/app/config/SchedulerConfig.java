@@ -27,7 +27,7 @@ public class SchedulerConfig {
 	@Autowired
 	private WildberriesFacade wildberriesFacade;
 
-	@Scheduled(fixedDelayString = "${writeExchange.timeout}")
+	@Scheduled(fixedDelayString = "${exchangeRate.timeout}")
 	public void writeExchange() {
 		ExchangeRate exchangeRate = exchangeRateFacade.extract();
 		notificationService.eventNotification(exchangeRate.getAliexpressExchangeRate() + " (курс али)");

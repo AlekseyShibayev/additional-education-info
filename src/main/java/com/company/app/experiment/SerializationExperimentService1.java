@@ -1,6 +1,5 @@
-package com.company.app.service.application.tools.impl;
+package com.company.app.experiment;
 
-import com.company.app.service.application.tools.api.SerializationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
@@ -9,11 +8,14 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Рабочий вариант, как в SerializationServiceImpl
+ * не устраивает Class<T[]> type в load()
+ */
 @Component
-public class SerializationServiceImpl<T> implements SerializationService<T> {
+public class SerializationExperimentService1<T> {
 
 	@SneakyThrows
-	@Override
 	public boolean save(List<T> list, String fileName) {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(new File(fileName), list.toArray());
@@ -21,7 +23,6 @@ public class SerializationServiceImpl<T> implements SerializationService<T> {
 	}
 
 	@SneakyThrows
-	@Override
 	public List<T> load(String fileName, Class<T[]> type) {
 		ObjectMapper mapper = new ObjectMapper();
 		T[] array = mapper.readValue(new File(fileName), type);

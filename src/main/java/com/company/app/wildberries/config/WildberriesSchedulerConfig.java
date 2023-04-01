@@ -1,8 +1,6 @@
 package com.company.app.wildberries.config;
 
 import com.company.app.core.main.api.NotificationService;
-import com.company.app.exchangeRate.ExchangeRateFacade;
-import com.company.app.exchangeRate.entity.ExchangeRate;
 import com.company.app.wildberries.WildberriesFacade;
 import com.company.app.wildberries.component.WildberriesURLCreator;
 import com.company.app.wildberries.entity.Lot;
@@ -23,15 +21,7 @@ public class WildberriesSchedulerConfig {
 	@Autowired
 	private NotificationService notificationService;
 	@Autowired
-	private ExchangeRateFacade exchangeRateFacade;
-	@Autowired
 	private WildberriesFacade wildberriesFacade;
-
-	@Scheduled(fixedDelayString = "${exchangeRate.timeout}")
-	public void writeExchange() {
-		ExchangeRate exchangeRate = exchangeRateFacade.extract();
-		notificationService.eventNotification(exchangeRate.getAliexpressExchangeRate() + " (курс али)");
-	}
 
 	@Scheduled(fixedDelayString = "${wildberries.timeout}")
 	public void searchWildberriesLots() {

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Setter
 public class WildberriesServiceImpl {
 
-	private static final String FILE_NAME = "src/main/resources/wildberries.lot.json";
+	private static final String FILE_NAME = "src/main/resources/wildberries/lot.json";
 
 	@Autowired
 	private WildberriesPriceExtractor wildberriesPriceExtractor;

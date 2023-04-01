@@ -13,7 +13,7 @@ import java.util.Map;
 @Component
 public class ChatServiceImpl implements ChatService {
 
-	private static final String CHAT_PROPERTIES = "chat.properties";
+	private static final String CHAT_PROPERTIES = "telegram/chat.properties";
 
 	private Map<Long, String> chats;
 

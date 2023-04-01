@@ -41,7 +41,7 @@ public class WildberriesServiceImplTest {
 
 	@Test
 	public void getDesiredLots() {
-		List<Lot> lots = serializationService.load(FILE_NAME, Lot[].class);
+		List<Lot> lots = serializationService.load(FILE_NAME, Lot.class);
 		Mockito.when(lotRepository.findAll()).thenReturn(lots);
 
 		List<Lot> desiredLots = wildberriesService.getDesiredLots();

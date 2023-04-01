@@ -43,7 +43,7 @@ public class SerializationServiceImplTest {
 		List<Lot> list = createLots();
 
 		serializationService.save(list, FILE_NAME);
-		List<Lot> load = serializationService.load(FILE_NAME, Lot[].class);
+		List<Lot> load = serializationService.load(FILE_NAME, Lot.class);
 
 		Assert.assertEquals(load.size(), 2);
 		Assert.assertEquals(list.get(0).getPrice(), load.get(0).getPrice());

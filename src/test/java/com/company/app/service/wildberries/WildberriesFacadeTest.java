@@ -24,7 +24,7 @@ public class WildberriesFacadeTest extends AbstractTest {
 
 	@Test
 	public void doMainLogicTest() {
-		List<Lot> lots = serializationService.load(WildberriesServiceImplTest.FILE_NAME, Lot[].class);
+		List<Lot> lots = serializationService.load(WildberriesServiceImplTest.FILE_NAME, Lot.class);
 		Mockito.when(lotRepository.findAll()).thenReturn(lots);
 
 		List<Lot> desiredLots = wildberriesFacade.getDesiredLots();

@@ -1,7 +1,7 @@
 package com.company.app.experiment;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +11,8 @@ import java.util.List;
 /**
  * Хочу модернизировать SerializationServiceImpl, чтобы не передавать Class<T[]> type в load()
  * Хочу сделать по типу spring rest template, чтобы как он делать объекты из JSON
+ *
+ * Так работает, но все же, я попробую избавиться от Class<T> type в сигнатуре load()
  */
 @Component
 public class SerializationExperimentService3<T> {
@@ -23,9 +25,10 @@ public class SerializationExperimentService3<T> {
 	}
 
 	@SneakyThrows
-	public List<T> load(String fileName) {
+	public List<T> load(String fileName, Class<T> type) {
 		ObjectMapper mapper = new ObjectMapper();
-		return mapper.readValue(new File(fileName), new TypeReference<>() {});
+		CollectionType listType = mapper.getTypeFactory().constructCollectionType(List.class, type);
+		return mapper.readValue(new File(fileName), listType);
 	}
 }
 

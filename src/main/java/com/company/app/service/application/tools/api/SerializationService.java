@@ -7,7 +7,7 @@ import java.util.List;
 @Component
 public interface SerializationService<T> {
 
-	boolean save(List<T> list, String fileName);
+	void save(List<T> list, String fileName);
 
-	List<T> load(String fileName, Class<T[]> type);
+	List<T> load(String fileName, Class<T> type);
 }

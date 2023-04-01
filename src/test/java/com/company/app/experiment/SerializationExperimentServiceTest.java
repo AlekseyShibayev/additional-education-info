@@ -75,9 +75,9 @@ public class SerializationExperimentServiceTest<T> {
 		SerializationExperimentService3 serializationService = new SerializationExperimentService3();
 
 		serializationService.save(list, FILE_NAME);
-		List<Lot> load = serializationService.load(FILE_NAME);
+		List<LotForExperiment> load = serializationService.load(FILE_NAME, LotForExperiment.class);
 
 		Assert.assertEquals(load.size(), 2);
-//		Assert.assertEquals(list.get(0).getPrice(), load.get(0).getPrice());
+		Assert.assertEquals(list.get(0).getPrice(), load.get(0).getPrice());
 	}
 }

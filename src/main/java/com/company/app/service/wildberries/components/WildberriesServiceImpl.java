@@ -30,7 +30,7 @@ public class WildberriesServiceImpl {
 
 	@PostConstruct
 	void init() {
-		List<Lot> lots = serializationService.load(FILE_NAME, Lot[].class);
+		List<Lot> lots = serializationService.load(FILE_NAME, Lot.class);
 		lotRepository.saveAll(lots);
 	}
 

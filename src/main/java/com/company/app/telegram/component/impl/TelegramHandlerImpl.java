@@ -1,6 +1,6 @@
 package com.company.app.telegram.component.impl;
 
-import com.company.app.core.main.api.NotificationService;
+import com.company.app.telegram.component.api.NotificationService;
 import com.company.app.exchangeRate.entity.ExchangeRate;
 import com.company.app.exchangeRate.repository.ExchangeRepository;
 import com.company.app.telegram.component.api.TelegramHandler;

@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.io.File;
 import java.util.List;
 
 public class WildberriesFacadeTest extends AbstractTest {
@@ -24,7 +25,8 @@ public class WildberriesFacadeTest extends AbstractTest {
 
 	@Test
 	public void doMainLogicTest() {
-		List<Lot> lots = serializationService.load(WildberriesServiceImplTest.FILE_NAME, Lot.class);
+		File file = new File(WildberriesServiceImplTest.FILE_NAME);
+		List<Lot> lots = serializationService.load(file, Lot.class);
 		Mockito.when(lotRepository.findAll()).thenReturn(lots);
 
 		List<Lot> desiredLots = wildberriesFacade.getDesiredLots();

@@ -1,6 +1,6 @@
 package com.company.app.wildberries.scheduler;
 
-import com.company.app.core.main.api.NotificationService;
+import com.company.app.telegram.component.api.NotificationService;
 import com.company.app.wildberries.WildberriesFacade;
 import com.company.app.wildberries.component.WildberriesURLCreator;
 import com.company.app.wildberries.entity.Lot;

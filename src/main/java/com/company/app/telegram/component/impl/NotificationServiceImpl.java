@@ -1,6 +1,6 @@
-package com.company.app.core.main.impl;
+package com.company.app.telegram.component.impl;
 
-import com.company.app.core.main.api.NotificationService;
+import com.company.app.telegram.component.api.NotificationService;
 import com.company.app.telegram.TelegramFacade;
 import com.company.app.telegram.entity.History;
 import com.company.app.telegram.repository.HistoryRepository;

@@ -5,7 +5,10 @@ import com.company.app.core.tools.api.SerializationService;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
 import lombok.Setter;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -13,11 +16,12 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
 @Setter
+@Component
 public class WildberriesServiceImpl {
 
-	private static final String FILE_NAME = "src/main/resources/wildberries/lot.json";
+	@Value("classpath:wildberries_lot.json")
+	private Resource resource;
 
 	@Autowired
 	private WildberriesPriceExtractor wildberriesPriceExtractor;
@@ -28,9 +32,10 @@ public class WildberriesServiceImpl {
 	@Autowired
 	private SerializationService<Lot> serializationService;
 
+	@SneakyThrows
 	@PostConstruct
 	void init() {
-		List<Lot> lots = serializationService.load(FILE_NAME, Lot.class);
+		List<Lot> lots = serializationService.load(resource, Lot.class);
 		lotRepository.saveAll(lots);
 	}
 

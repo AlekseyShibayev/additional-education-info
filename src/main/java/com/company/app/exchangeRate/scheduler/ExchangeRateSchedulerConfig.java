@@ -1,6 +1,6 @@
 package com.company.app.exchangeRate.scheduler;
 
-import com.company.app.core.main.api.NotificationService;
+import com.company.app.telegram.component.api.NotificationService;
 import com.company.app.exchangeRate.ExchangeRateFacade;
 import com.company.app.exchangeRate.entity.ExchangeRate;
 import lombok.extern.slf4j.Slf4j;

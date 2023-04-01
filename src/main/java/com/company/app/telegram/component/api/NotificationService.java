@@ -1,4 +1,4 @@
-package com.company.app.core.main.api;
+package com.company.app.telegram.component.api;
 
 import org.springframework.stereotype.Component;
 

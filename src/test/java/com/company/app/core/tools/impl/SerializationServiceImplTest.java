@@ -42,8 +42,8 @@ public class SerializationServiceImplTest {
 		cleanFile();
 		List<Lot> list = createLots();
 
-		serializationService.save(list, FILE_NAME);
-		List<Lot> load = serializationService.load(FILE_NAME, Lot.class);
+		serializationService.save(list, new File(FILE_NAME));
+		List<Lot> load = serializationService.load(new File(FILE_NAME), Lot.class);
 
 		Assert.assertEquals(load.size(), 2);
 		Assert.assertEquals(list.get(0).getPrice(), load.get(0).getPrice());

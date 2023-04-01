@@ -1,6 +1,6 @@
 package com.company.app.telegram.controller;
 
-import com.company.app.core.main.api.NotificationService;
+import com.company.app.telegram.component.api.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

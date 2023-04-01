@@ -37,6 +37,7 @@ public class ExchangeRateExtractorImpl implements ExchangeRateExtractor {
 				.date(new Date())
 				.build();
 		exchangeRepository.save(exchange);
+
 		return exchange;
 	}
 

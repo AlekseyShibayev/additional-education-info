@@ -1,6 +1,6 @@
 package com.company.app;
 
-import com.company.app.exchangeRate.config.ExchangeRateSchedulerConfig;
+import com.company.app.exchangeRate.scheduler.ExchangeRateSchedulerConfig;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

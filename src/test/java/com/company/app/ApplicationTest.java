@@ -1,8 +1,8 @@
 package com.company.app;
 
-import com.company.app.entity.History;
-import com.company.app.repository.HistoryRepository;
-import com.company.app.service.application.main.api.NotificationService;
+import com.company.app.core.main.api.NotificationService;
+import com.company.app.telegram.entity.History;
+import com.company.app.telegram.repository.HistoryRepository;
 import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Test;

@@ -2,16 +2,15 @@ package com.company.app.core.tools.impl;
 
 import com.company.app.core.tools.api.SerializationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
 import lombok.SneakyThrows;
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
-@Component
+@Service
 public class SerializationServiceImpl<T> implements SerializationService<T> {
 
 	@SneakyThrows
@@ -25,24 +24,21 @@ public class SerializationServiceImpl<T> implements SerializationService<T> {
 	@Override
 	public List<T> load(File file, Class<T> type) {
 		ObjectMapper mapper = new ObjectMapper();
-		CollectionType listType = mapper.getTypeFactory().constructCollectionType(List.class, type);
-		return mapper.readValue(file, listType);
+		return mapper.readValue(file, mapper.getTypeFactory().constructCollectionType(List.class, type));
 	}
 
 	@SneakyThrows
 	@Override
 	public List<T> load(String string, Class<T> type) {
 		ObjectMapper mapper = new ObjectMapper();
-		CollectionType listType = mapper.getTypeFactory().constructCollectionType(List.class, type);
-		return mapper.readValue(string, listType);
+		return mapper.readValue(string, mapper.getTypeFactory().constructCollectionType(List.class, type));
 	}
 
 	@SneakyThrows
 	@Override
 	public List<T> load(InputStream inputStream, Class<T> type) {
 		ObjectMapper mapper = new ObjectMapper();
-		CollectionType listType = mapper.getTypeFactory().constructCollectionType(List.class, type);
-		return mapper.readValue(inputStream, listType);
+		return mapper.readValue(inputStream, mapper.getTypeFactory().constructCollectionType(List.class, type));
 	}
 
 	@SneakyThrows

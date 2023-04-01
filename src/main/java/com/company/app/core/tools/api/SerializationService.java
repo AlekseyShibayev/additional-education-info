@@ -1,13 +1,13 @@
 package com.company.app.core.tools.api;
 
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
-@Component
+@Service
 public interface SerializationService<T> {
 
 	void save(List<T> list, File file);

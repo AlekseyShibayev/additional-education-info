@@ -1,7 +1,7 @@
 package com.company.app.telegram.component.impl;
 
-import com.company.app.telegram.component.api.NotificationService;
 import com.company.app.telegram.TelegramFacade;
+import com.company.app.telegram.component.api.NotificationService;
 import com.company.app.telegram.entity.History;
 import com.company.app.telegram.repository.HistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

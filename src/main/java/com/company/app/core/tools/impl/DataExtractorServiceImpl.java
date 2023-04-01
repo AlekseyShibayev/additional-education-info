@@ -6,7 +6,7 @@ import com.google.common.collect.Maps;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Properties;
 
-@Component
+@Service
 public class DataExtractorServiceImpl implements DataExtractorService {
 
 	@Override

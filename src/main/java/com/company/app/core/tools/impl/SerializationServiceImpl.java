@@ -22,6 +22,13 @@ public class SerializationServiceImpl<T> implements SerializationService<T> {
 
 	@SneakyThrows
 	@Override
+	public String asString(List<T> list) {
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(list);
+	}
+
+	@SneakyThrows
+	@Override
 	public List<T> load(File file, Class<T> type) {
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.readValue(file, mapper.getTypeFactory().constructCollectionType(List.class, type));

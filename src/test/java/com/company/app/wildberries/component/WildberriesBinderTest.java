@@ -1,27 +1,40 @@
 package com.company.app.wildberries.component;
 
+import com.company.app.AbstractTest;
+import com.company.app.core.tools.api.SerializationService;
+import com.company.app.wildberries.dto.LotDto;
 import com.company.app.wildberries.entity.Lot;
+import com.company.app.wildberries.repository.LotRepository;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Collections;
 import java.util.List;
 
-public class WildberriesBinderTest {
+public class WildberriesBinderTest extends AbstractTest {
 
-	private static final String TEST_STRING = "$2 59509066=500;61939396=500";
-
+	@Autowired
 	WildberriesBinder wildberriesBinder;
-
-	@Before
-	public void init() {
-		wildberriesBinder = new WildberriesBinder();
-		wildberriesBinder.setWildberriesLotCreator(new WildberriesLotCreator());
-	}
+	@Autowired
+	SerializationService<LotDto> serializationService;
+	@Autowired
+	LotRepository lotRepository;
 
 	@Test
 	public void bind() {
-		List<Lot> lots = wildberriesBinder.createLots(TEST_STRING);
-		Assert.assertEquals(lots.size(), 2);
+		List<Lot> before = lotRepository.findAll();
+
+		LotDto lot = LotDto.builder()
+				.name("17010096")
+				.price("900")
+				.discount("0.11")
+				.build();
+		String rightPart = "WB " + serializationService.asString(Collections.singletonList(lot));
+		wildberriesBinder.bind(rightPart);
+
+		List<Lot> after = lotRepository.findAll();
+
+		Assert.assertEquals(after.size() - before.size(), 1);
 	}
 }

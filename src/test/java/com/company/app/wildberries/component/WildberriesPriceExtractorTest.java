@@ -21,7 +21,7 @@ public class WildberriesPriceExtractorTest {
 
 	@Test
 	public void extract() {
-		String fileAsString = dataExtractorService.getFile(FILE_NAME);
+		String fileAsString = dataExtractorService.getFileAsString(FILE_NAME);
 		Assert.assertEquals("109900", wildberriesPriceExtractor.extract(fileAsString, "43409221"));
 	}
 }

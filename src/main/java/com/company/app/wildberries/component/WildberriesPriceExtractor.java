@@ -7,8 +7,8 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
 @Setter
+@Component
 public class WildberriesPriceExtractor {
 
 	@Autowired

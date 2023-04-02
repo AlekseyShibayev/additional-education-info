@@ -40,7 +40,7 @@ public class DataExtractorServiceImpl implements DataExtractorService {
 	}
 
 	@Override
-	public String getFile(String fileName) {
+	public String getFileAsString(String fileName) {
 		String result;
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		try (InputStream inputStream = classLoader.getResourceAsStream(fileName)) {

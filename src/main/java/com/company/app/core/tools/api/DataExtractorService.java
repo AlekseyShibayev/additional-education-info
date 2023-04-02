@@ -11,7 +11,7 @@ import java.util.Map;
 @Service
 public interface DataExtractorService {
 
-	String getFile(String fileName);
+	String getFileAsString(String fileName);
 
 	List<File> getFiles(String packageName);
 

@@ -12,6 +12,8 @@ public interface SerializationService<T> {
 
 	void save(List<T> list, File file);
 
+	String asString(List<T> list);
+
 	List<T> load(File file, Class<T> type);
 
 	List<T> load(String string, Class<T> type);

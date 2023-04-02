@@ -1,12 +1,12 @@
 package com.company.app.telegram.component.impl;
 
-import com.company.app.exchangeRate.entity.ExchangeRate;
-import com.company.app.exchangeRate.repository.ExchangeRepository;
-import com.company.app.telegram.component.api.NotificationService;
+import com.company.app.exchangeRate.component.api.ExchangeRateBinder;
 import com.company.app.telegram.component.api.TelegramHandler;
 import com.company.app.telegram.entity.History;
 import com.company.app.telegram.repository.HistoryRepository;
 import com.company.app.wildberries.component.WildberriesBinder;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -15,19 +15,18 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Date;
 
+@Slf4j
 @Component
 public class TelegramHandlerImpl implements TelegramHandler {
 
 	@Autowired
-	private HistoryRepository historyRepository;
+	HistoryRepository historyRepository;
 	@Autowired
-	private ExchangeRepository exchangeRepository;
+	TelegramBotServiceImpl telegramBotService;
 	@Autowired
-	private TelegramBotServiceImpl telegramBotService;
+	WildberriesBinder wildberriesBinder;
 	@Autowired
-	private NotificationService notificationService;
-	@Autowired
-	private WildberriesBinder wildberriesBinder;
+	ExchangeRateBinder exchangeRateBinder;
 
 	@Override
 	public void process(Update update) {
@@ -35,27 +34,23 @@ public class TelegramHandlerImpl implements TelegramHandler {
 		Long chatId = message.getChatId();
 		String text = message.getText();
 
+		log.debug("[{}]: [{}].", chatId, text);
+
 		historyRepository.save(History.builder()
 				.message(text)
 				.date(new Date())
 				.build());
 
-		System.out.println(chatId + ": " + text);
-
-		if (text.startsWith("$1")) {
-			ExchangeRate exchange = exchangeRepository.findAllByOrderByDateDesc().get(0);
-			notificationService.eventNotification(exchange);
-		} else if (text.startsWith("$2")) {
+		if (text.startsWith("ER")) {
+			exchangeRateBinder.bind(text);
+		} else if (text.startsWith("WB")) {
 			wildberriesBinder.bind(text);
 		}
 	}
 
+	@SneakyThrows
 	@Override
 	public void execute(SendMessage answer) {
-		try {
-			telegramBotService.execute(answer);
-		} catch (Exception e) {
-			throw new RuntimeException("NotificationService can't write messages.", e);
-		}
+		telegramBotService.execute(answer);
 	}
 }

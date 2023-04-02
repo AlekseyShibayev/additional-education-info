@@ -22,7 +22,7 @@ public class ExchangeRateExtractorImplTest {
 	@SneakyThrows
 	@Test
 	public void canExtractCurseFromHtmlResponseTest() {
-		String fileAsString = dataExtractorService.getFileAsString(FILE_NAME);
+		String fileAsString = dataExtractorService.getFile(FILE_NAME);
 		Assert.assertEquals("78.17", exchangeExtractorService.getExchangeRate(fileAsString));
 	}
 }

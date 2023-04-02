@@ -4,12 +4,16 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public interface DataExtractorService {
 
-	String getFileAsString(String fileName);
+	String getFile(String fileName);
+
+	List<File> getFiles(String packageName);
 
 	Map<String, String> getProperties(String fileName);
 

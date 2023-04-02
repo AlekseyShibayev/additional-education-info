@@ -3,20 +3,24 @@ package com.company.app.core.tools.impl;
 import com.company.app.core.tools.JsonSearcher;
 import com.company.app.core.tools.api.DataExtractorService;
 import com.google.common.collect.Maps;
+import lombok.SneakyThrows;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class DataExtractorServiceImpl implements DataExtractorService {
@@ -36,7 +40,7 @@ public class DataExtractorServiceImpl implements DataExtractorService {
 	}
 
 	@Override
-	public String getFileAsString(String fileName) {
+	public String getFile(String fileName) {
 		String result;
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		try (InputStream inputStream = classLoader.getResourceAsStream(fileName)) {
@@ -45,6 +49,17 @@ public class DataExtractorServiceImpl implements DataExtractorService {
 			throw new RuntimeException("Can't read from file.", e);
 		}
 		return result;
+	}
+
+	@SneakyThrows
+	@Override
+	public List<File> getFiles(String packageName) {
+		try (Stream<Path> walk = Files.walk(Paths.get(packageName))) {
+			return walk
+					.filter(Files::isRegularFile)
+					.map(Path::toFile)
+					.collect(Collectors.toList());
+		}
 	}
 
 	@Override

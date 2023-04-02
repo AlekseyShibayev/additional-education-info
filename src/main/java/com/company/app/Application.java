@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+/**
+ * ссылка для swagger: http://localhost:8080/swagger-ui.html
+ */
 @Slf4j
 //@EnableCaching
 @EnableAspectJAutoProxy

@@ -11,4 +11,7 @@ public interface LotRepository extends CrudRepository<Lot, Long> {
 
 	@Override
 	List<Lot> findAll();
+
+	@Override
+	void deleteById(Long id);
 }

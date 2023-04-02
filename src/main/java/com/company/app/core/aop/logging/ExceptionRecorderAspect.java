@@ -26,7 +26,11 @@ public class ExceptionRecorderAspect {
 	public void ifWildberriesScheduler() {
 	}
 
-	@Pointcut("ifExchangeRateScheduler() || ifWildberriesScheduler()")
+	@Pointcut("execution(* com.company.app.wildberries.controller.*.*(..))")
+	public void ifWildberriesController() {
+	}
+
+	@Pointcut("ifExchangeRateScheduler() || ifWildberriesScheduler() || ifWildberriesController()")
 	public void ifEndpointsMethod() {
 	}
 

@@ -5,9 +5,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
-public interface TelegramHandler {
+public interface TelegramService {
 
-	void process(Update update);
+	void read(Update update);
 
-	void execute(SendMessage answer);
+	void write(SendMessage answer);
 }

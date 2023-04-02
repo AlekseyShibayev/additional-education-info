@@ -27,7 +27,7 @@ public class NotificationServiceImpl implements NotificationService {
 
 		telegramFacade.getChats().keySet().stream()
 				.map(chatId -> getSendMessage(message, chatId))
-				.forEach(telegramFacade::execute);
+				.forEach(telegramFacade::write);
 	}
 
 	private SendMessage getSendMessage(Object message, Long chatId) {

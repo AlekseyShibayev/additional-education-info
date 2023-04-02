@@ -1,7 +1,7 @@
 package com.company.app.telegram.component.impl;
 
-import com.company.app.telegram.component.api.TelegramBotService;
-import com.company.app.telegram.component.api.TelegramHandler;
+import com.company.app.telegram.component.api.TelegramBotConfig;
+import com.company.app.telegram.component.api.TelegramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import javax.annotation.PostConstruct;
 
 @Component
-public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implements TelegramBotService {
+public class TelegramBotConfigImpl extends TelegramLongPollingCommandBot implements TelegramBotConfig {
 
 	@Value("${telegram.name}")
 	private String name;
@@ -22,7 +22,7 @@ public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implem
 	private String token;
 
 	@Autowired
-	private TelegramHandler telegramHandler;
+	private TelegramService telegramService;
 
 	@PostConstruct
 	public void init() throws TelegramApiException {
@@ -42,6 +42,6 @@ public class TelegramBotServiceImpl extends TelegramLongPollingCommandBot implem
 
 	@Override
 	public void processNonCommandUpdate(Update update) {
-		telegramHandler.process(update);
+		telegramService.read(update);
 	}
 }

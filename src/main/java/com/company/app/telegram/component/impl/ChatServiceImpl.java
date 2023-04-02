@@ -2,6 +2,7 @@ package com.company.app.telegram.component.impl;
 
 import com.company.app.core.tools.api.DataExtractorService;
 import com.company.app.telegram.component.api.ChatService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -10,6 +11,7 @@ import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 @Component
 public class ChatServiceImpl implements ChatService {
 
@@ -26,9 +28,5 @@ public class ChatServiceImpl implements ChatService {
 		dataExtractorService.getProperties(CHAT_PROPERTIES)
 				.forEach((key, value) -> result.put(Long.parseLong(key), value));
 		this.chats = result;
-	}
-
-	public Map<Long, String> getChats() {
-		return chats;
 	}
 }

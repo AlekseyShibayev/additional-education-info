@@ -1,7 +1,7 @@
 package com.company.app.telegram.component.impl;
 
 import com.company.app.exchangeRate.component.api.ExchangeRateBinder;
-import com.company.app.telegram.component.api.TelegramHandler;
+import com.company.app.telegram.component.api.TelegramService;
 import com.company.app.telegram.entity.History;
 import com.company.app.telegram.repository.HistoryRepository;
 import com.company.app.wildberries.component.WildberriesBinder;
@@ -17,19 +17,19 @@ import java.util.Date;
 
 @Slf4j
 @Component
-public class TelegramHandlerImpl implements TelegramHandler {
+public class TelegramServiceImpl implements TelegramService {
 
 	@Autowired
 	HistoryRepository historyRepository;
 	@Autowired
-	TelegramBotServiceImpl telegramBotService;
+	TelegramBotConfigImpl telegramBotConfig;
 	@Autowired
 	WildberriesBinder wildberriesBinder;
 	@Autowired
 	ExchangeRateBinder exchangeRateBinder;
 
 	@Override
-	public void process(Update update) {
+	public void read(Update update) {
 		Message message = update.getMessage();
 		Long chatId = message.getChatId();
 		String text = message.getText();
@@ -50,7 +50,7 @@ public class TelegramHandlerImpl implements TelegramHandler {
 
 	@SneakyThrows
 	@Override
-	public void execute(SendMessage answer) {
-		telegramBotService.execute(answer);
+	public void write(SendMessage answer) {
+		telegramBotConfig.execute(answer);
 	}
 }

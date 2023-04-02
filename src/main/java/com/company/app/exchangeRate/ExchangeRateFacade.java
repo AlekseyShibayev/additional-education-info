@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 public class ExchangeRateFacade {
 
 	@Autowired
-	private ExchangeRateExtractor exchangeExtractorService;
+	private ExchangeRateExtractor exchangeRateExtractor;
 
 	@PerformanceLogAnnotation
 	public ExchangeRate extract() {
-		return exchangeExtractorService.extract();
+		return exchangeRateExtractor.extract();
 	}
 }

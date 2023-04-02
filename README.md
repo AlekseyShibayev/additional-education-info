@@ -5,9 +5,9 @@
 2. Следит за ценами заданных товаров с wildberries.
 3. Пишет что угодно мне в телегу.
 
-Теоритическое применение бота:
+Теоретическое применение бота:
 1. Щупаю технологии SpringBoot, SpringData, SpringScheduling, SpringCaching, SpringAop, SpringBootTest.
-2. Бд использую H2, потому что давно хотел. Вот консоль её: http://localhost:9001/h2-console
+2. Бд использую H2, потому что давно хотел. Вот консоль её: http://localhost:8080/h2-console
 
 Вечно забываемые, команды docker:
 1. docker build --tag "app:0" .

@@ -35,6 +35,6 @@ public class WildberriesBinderTest extends AbstractTest {
 
 		List<Lot> after = lotRepository.findAll();
 
-		Assert.assertEquals(after.size() - before.size(), 1);
+		Assert.assertEquals(1, after.size() - before.size());
 	}
 }

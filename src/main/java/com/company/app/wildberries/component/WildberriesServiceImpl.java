@@ -2,6 +2,7 @@ package com.company.app.wildberries.component;
 
 import com.company.app.core.tools.api.DataExtractorService;
 import com.company.app.core.tools.api.SerializationService;
+import com.company.app.core.util.LogUtils;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
 import lombok.Setter;
@@ -43,16 +44,22 @@ public class WildberriesServiceImpl {
 		List<Lot> lots = lotRepository.findAll();
 		String url = WildberriesURLCreator.getUrlForPriceSearch(lots);
 		String htmlResponse = dataExtractorService.getHtmlResponse(url);
-		lots = lots.stream().filter(lot -> isDesireLot(htmlResponse, lot)).collect(Collectors.toList());
-		return lots;
+		return lots.stream()
+				.filter(lot -> isDesireLot(htmlResponse, lot))
+				.collect(Collectors.toList());
 	}
 
 	private boolean isDesireLot(String htmlResponse, Lot lot) {
-		String currentPriceString = wildberriesPriceExtractor.extract(htmlResponse, lot.getName());
-		BigDecimal currentPrice = getCurrentPrice(lot, currentPriceString);
-		BigDecimal desiredPrice = new BigDecimal(lot.getPrice() + "00.00");
-		int i = desiredPrice.compareTo(currentPrice);
-		return i > 0;
+		try {
+			String currentPriceString = wildberriesPriceExtractor.extract(htmlResponse, lot.getName());
+			BigDecimal currentPrice = getCurrentPrice(lot, currentPriceString);
+			BigDecimal desiredPrice = new BigDecimal(lot.getPrice() + "00.00");
+			int i = desiredPrice.compareTo(currentPrice);
+			return i > 0;
+		} catch (Exception e) {
+			LogUtils.doExceptionLog(e, "проблема с " + lot.toString());
+			return false;
+		}
 	}
 
 	private BigDecimal getCurrentPrice(Lot lot, String currentPriceString) {

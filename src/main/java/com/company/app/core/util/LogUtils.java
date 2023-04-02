@@ -10,6 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LogUtils {
 
+	public static void doExceptionLog(Throwable e, String message) {
+		log.error(message, e.getMessage(), e);
+	}
+
 	public static void doExceptionLog(Throwable e) {
 		log.error(e.getMessage(), e);
 	}

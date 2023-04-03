@@ -10,6 +10,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -32,25 +33,50 @@ public class PerformanceLogAspect {
 			Stopwatch stopwatch = Stopwatch.createStarted();
 			UUID transactionalID = UUID.randomUUID();
 			Signature signature = proceedingJoinPoint.getSignature();
-
-			log.debug("[{}]: запущен {}.{}",
-					transactionalID,
-					signature.getDeclaringType().getName(),
-					signature.getName()
-			);
+			doLogBefore(transactionalID, signature);
 
 			Object proceed = proceedingJoinPoint.proceed();
 
 			stopwatch.stop();
-			log.debug("[{}]: за [{}] ms выполнен {}.{}",
-					transactionalID,
-					stopwatch.elapsed(TimeUnit.MILLISECONDS),
-					signature.getDeclaringType().getName(),
-					signature.getName()
-			);
+			doLogAfter(stopwatch, transactionalID, signature, proceed);
 			return proceed;
 		} else {
 			return proceedingJoinPoint.proceed();
 		}
+	}
+
+	private void doLogAfter(Stopwatch stopwatch, UUID operationId, Signature signature, Object proceed) {
+		if (proceed instanceof Collection) {
+			doCollectionPerformanceLogging(stopwatch, operationId, signature, (Collection<?>) proceed);
+		} else {
+			doDefaultPerformanceLogging(stopwatch, operationId, signature);
+		}
+	}
+
+	private void doLogBefore(UUID transactionalID, Signature signature) {
+		log.debug("[{}]: запущен {}.{}",
+				transactionalID,
+				signature.getDeclaringType().getName(),
+				signature.getName()
+		);
+	}
+
+	private void doCollectionPerformanceLogging(Stopwatch stopwatch, UUID operationId, Signature signature, Collection<?> proceed) {
+		log.debug("[{}]: за [{}] ms вернул [{}] шт.  выполнен {}.{}",
+				operationId,
+				stopwatch.elapsed(TimeUnit.MILLISECONDS),
+				proceed.size(),
+				signature.getDeclaringType().getName(),
+				signature.getName()
+		);
+	}
+
+	private void doDefaultPerformanceLogging(Stopwatch stopwatch, UUID operationId, Signature signature) {
+		log.debug("[{}]: за [{}] ms выполнен {}.{}",
+				operationId,
+				stopwatch.elapsed(TimeUnit.MILLISECONDS),
+				signature.getDeclaringType().getName(),
+				signature.getName()
+		);
 	}
 }

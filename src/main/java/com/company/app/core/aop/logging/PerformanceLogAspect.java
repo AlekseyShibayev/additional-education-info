@@ -62,7 +62,7 @@ public class PerformanceLogAspect {
 	}
 
 	private void doCollectionPerformanceLogging(Stopwatch stopwatch, UUID operationId, Signature signature, Collection<?> proceed) {
-		log.debug("[{}]: за [{}] ms вернул [{}] шт.  выполнен {}.{}",
+		log.debug("[{}]: за [{}] ms вернул [{}] шт. выполнен {}.{}",
 				operationId,
 				stopwatch.elapsed(TimeUnit.MILLISECONDS),
 				proceed.size(),

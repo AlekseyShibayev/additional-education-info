@@ -33,6 +33,11 @@
 		<appender-ref ref="console"/>
 	</logger>
 
+	<logger name="com.company.app.core.aop.logging" level="TRACE" additivity="false">
+		<appender-ref ref="app"/>
+		<appender-ref ref="console"/>
+	</logger>
+
 <!--	<logger name="com.zaxxer.hikari.pool.HikariPool" level="DEBUG" additivity="false">-->
 <!--		<appender-ref ref="app"/>-->
 <!--		<appender-ref ref="console"/>-->

@@ -15,11 +15,25 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Аспект, логирует разными способами производительность метода.
+ * Метод должен быть помечен аннотацией @PerformanceLogAnnotation
+ * <p>
+ * UUID берется из первого параметра сигнатуры метода, либо генерируется рандомный.
+ * <p>
+ * Способы логирования:
+ * 1. Стандартный
+ * PerformanceLogAspect] [] [] [76069a35-dab7-45bf-968e-a24281ac5a21]: запущен com.company.app.exchangeRate.ExchangeRateFacade.extract
+ * PerformanceLogAspect] [] [] [76069a35-dab7-45bf-968e-a24281ac5a21]: за [1757] ms выполнен com.company.app.exchangeRate.ExchangeRateFacade.extract
+ * <p>
+ * 2. Для Collection
+ * PerformanceLogAspect] [] [] [42db76b0-f2e2-4994-9b12-6fa603e62e72]: запущен com.company.app.wildberries.WildberriesFacade.getDesiredLots
+ * PerformanceLogAspect] [] [] [42db76b0-f2e2-4994-9b12-6fa603e62e72]: за [351] ms вернул [0] шт. выполнен com.company.app.wildberries.WildberriesFacade.getDesiredLots
+ *
  * @author shibaev.aleksey 30.03.2023
  */
-@Component
-@Aspect
 @Slf4j
+@Aspect
+@Component
 public class PerformanceLogAspect {
 
 	@Pointcut("@annotation(PerformanceLogAnnotation)")
@@ -31,21 +45,32 @@ public class PerformanceLogAspect {
 	public Object ifPerformanceLogAnnotationAdvice(ProceedingJoinPoint proceedingJoinPoint) {
 		if (log.isDebugEnabled()) {
 			Stopwatch stopwatch = Stopwatch.createStarted();
-			UUID transactionalID = UUID.randomUUID();
+			String operationId = getOperationId(proceedingJoinPoint);
+
 			Signature signature = proceedingJoinPoint.getSignature();
-			doLogBefore(transactionalID, signature);
+			doLogBefore(operationId, signature);
 
 			Object proceed = proceedingJoinPoint.proceed();
 
 			stopwatch.stop();
-			doLogAfter(stopwatch, transactionalID, signature, proceed);
+			doLogAfter(stopwatch, operationId, signature, proceed);
 			return proceed;
 		} else {
 			return proceedingJoinPoint.proceed();
 		}
 	}
 
-	private void doLogAfter(Stopwatch stopwatch, UUID operationId, Signature signature, Object proceed) {
+	private String getOperationId(ProceedingJoinPoint proceedingJoinPoint) {
+		try {
+			Object[] args = proceedingJoinPoint.getArgs();
+			UUID uuid = UUID.fromString(String.valueOf(args[0]));
+			return uuid.toString();
+		} catch (Exception e) {
+			return UUID.randomUUID().toString();
+		}
+	}
+
+	private void doLogAfter(Stopwatch stopwatch, String operationId, Signature signature, Object proceed) {
 		if (proceed instanceof Collection) {
 			doCollectionPerformanceLogging(stopwatch, operationId, signature, (Collection<?>) proceed);
 		} else {
@@ -53,15 +78,15 @@ public class PerformanceLogAspect {
 		}
 	}
 
-	private void doLogBefore(UUID transactionalID, Signature signature) {
+	private void doLogBefore(String operationId, Signature signature) {
 		log.debug("[{}]: запущен {}.{}",
-				transactionalID,
+				operationId,
 				signature.getDeclaringType().getName(),
 				signature.getName()
 		);
 	}
 
-	private void doCollectionPerformanceLogging(Stopwatch stopwatch, UUID operationId, Signature signature, Collection<?> proceed) {
+	private void doCollectionPerformanceLogging(Stopwatch stopwatch, String operationId, Signature signature, Collection<?> proceed) {
 		log.debug("[{}]: за [{}] ms вернул [{}] шт. выполнен {}.{}",
 				operationId,
 				stopwatch.elapsed(TimeUnit.MILLISECONDS),
@@ -71,7 +96,7 @@ public class PerformanceLogAspect {
 		);
 	}
 
-	private void doDefaultPerformanceLogging(Stopwatch stopwatch, UUID operationId, Signature signature) {
+	private void doDefaultPerformanceLogging(Stopwatch stopwatch, String operationId, Signature signature) {
 		log.debug("[{}]: за [{}] ms выполнен {}.{}",
 				operationId,
 				stopwatch.elapsed(TimeUnit.MILLISECONDS),

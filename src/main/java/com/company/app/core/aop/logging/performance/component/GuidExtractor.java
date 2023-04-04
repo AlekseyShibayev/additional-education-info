@@ -22,10 +22,13 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class GuidExtractor {
 
+	private static final Long DEFAULT = 5L;
+
 	@Autowired
 	ReflectionWizard reflectionWizard;
 
 	public String extractGuid(ProceedingJoinPoint proceedingJoinPoint) {
+		String result = StringUtils.EMPTY;
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
 		Signature signature = proceedingJoinPoint.getSignature();
@@ -33,17 +36,20 @@ public class GuidExtractor {
 			Method ownersMethod = reflectionWizard.getOwnersMethod(signature);
 			PerformanceLogAnnotation annotation = ownersMethod.getAnnotation(PerformanceLogAnnotation.class);
 			if (StringUtils.isNotEmpty(annotation.number())) {
-				return getGuidByAnnotationParameters(proceedingJoinPoint, annotation);
+				result = getGuidByAnnotationParameters(proceedingJoinPoint, annotation);
 			} else {
-				return getGuidByFirstSignatureParameter(proceedingJoinPoint);
+				result = getGuidByFirstSignatureParameter(proceedingJoinPoint);
 			}
 		} catch (Exception e) {
 			log.trace(e.getMessage(), e);
-			return UUID.randomUUID().toString();
+			result = UUID.randomUUID().toString();
 		} finally {
 			stopwatch.stop();
-			log.debug("Выковыривание guid заняло [{}] ms.", stopwatch.elapsed(TimeUnit.MILLISECONDS));
+			if (stopwatch.elapsed(TimeUnit.MILLISECONDS) > DEFAULT) {
+				log.debug("[{}] выковыривание guid заняло [{}] ms.", result, stopwatch.elapsed(TimeUnit.MILLISECONDS));
+			}
 		}
+		return result;
 	}
 
 	private String getGuidByFirstSignatureParameter(ProceedingJoinPoint proceedingJoinPoint) {

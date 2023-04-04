@@ -44,5 +44,4 @@ public class ReflectionWizard {
 				.collect(Collectors.toList());
 		return CollectionUtils.isEmpty(fields) ? recursiveFieldSearch(clazz.getSuperclass(), fieldName) : fields.get(0);
 	}
-
 }

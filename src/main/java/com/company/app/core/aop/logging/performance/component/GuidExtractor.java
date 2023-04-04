@@ -22,8 +22,6 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class GuidExtractor {
 
-	private static final Long DEFAULT = 5L;
-
 	@Autowired
 	ReflectionWizard reflectionWizard;
 
@@ -45,9 +43,7 @@ public class GuidExtractor {
 			result = UUID.randomUUID().toString();
 		} finally {
 			stopwatch.stop();
-			if (stopwatch.elapsed(TimeUnit.MILLISECONDS) > DEFAULT) {
-				log.debug("[{}] выковыривание guid заняло [{}] ms.", result, stopwatch.elapsed(TimeUnit.MILLISECONDS));
-			}
+			log.debug("[{}] выковыривание guid заняло [{}] ms.", result, stopwatch.elapsed(TimeUnit.MILLISECONDS));
 		}
 		return result;
 	}

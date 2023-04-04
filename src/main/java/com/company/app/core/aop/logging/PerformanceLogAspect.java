@@ -45,18 +45,17 @@ public class PerformanceLogAspect {
 	public Object ifPerformanceLogAnnotationAdvice(ProceedingJoinPoint proceedingJoinPoint) {
 		if (log.isDebugEnabled()) {
 			Stopwatch stopwatch = Stopwatch.createStarted();
-			String operationId = getOperationId(proceedingJoinPoint);
-
 			Signature signature = proceedingJoinPoint.getSignature();
+			String operationId = getOperationId(proceedingJoinPoint);
 			doLogBefore(operationId, signature);
 
-			Object proceed = proceedingJoinPoint.proceed();
+			Object proceed = proceedingJoinPoint.proceed(proceedingJoinPoint.getArgs());
 
 			stopwatch.stop();
 			doLogAfter(stopwatch, operationId, signature, proceed);
 			return proceed;
 		} else {
-			return proceedingJoinPoint.proceed();
+			return proceedingJoinPoint.proceed(proceedingJoinPoint.getArgs());
 		}
 	}
 

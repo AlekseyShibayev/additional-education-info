@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * Аннотация, для работы PerformanceLogAspect
  * number - порядковый номер объекта в сигнатуре метода, начинается с 0.
- * fieldName - поле объекта, содержащее UUID.
+ * methodName - метод объекта, возвращающего UUID или String в формате UUID. Метод должен быть без аргументов.
  *
  * @author shibaev.aleksey 30.03.2023
  */
@@ -17,5 +17,6 @@ import java.lang.annotation.Target;
 public @interface PerformanceLogAnnotation {
 
 	String number() default "";
-	String fieldName() default "";
+
+	String methodName() default "";
 }

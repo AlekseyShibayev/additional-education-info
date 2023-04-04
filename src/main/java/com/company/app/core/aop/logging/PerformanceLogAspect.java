@@ -12,7 +12,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,18 +25,19 @@ import java.util.stream.Collectors;
  * Метод должен быть помечен аннотацией @PerformanceLogAnnotation
  * <p>
  * Способы получения GUID:
- * 1.В аннотацию можно передать параметры. Пример @PerformanceLogAnnotation(number = "0", fieldName = "guid")
- *  number - порядковый номер объекта в сигнатуре метода, начинается с 0.
- *  fieldName - поле объекта, содержащее UUID.
- * 2. Аннотация без параметров. Тогда гуид попытается вытащить из первого объекта в сигнатуре.
+ * 1. В аннотацию можно передать параметры. Пример: @PerformanceLogAnnotation(number = "0", methodName = "guid")
+ * number - порядковый номер объекта в сигнатуре метода, начинается с 0.
+ * methodName - метод объекта, возвращающего UUID или String в формате UUID. Этот метод должен быть без аргументов.
+ * 2. Аннотация без параметров. Пример: @PerformanceLogAnnotation
+ * Тогда гуид попытается вытащить из первого объекта в сигнатуре.
  * 3. Если в п.1 или п.2 упали - сгенерируется рандомный гуид.
  * <p>
  * Способы логирования:
- * 1. Стандартный
+ * 1. Стандартный, пример:
  * PerformanceLogAspect] [] [] [76069a35-dab7-45bf-968e-a24281ac5a21]: запущен com.company.app.exchangeRate.ExchangeRateFacade.extract
  * PerformanceLogAspect] [] [] [76069a35-dab7-45bf-968e-a24281ac5a21]: за [1757] ms выполнен com.company.app.exchangeRate.ExchangeRateFacade.extract
  * <p>
- * 2. Для Collection
+ * 2. Для Collection - пишет размер, пример:
  * PerformanceLogAspect] [] [] [42db76b0-f2e2-4994-9b12-6fa603e62e72]: запущен com.company.app.wildberries.WildberriesFacade.getDesiredLots
  * PerformanceLogAspect] [] [] [42db76b0-f2e2-4994-9b12-6fa603e62e72]: за [351] ms вернул [0] шт. выполнен com.company.app.wildberries.WildberriesFacade.getDesiredLots
  *
@@ -78,20 +78,10 @@ public class PerformanceLogAspect {
 		try {
 			Method method = getMethod(signature);
 			PerformanceLogAnnotation annotation = method.getAnnotation(PerformanceLogAnnotation.class);
-			String number = annotation.number();
-
-			if (StringUtils.isNotEmpty(number)) {
-				int i = Integer.parseInt(annotation.number());
-				Object arg = proceedingJoinPoint.getArgs()[i];
-				Field field = recursiveFieldSearch(arg.getClass(), annotation.fieldName());
-				field.trySetAccessible();
-				Object object = field.get(arg);
-				UUID uuid = UUID.fromString(String.valueOf(object));
-				return uuid.toString();
+			if (StringUtils.isNotEmpty(annotation.number())) {
+				return getGuidByMethod(proceedingJoinPoint, annotation);
 			} else {
-				Object[] args = proceedingJoinPoint.getArgs();
-				UUID uuid = UUID.fromString(String.valueOf(args[0]));
-				return uuid.toString();
+				return getGuidByFirstSignatureParameter(proceedingJoinPoint);
 			}
 		} catch (Exception e) {
 			return UUID.randomUUID().toString();
@@ -101,20 +91,38 @@ public class PerformanceLogAspect {
 		}
 	}
 
+	private static String getGuidByFirstSignatureParameter(ProceedingJoinPoint proceedingJoinPoint) {
+		Object[] args = proceedingJoinPoint.getArgs();
+		UUID uuid = UUID.fromString(String.valueOf(args[0]));
+		return uuid.toString();
+	}
+
 	@SneakyThrows
-	private <T> Field recursiveFieldSearch(Class<T> clazz, String fieldName) {
-		List<Field> fields = Arrays.stream(clazz.getDeclaredFields())
-				.filter(field -> field.getName().equals(fieldName))
+	private String getGuidByMethod(ProceedingJoinPoint proceedingJoinPoint, PerformanceLogAnnotation annotation) {
+		int i = Integer.parseInt(annotation.number());
+		Object originalObjectFromSignature = proceedingJoinPoint.getArgs()[i];
+		Method method = recursiveMethodSearch(originalObjectFromSignature.getClass(), annotation.methodName());
+		method.trySetAccessible();
+		Object invoke = method.invoke(originalObjectFromSignature);
+		UUID uuid = UUID.fromString(String.valueOf(invoke));
+		return uuid.toString();
+	}
+
+	@SneakyThrows
+	private <T> Method recursiveMethodSearch(Class<T> clazz, String methodName) {
+		List<Method> methods = Arrays.stream(clazz.getDeclaredMethods())
+				.filter(method -> method.getName().equals(methodName))
 				.collect(Collectors.toList());
-		return CollectionUtils.isEmpty(fields) ? recursiveFieldSearch(clazz.getSuperclass(), fieldName) : fields.get(0);
+		return CollectionUtils.isEmpty(methods) ? recursiveMethodSearch(clazz.getSuperclass(), methodName) : methods.get(0);
 	}
 
 	private Method getMethod(Signature signature) {
 		for (Method method : signature.getDeclaringType().getDeclaredMethods()) {
-			if ((method.getName().equals(signature.getName()) && method.isAnnotationPresent(PerformanceLogAnnotation.class)))
+			if ((method.getName().equals(signature.getName()) && method.isAnnotationPresent(PerformanceLogAnnotation.class))) {
 				return method;
+			}
 		}
-		throw new RuntimeException("этого никогда не случится");
+		throw new RuntimeException("этого никогда не случится, т.к. нас кто-то же вызвал.");
 	}
 
 	private void doLogAfter(Stopwatch stopwatch, String guid, Signature signature, Object proceed) {

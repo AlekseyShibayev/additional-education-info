@@ -4,6 +4,7 @@ import com.company.app.AbstractTest;
 import com.company.app.core.aop.logging.forPerfomanceLogAspectTest.testEntity.ExperimentContext;
 import com.company.app.core.aop.logging.forPerfomanceLogAspectTest.testEntity.ExperimentContextChild;
 import com.company.app.core.aop.logging.forPerfomanceLogAspectTest.PerformanceLogAspectExecutorTest;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +15,7 @@ import java.util.UUID;
  * кроме "1. anyMethodNameWithEmptyAnnotation"
  * должны вытащить GUID.
  */
+@Slf4j
 public class PerformanceLogAspectTest extends AbstractTest {
 
 	@Autowired
@@ -23,6 +25,7 @@ public class PerformanceLogAspectTest extends AbstractTest {
 
 	@Test
 	public void ifPerformanceLogAnnotationAdviceWithEmptyAnnotationTest() {
+		log.debug("__________");
 		ExperimentContextChild experimentContext = new ExperimentContextChild();
 		experimentContext.setGuid(UUID.fromString(GUID));
 		performanceLogAspectExecutor.anyMethodNameWithEmptyAnnotation(experimentContext);
@@ -30,6 +33,7 @@ public class PerformanceLogAspectTest extends AbstractTest {
 
 	@Test
 	public void ifPerformanceLogAnnotationAdviceWithGuidAsParameterTest() {
+		log.debug("__________");
 		ExperimentContextChild experimentContext = new ExperimentContextChild();
 		experimentContext.setGuid(UUID.fromString(GUID));
 		performanceLogAspectExecutor.anyMethodNameWithGuidAsParameter(experimentContext, GUID);
@@ -37,6 +41,7 @@ public class PerformanceLogAspectTest extends AbstractTest {
 
 	@Test
 	public void ifPerformanceLogAnnotationAdviceWithNumberAndMethodNameTest() {
+		log.debug("__________");
 		ExperimentContext experimentContext = new ExperimentContextChild();
 		experimentContext.setGuid(UUID.fromString(GUID));
 		performanceLogAspectExecutor.anyMethodNameWithNumberAndMethodName(experimentContext);
@@ -44,6 +49,7 @@ public class PerformanceLogAspectTest extends AbstractTest {
 
 	@Test
 	public void ifPerformanceLogAnnotationAdviceWithNumberAndFieldNameTest() {
+		log.debug("__________");
 		ExperimentContext experimentContext = new ExperimentContextChild();
 		experimentContext.setGuid(UUID.fromString(GUID));
 		performanceLogAspectExecutor.anyMethodNameWithNumberAndFieldName(experimentContext);

@@ -19,3 +19,4 @@ Todo'шки:
 1. Разбить проект на 4 подпроекта. 
 2. Подпроект core должен подключаться в каждый, и использовать магию спринга.
 3. Добавить docker-compose
+4. посмотреть io.micrometer.core.annotation.Timed io.micrometer.core.aop.TimedAspect

@@ -27,16 +27,8 @@ import java.util.concurrent.TimeUnit;
  * PerformanceLogAspect] [] [] [42db76b0-f2e2-4994-9b12-6fa603e62e72]: запущен com.company.app.wildberries.WildberriesFacade.getDesiredLots
  * PerformanceLogAspect] [] [] [42db76b0-f2e2-4994-9b12-6fa603e62e72]: за [351] ms вернул [0] шт. выполнен com.company.app.wildberries.WildberriesFacade.getDesiredLots
  * <p>
- * Способы получения GUID: (см. тест PerformanceLogAspectTest и PerformanceLogAspectExecutorTest)
- * 1. Аннотация без параметров. Пример: @PerformanceLogAnnotation
- * Попытается вытащить GUID из первого объекта в сигнатуре.
- * 2. В аннотацию можно передать параметры.
- * number - порядковый номер объекта в сигнатуре метода, начинается с 0.
- * methodName - метод объекта, возвращающего UUID или String в формате UUID. Метод должен быть без аргументов.
- * fieldName - поле объекта, содержащее UUID или String в формате UUID.
- * Передавать парами: number и methodName ИЛИ number и fieldName.
- * Пример: @PerformanceLogAnnotation(number = "0", fieldName = "guid") или @PerformanceLogAnnotation(number = "0", methodName = "getGuidMethod")
- * 3. В случае неудачи - будет сгенерирован случайный GUID.
+ * Способы получения GUID:
+ * см. PerformanceLogAnnotation
  *
  * @author shibaev.aleksey 30.03.2023
  */

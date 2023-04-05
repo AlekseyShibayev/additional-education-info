@@ -31,13 +31,8 @@ public class GuidExtractor {
 
 		Signature signature = proceedingJoinPoint.getSignature();
 		try {
-			Method ownersMethod = reflectionWizard.getOwnersMethod(signature);
-			PerformanceLogAnnotation annotation = ownersMethod.getAnnotation(PerformanceLogAnnotation.class);
-			if (StringUtils.isNotEmpty(annotation.number())) {
-				result = getGuidByAnnotationParameters(proceedingJoinPoint, annotation);
-			} else {
-				result = getGuidByFirstSignatureParameter(proceedingJoinPoint);
-			}
+			PerformanceLogAnnotation annotation = reflectionWizard.getAnnotation(signature, PerformanceLogAnnotation.class);
+			result = getGuid(proceedingJoinPoint, annotation);
 		} catch (Exception e) {
 			log.trace(e.getMessage(), e);
 			result = UUID.randomUUID().toString();
@@ -46,6 +41,16 @@ public class GuidExtractor {
 			log.debug("[{}] выковыривание guid заняло [{}] ms.", result, stopwatch.elapsed(TimeUnit.MILLISECONDS));
 		}
 		return result;
+	}
+
+	private String getGuid(ProceedingJoinPoint proceedingJoinPoint, PerformanceLogAnnotation annotation) {
+		if (annotation.isFirst()) {
+			return getGuidByFirstSignatureParameter(proceedingJoinPoint);
+		} else if (StringUtils.isNotEmpty(annotation.number())) {
+			return getGuidByAnnotationParameters(proceedingJoinPoint, annotation);
+		} else {
+			return UUID.randomUUID().toString();
+		}
 	}
 
 	private String getGuidByFirstSignatureParameter(ProceedingJoinPoint proceedingJoinPoint) {

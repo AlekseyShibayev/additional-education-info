@@ -6,6 +6,7 @@ import org.aspectj.lang.Signature;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -19,6 +20,11 @@ import java.util.stream.Collectors;
  */
 @Component
 public class ReflectionWizard {
+
+	public  <T extends Annotation> T getAnnotation(Signature signature, Class<T> type) {
+		Method ownersMethod = getOwnersMethod(signature);
+		return ownersMethod.getAnnotation(type);
+	}
 
 	public Method getOwnersMethod(Signature signature) {
 		for (Method method : signature.getDeclaringType().getDeclaredMethods()) {

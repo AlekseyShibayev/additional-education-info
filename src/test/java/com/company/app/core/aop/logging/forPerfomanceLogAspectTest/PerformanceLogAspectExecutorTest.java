@@ -14,7 +14,7 @@ public class PerformanceLogAspectExecutorTest {
 		log.debug("1. anyMethodNameWithEmptyAnnotation");
 	}
 
-	@PerformanceLogAnnotation
+	@PerformanceLogAnnotation(isFirst = true)
 	public void anyMethodNameWithGuidAsFirstParameter(String guid) {
 		log.debug("2. anyMethodNameWithGuidAsFirstParameter");
 	}

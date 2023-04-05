@@ -18,7 +18,7 @@ public class ExchangeRateController {
 	/**
 	 * пример запроса: http://localhost:8080/exchangeRate/get
 	 */
-	@GetMapping(value = "get", produces = "application/json")
+	@GetMapping(value = "/get", produces = "application/json")
 	public ResponseEntity<ExchangeRate> get() {
 		return ResponseEntity.ok(exchangeRateFacade.extract());
 	}

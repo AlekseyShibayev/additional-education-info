@@ -21,7 +21,7 @@ public class LotController {
 	/**
 	 * пример запроса: http://localhost:8080/wildberries/lot/1
 	 */
-	@GetMapping(value = "{id}", produces = "application/json")
+	@GetMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<Lot> getById(@PathVariable Long id) {
 		return ResponseEntity.ok(lotService.getLot(id));
 	}
@@ -29,7 +29,7 @@ public class LotController {
 	/**
 	 * пример запроса: http://localhost:8080/wildberries/lot/5
 	 */
-	@DeleteMapping(value = "{id}", produces = "application/json")
+	@DeleteMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<Boolean> deleteById(@PathVariable Long id) {
 		return ResponseEntity.ok(lotService.deleteLot(id));
 	}

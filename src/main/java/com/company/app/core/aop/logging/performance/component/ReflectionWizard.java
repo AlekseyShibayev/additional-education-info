@@ -1,7 +1,7 @@
 package com.company.app.core.aop.logging.performance.component;
 
-import com.company.app.core.aop.logging.performance.PerformanceLogAnnotation;
 import lombok.SneakyThrows;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -20,6 +20,10 @@ import java.util.stream.Collectors;
  */
 @Component
 public class ReflectionWizard {
+
+	public Object getOriginalObjectFromSignature(ProceedingJoinPoint proceedingJoinPoint, String number) {
+		return proceedingJoinPoint.getArgs()[Integer.parseInt(number)];
+	}
 
 	public <T extends Annotation> T getAnnotation(Signature signature, Class<T> type) {
 		Method ownersMethod = getOwnersMethod(signature, type);

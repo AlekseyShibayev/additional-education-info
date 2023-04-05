@@ -1,16 +1,18 @@
 package com.company.app.core.aop.logging.performance.component;
 
 import com.company.app.core.aop.logging.performance.PerformanceLogAnnotation;
+import com.company.app.core.aop.logging.performance.component.action.Action;
 import com.google.common.base.Stopwatch;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +25,12 @@ public class GuidExtractor {
 
 	@Autowired
 	ReflectionWizard reflectionWizard;
+	Map<ActionType, Action> actions;
+
+	@Autowired
+	public GuidExtractor(List<Action> actionList) {
+		createActions(actionList);
+	}
 
 	public String extractGuid(ProceedingJoinPoint proceedingJoinPoint) {
 		String result = StringUtils.EMPTY;
@@ -30,7 +38,8 @@ public class GuidExtractor {
 
 		try {
 			PerformanceLogAnnotation annotation = reflectionWizard.getAnnotation(proceedingJoinPoint.getSignature(), PerformanceLogAnnotation.class);
-			result = getGuid(proceedingJoinPoint, annotation);
+			Action action = actions.get(annotation.actionType());
+			result = action.getGuid(proceedingJoinPoint, annotation);
 		} catch (Exception e) {
 			log.trace(e.getMessage(), e);
 			result = UUID.randomUUID().toString();
@@ -41,57 +50,16 @@ public class GuidExtractor {
 		return result;
 	}
 
-	private String getGuid(ProceedingJoinPoint proceedingJoinPoint, PerformanceLogAnnotation annotation) {
-		if (StringUtils.isNotEmpty(annotation.number())) {
-			return getGuidByAnnotationParameters(proceedingJoinPoint, annotation);
+	private void createActions(List<Action> actionList) {
+		actions = new EnumMap<>(ActionType.class);
+		actionList.forEach(this::forOne);
+	}
+
+	private void forOne(Action action) {
+		if (actions.containsKey(action.getActionType())) {
+			throw new DuplicateKeyException(action.getActionType().toString());
 		} else {
-			return UUID.randomUUID().toString();
-		}
-	}
-
-	private String getGuidByAnnotationParameters(ProceedingJoinPoint proceedingJoinPoint, PerformanceLogAnnotation annotation) {
-		String number = annotation.number();
-		String methodName = annotation.methodName();
-		String fieldName = annotation.fieldName();
-
-		if (isNumberOnly(methodName, fieldName)) {
-			return getGuidBySignatureParameter(proceedingJoinPoint, number);
-		} else {
-			return getGuidBySignatureParameter(proceedingJoinPoint, number, methodName, fieldName);
-		}
-	}
-
-	private boolean isNumberOnly(String methodName, String fieldName) {
-		return StringUtils.isEmpty(methodName) && StringUtils.isEmpty(fieldName);
-	}
-
-	private String getGuidBySignatureParameter(ProceedingJoinPoint proceedingJoinPoint, String number) {
-		Object originalObjectFromSignature = getOriginalObjectFromSignature(proceedingJoinPoint, number);
-		UUID uuid = UUID.fromString(String.valueOf(originalObjectFromSignature));
-		return uuid.toString();
-	}
-
-	private Object getOriginalObjectFromSignature(ProceedingJoinPoint proceedingJoinPoint, String number) {
-		return proceedingJoinPoint.getArgs()[Integer.parseInt(number)];
-	}
-
-	private String getGuidBySignatureParameter(ProceedingJoinPoint proceedingJoinPoint, String number, String methodName, String fieldName) {
-		Object originalObjectFromSignature = getOriginalObjectFromSignature(proceedingJoinPoint, number);
-		Object value = getValueFromOriginalObject(methodName, fieldName, originalObjectFromSignature);
-		UUID uuid = UUID.fromString(String.valueOf(value));
-		return uuid.toString();
-	}
-
-	@SneakyThrows
-	private Object getValueFromOriginalObject(String methodName, String fieldName, Object originalObjectFromSignature) {
-		if (StringUtils.isNotEmpty(fieldName)) {
-			Field field = reflectionWizard.recursiveFieldSearch(originalObjectFromSignature.getClass(), fieldName);
-			field.trySetAccessible();
-			return field.get(originalObjectFromSignature);
-		} else {
-			Method method = reflectionWizard.recursiveMethodSearch(originalObjectFromSignature.getClass(), methodName);
-			method.trySetAccessible();
-			return method.invoke(originalObjectFromSignature);
+			actions.put(action.getActionType(), action);
 		}
 	}
 }

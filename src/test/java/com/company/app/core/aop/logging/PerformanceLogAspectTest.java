@@ -29,8 +29,10 @@ public class PerformanceLogAspectTest extends AbstractTest {
 	}
 
 	@Test
-	public void ifPerformanceLogAnnotationAdviceWithGuidAsFirstParameterTest() {
-		performanceLogAspectExecutor.anyMethodNameWithGuidAsFirstParameter(GUID);
+	public void ifPerformanceLogAnnotationAdviceWithGuidAsParameterTest() {
+		ExperimentContextChild experimentContext = new ExperimentContextChild();
+		experimentContext.setGuid(UUID.fromString(GUID));
+		performanceLogAspectExecutor.anyMethodNameWithGuidAsParameter(experimentContext, GUID);
 	}
 
 	@Test

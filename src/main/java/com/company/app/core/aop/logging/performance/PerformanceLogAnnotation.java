@@ -6,10 +6,13 @@ import java.lang.annotation.*;
  * Аннотация, для работы PerformanceLogAspect.
  * <p>
  * Параметры для определения GUID:
- * 1) isFirst - попытаться вытащить GUID из первого объекта в сигнатуре.
- * 2) number - порядковый номер объекта в сигнатуре метода, начинается с 0.
- * 3) methodName - метод объекта, возвращающего UUID или String в формате UUID. Метод должен быть без аргументов.
- * 4) fieldName - поле объекта, содержащее UUID или String в формате UUID.
+ * 1) number - порядковый номер объекта в сигнатуре метода, начинается с 0.
+ * Если задать только его, то попытается вытащить GUID из i'того объекта в сигнатуре.
+ * 2) methodName - метод объекта, взятого по number из сигнатуры, возвращающего UUID или String в формате UUID.
+ * Метод должен быть без аргументов.
+ * 3) fieldName - поле объекта, взятого по number из сигнатуры, содержащее UUID или String в формате UUID.
+ * <p>
+ * Если задать и fieldName и methodName, то будет использоваться fieldName. Но лучше так не делать.
  * <p>
  * Примеры см. в тестах PerformanceLogAspectExecutorTest и PerformanceLogAspectTest
  *
@@ -19,8 +22,6 @@ import java.lang.annotation.*;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PerformanceLogAnnotation {
-
-	boolean isFirst() default false;
 
 	String number() default "";
 

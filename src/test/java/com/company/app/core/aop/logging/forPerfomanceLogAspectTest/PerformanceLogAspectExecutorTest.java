@@ -5,6 +5,9 @@ import com.company.app.core.aop.logging.performance.PerformanceLogAnnotation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+/**
+ * 4 примера использования @PerformanceLogAnnotation
+ */
 @Slf4j
 @Component
 public class PerformanceLogAspectExecutorTest {
@@ -14,9 +17,9 @@ public class PerformanceLogAspectExecutorTest {
 		log.debug("1. anyMethodNameWithEmptyAnnotation");
 	}
 
-	@PerformanceLogAnnotation(isFirst = true)
-	public void anyMethodNameWithGuidAsFirstParameter(String guid) {
-		log.debug("2. anyMethodNameWithGuidAsFirstParameter");
+	@PerformanceLogAnnotation(number = "1")
+	public void anyMethodNameWithGuidAsParameter(Context context, String guid) {
+		log.debug("2. anyMethodNameWithGuidAsParameter");
 	}
 
 	@PerformanceLogAnnotation(number = "0", methodName = "getGuidMethod")

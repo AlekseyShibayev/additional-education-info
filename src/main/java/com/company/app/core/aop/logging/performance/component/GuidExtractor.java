@@ -6,7 +6,6 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.Signature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,9 +28,8 @@ public class GuidExtractor {
 		String result = StringUtils.EMPTY;
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
-		Signature signature = proceedingJoinPoint.getSignature();
 		try {
-			PerformanceLogAnnotation annotation = reflectionWizard.getAnnotation(signature, PerformanceLogAnnotation.class);
+			PerformanceLogAnnotation annotation = reflectionWizard.getAnnotation(proceedingJoinPoint.getSignature(), PerformanceLogAnnotation.class);
 			result = getGuid(proceedingJoinPoint, annotation);
 		} catch (Exception e) {
 			log.trace(e.getMessage(), e);
@@ -44,42 +42,44 @@ public class GuidExtractor {
 	}
 
 	private String getGuid(ProceedingJoinPoint proceedingJoinPoint, PerformanceLogAnnotation annotation) {
-		if (annotation.isFirst()) {
-			return getGuidByFirstSignatureParameter(proceedingJoinPoint);
-		} else if (StringUtils.isNotEmpty(annotation.number())) {
+		if (StringUtils.isNotEmpty(annotation.number())) {
 			return getGuidByAnnotationParameters(proceedingJoinPoint, annotation);
 		} else {
 			return UUID.randomUUID().toString();
 		}
 	}
 
-	private String getGuidByFirstSignatureParameter(ProceedingJoinPoint proceedingJoinPoint) {
-		Object[] args = proceedingJoinPoint.getArgs();
-		UUID uuid = UUID.fromString(String.valueOf(args[0]));
+	private String getGuidByAnnotationParameters(ProceedingJoinPoint proceedingJoinPoint, PerformanceLogAnnotation annotation) {
+		String number = annotation.number();
+		String methodName = annotation.methodName();
+		String fieldName = annotation.fieldName();
+
+		if (isNumberOnly(methodName, fieldName)) {
+			return getGuidBySignatureParameter(proceedingJoinPoint, number);
+		} else {
+			return getGuidBySignatureParameter(proceedingJoinPoint, number, methodName, fieldName);
+		}
+	}
+
+	private boolean isNumberOnly(String methodName, String fieldName) {
+		return StringUtils.isEmpty(methodName) && StringUtils.isEmpty(fieldName);
+	}
+
+	private String getGuidBySignatureParameter(ProceedingJoinPoint proceedingJoinPoint, String number) {
+		Object originalObjectFromSignature = getOriginalObjectFromSignature(proceedingJoinPoint, number);
+		UUID uuid = UUID.fromString(String.valueOf(originalObjectFromSignature));
 		return uuid.toString();
 	}
 
-	private String getGuidByAnnotationParameters(ProceedingJoinPoint proceedingJoinPoint, PerformanceLogAnnotation annotation) {
-		String methodName = annotation.methodName();
-		String fieldName = annotation.fieldName();
-		if (isInvalidCase(methodName, fieldName)) {
-			throw new RuntimeException("Взаимоисключающие параметры.");
-		}
-		int i = Integer.parseInt(annotation.number());
-		Object originalObjectFromSignature = proceedingJoinPoint.getArgs()[i];
+	private Object getOriginalObjectFromSignature(ProceedingJoinPoint proceedingJoinPoint, String number) {
+		return proceedingJoinPoint.getArgs()[Integer.parseInt(number)];
+	}
+
+	private String getGuidBySignatureParameter(ProceedingJoinPoint proceedingJoinPoint, String number, String methodName, String fieldName) {
+		Object originalObjectFromSignature = getOriginalObjectFromSignature(proceedingJoinPoint, number);
 		Object value = getValueFromOriginalObject(methodName, fieldName, originalObjectFromSignature);
 		UUID uuid = UUID.fromString(String.valueOf(value));
 		return uuid.toString();
-	}
-
-	private boolean isInvalidCase(String methodName, String fieldName) {
-		if (StringUtils.isNotEmpty(methodName) && StringUtils.isNotEmpty(fieldName)) {
-			return true;
-		} else if (StringUtils.isEmpty(methodName) && StringUtils.isEmpty(fieldName)) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	@SneakyThrows

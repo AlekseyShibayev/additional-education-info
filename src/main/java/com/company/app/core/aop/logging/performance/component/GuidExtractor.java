@@ -7,11 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Component;
 
-import java.util.EnumMap;
-import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -24,15 +21,8 @@ public class GuidExtractor {
 
 	@Autowired
 	ReflectionWizard reflectionWizard;
-	Map<ActionType, Action> actions = new EnumMap<>(ActionType.class);
-
-	public void putAction(Action action) {
-		if (actions.containsKey(action.getActionType())) {
-			throw new DuplicateKeyException(action.getActionType().toString());
-		} else {
-			actions.put(action.getActionType(), action);
-		}
-	}
+	@Autowired
+	ActionRegistry actionRegistry;
 
 	public String extractGuid(ProceedingJoinPoint proceedingJoinPoint) {
 		String result = StringUtils.EMPTY;
@@ -40,7 +30,7 @@ public class GuidExtractor {
 
 		try {
 			PerformanceLogAnnotation annotation = reflectionWizard.getAnnotation(proceedingJoinPoint.getSignature(), PerformanceLogAnnotation.class);
-			Action action = actions.get(annotation.actionType());
+			Action action = actionRegistry.getActions().get(annotation.actionType());
 			result = action.getGuid(proceedingJoinPoint, annotation);
 		} catch (Exception e) {
 			log.trace(e.getMessage(), e);

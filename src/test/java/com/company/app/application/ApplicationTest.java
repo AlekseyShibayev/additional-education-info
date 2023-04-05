@@ -1,5 +1,6 @@
-package com.company.app;
+package com.company.app.application;
 
+import com.company.app.AbstractTest;
 import com.company.app.telegram.component.api.NotificationService;
 import com.company.app.telegram.entity.History;
 import com.company.app.telegram.repository.HistoryRepository;

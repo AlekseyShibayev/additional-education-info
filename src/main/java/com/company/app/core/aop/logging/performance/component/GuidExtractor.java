@@ -11,7 +11,6 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Component;
 
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -25,11 +24,14 @@ public class GuidExtractor {
 
 	@Autowired
 	ReflectionWizard reflectionWizard;
-	Map<ActionType, Action> actions;
+	Map<ActionType, Action> actions = new EnumMap<>(ActionType.class);
 
-	@Autowired
-	public GuidExtractor(List<Action> actionList) {
-		createActions(actionList);
+	public void putAction(Action action) {
+		if (actions.containsKey(action.getActionType())) {
+			throw new DuplicateKeyException(action.getActionType().toString());
+		} else {
+			actions.put(action.getActionType(), action);
+		}
 	}
 
 	public String extractGuid(ProceedingJoinPoint proceedingJoinPoint) {
@@ -48,18 +50,5 @@ public class GuidExtractor {
 			log.debug("[{}] выковыривание guid заняло [{}] ms.", result, stopwatch.elapsed(TimeUnit.MILLISECONDS));
 		}
 		return result;
-	}
-
-	private void createActions(List<Action> actionList) {
-		actions = new EnumMap<>(ActionType.class);
-		actionList.forEach(this::forOne);
-	}
-
-	private void forOne(Action action) {
-		if (actions.containsKey(action.getActionType())) {
-			throw new DuplicateKeyException(action.getActionType().toString());
-		} else {
-			actions.put(action.getActionType(), action);
-		}
 	}
 }

@@ -1,7 +1,10 @@
-package com.company.app.core.aop.logging.performance.component;
+package com.company.app.core.aop.logging.performance.component.impl;
 
 import com.company.app.core.aop.logging.performance.PerformanceLogAnnotation;
 import com.company.app.core.aop.logging.performance.component.action.Action;
+import com.company.app.core.aop.logging.performance.component.api.ActionRegistry;
+import com.company.app.core.aop.logging.performance.component.api.GuidExtractor;
+import com.company.app.core.aop.logging.performance.component.api.Reflector;
 import com.google.common.base.Stopwatch;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -17,10 +20,10 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Component
-public class GuidExtractor {
+public class GuidExtractorImpl implements GuidExtractor {
 
 	@Autowired
-	ReflectionWizard reflectionWizard;
+	Reflector reflector;
 	@Autowired
 	ActionRegistry actionRegistry;
 
@@ -29,8 +32,8 @@ public class GuidExtractor {
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
 		try {
-			PerformanceLogAnnotation annotation = reflectionWizard.getAnnotation(proceedingJoinPoint, PerformanceLogAnnotation.class);
-			Action action = actionRegistry.getActions().get(annotation.actionType());
+			PerformanceLogAnnotation annotation = reflector.getAnnotation(proceedingJoinPoint, PerformanceLogAnnotation.class);
+			Action action = actionRegistry.getAction(annotation.actionType());
 			result = action.getGuid(proceedingJoinPoint, annotation);
 		} catch (Exception e) {
 			log.trace(e.getMessage(), e);

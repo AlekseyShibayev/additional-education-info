@@ -21,7 +21,7 @@ public class NumberAction extends AbstractAction {
 	}
 
 	private String getGuidBySignatureParameter(ProceedingJoinPoint proceedingJoinPoint, String number) {
-		Object originalObjectFromSignature = reflectionWizard.getOriginalObjectFromSignature(proceedingJoinPoint, number);
+		Object originalObjectFromSignature = reflector.getArg(proceedingJoinPoint, number);
 		UUID uuid = UUID.fromString(String.valueOf(originalObjectFromSignature));
 		return uuid.toString();
 	}

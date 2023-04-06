@@ -21,9 +21,9 @@ public class NumberAndFieldAction extends AbstractAction {
 	@Override
 	public String getGuid(ProceedingJoinPoint proceedingJoinPoint, PerformanceLogAnnotation annotation) {
 		String fieldName = annotation.fieldName();
-		Object originalObjectFromSignature = reflectionWizard.getOriginalObjectFromSignature(proceedingJoinPoint, annotation.number());
+		Object originalObjectFromSignature = reflector.getArg(proceedingJoinPoint, annotation.number());
 
-		Field field = reflectionWizard.recursiveFieldSearch(originalObjectFromSignature.getClass(), fieldName);
+		Field field = reflector.recursiveFieldSearch(originalObjectFromSignature.getClass(), fieldName);
 		field.trySetAccessible();
 		Object value = field.get(originalObjectFromSignature);
 

@@ -21,9 +21,9 @@ public class NumberAndMethodAction extends AbstractAction {
 	@Override
 	public String getGuid(ProceedingJoinPoint proceedingJoinPoint, PerformanceLogAnnotation annotation) {
 		String methodName = annotation.methodName();
-		Object originalObjectFromSignature = reflectionWizard.getOriginalObjectFromSignature(proceedingJoinPoint, annotation.number());
+		Object originalObjectFromSignature = reflector.getArg(proceedingJoinPoint, annotation.number());
 
-		Method method = reflectionWizard.recursiveMethodSearch(originalObjectFromSignature.getClass(), methodName);
+		Method method = reflector.recursiveMethodSearch(originalObjectFromSignature.getClass(), methodName);
 		method.trySetAccessible();
 		Object value = method.invoke(originalObjectFromSignature);
 

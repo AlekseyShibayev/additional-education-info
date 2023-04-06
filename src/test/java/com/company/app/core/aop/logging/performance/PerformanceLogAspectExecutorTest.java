@@ -6,7 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * 4 примера использования @PerformanceLogAnnotation
+ * 4 примера использования  {@link PerformanceLogAnnotation}
+ * Можно запустить тесты из {@link PerformanceLogAspectTest}
  */
 @Slf4j
 @Component

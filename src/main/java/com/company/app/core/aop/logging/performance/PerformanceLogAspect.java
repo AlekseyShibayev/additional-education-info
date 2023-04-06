@@ -1,5 +1,6 @@
 package com.company.app.core.aop.logging.performance;
 
+import com.company.app.core.aop.logging.performance.component.ActionType;
 import com.company.app.core.aop.logging.performance.component.api.GuidExtractor;
 import com.google.common.base.Stopwatch;
 import lombok.SneakyThrows;
@@ -16,24 +17,19 @@ import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Аспект, логирует разными способами производительность метода.
- * Метод должен быть помечен аннотацией {@link PerformanceLogAnnotation}
+ * Аспект, логирует разными способами производительность метода, который помечен {@link PerformanceLogAnnotation}
  * <p>
  * Способы логирования:
- * 1. Стандартный, пример:
- * <p>
- * PerformanceLogAspect] [] [] [76069a35-dab7-45bf-968e-a24281ac5a21]: запущен com.company.app.exchangeRate.ExchangeRateFacade.extract
- * <p>
- * PerformanceLogAspect] [] [] [76069a35-dab7-45bf-968e-a24281ac5a21]: за [1757] ms выполнен com.company.app.exchangeRate.ExchangeRateFacade.extract
- * <p>
- * 2. Для Collection - пишет размер, пример:
- * <p>
- * PerformanceLogAspect] [] [] [42db76b0-f2e2-4994-9b12-6fa603e62e72]: запущен com.company.app.wildberries.WildberriesFacade.getDesiredLots
- * <p>
- * PerformanceLogAspect] [] [] [42db76b0-f2e2-4994-9b12-6fa603e62e72]: за [351] ms вернул [0] шт. выполнен com.company.app.wildberries.WildberriesFacade.getDesiredLots
- * <p>
+ * <ul>
+ * <li> 1. Стандартный, пример:
+ * <li> [76069a35-dab7-45bf-968e-a24281ac5a21]: запущен com.company.app.exchangeRate.ExchangeRateFacade.extract
+ * <li> [76069a35-dab7-45bf-968e-a24281ac5a21]: за [1757] ms выполнен com.company.app.exchangeRate.ExchangeRateFacade.extract
+ * <li> 2. Для Collection - пишет размер, пример:
+ * <li> [42db76b0-f2e2-4994-9b12-6fa603e62e72]: запущен com.company.app.wildberries.WildberriesFacade.getDesiredLots
+ * <li> [42db76b0-f2e2-4994-9b12-6fa603e62e72]: за [351] ms вернул [0] шт. выполнен com.company.app.wildberries.WildberriesFacade.getDesiredLots
+ * </ul>
  * Способы получения GUID:
- * {@link com.company.app.core.aop.logging.performance.component.ActionType}
+ * {@link ActionType}
  *
  * @author shibaev.aleksey 30.03.2023
  */

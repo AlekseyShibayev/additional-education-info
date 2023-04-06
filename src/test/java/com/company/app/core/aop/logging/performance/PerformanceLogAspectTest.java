@@ -1,7 +1,6 @@
 package com.company.app.core.aop.logging.performance;
 
 import com.company.app.AbstractTest;
-import com.company.app.core.aop.logging.performance.testEntity.ExperimentContext;
 import com.company.app.core.aop.logging.performance.testEntity.ExperimentContextChild;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

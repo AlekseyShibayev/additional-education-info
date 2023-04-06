@@ -15,10 +15,11 @@ public class LogController {
 	LogService logService;
 
 	/**
+	 * Вытаскивает логи приложения, в виде архива.
 	 * пример запроса: http://localhost:8080/log/logsAsZip
 	 */
 	@GetMapping(value = "/logsAsZip", produces = "application/zip")
-	public ResponseEntity<byte[]> load() {
+	public ResponseEntity<byte[]> getLogsAsZip() {
 		return ResponseEntity.ok(logService.getLogsAsZip());
 	}
 }

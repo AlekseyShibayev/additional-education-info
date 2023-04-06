@@ -1,4 +1,4 @@
-package com.company.app.core.aop.logging.forPerfomanceLogAspectTest.testEntity;
+package com.company.app.core.aop.logging.performance.testEntity;
 
 import java.util.UUID;
 

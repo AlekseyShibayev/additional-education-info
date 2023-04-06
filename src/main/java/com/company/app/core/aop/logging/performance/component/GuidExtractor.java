@@ -29,7 +29,7 @@ public class GuidExtractor {
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
 		try {
-			PerformanceLogAnnotation annotation = reflectionWizard.getAnnotation(proceedingJoinPoint.getSignature(), PerformanceLogAnnotation.class);
+			PerformanceLogAnnotation annotation = reflectionWizard.getAnnotation(proceedingJoinPoint, PerformanceLogAnnotation.class);
 			Action action = actionRegistry.getActions().get(annotation.actionType());
 			result = action.getGuid(proceedingJoinPoint, annotation);
 		} catch (Exception e) {

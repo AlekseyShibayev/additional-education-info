@@ -2,25 +2,27 @@ package com.company.app.core.aop.logging.performance;
 
 import com.company.app.core.aop.logging.performance.component.ActionType;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
- * Аннотация, для работы PerformanceLogAspect.
+ * Аннотация, для работы {@link PerformanceLogAspect}
  * <p>
  * Параметры для определения GUID:
- * 1) actionType - это enum, в котором перечислены способы вытаскивания GUID
- * 2) number - порядковый номер объекта в сигнатуре метода, начинается с 0.
- * 3) methodName - метод объекта, взятого по number из сигнатуры, возвращающего UUID или String в формате UUID.
- * Метод должен быть без аргументов.
- * 4) fieldName - поле объекта, взятого по number из сигнатуры, содержащее UUID или String в формате UUID.
  * <p>
- * Примеры см. в тестах PerformanceLogAspectExecutorTest и PerformanceLogAspectTest
+ * {@code actionType} - это enum {@link ActionType}, в котором перечислены способы вытаскивания GUID
+ * <p>
+ * {@code number} - порядковый номер объекта в сигнатуре метода, начинается с 0.
+ * <p>
+ * {@code methodName} - метод объекта, взятого по number из сигнатуры, возвращающего UUID или String в формате UUID.
+ * Метод должен быть без аргументов.
+ * <p>
+ * {@code fieldName} - поле объекта, взятого по number из сигнатуры, содержащее UUID или String в формате UUID.
+ * <p>
+ * Примеры использования: {@link com.company.app.core.aop.logging.performance.PerformanceLogAspectExecutorTest}
  *
  * @author shibaev.aleksey 30.03.2023
  */
+@Documented
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PerformanceLogAnnotation {

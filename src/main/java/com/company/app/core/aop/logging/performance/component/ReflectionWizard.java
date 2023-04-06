@@ -3,6 +3,7 @@ package com.company.app.core.aop.logging.performance.component;
 import lombok.SneakyThrows;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -21,22 +22,30 @@ import java.util.stream.Collectors;
 @Component
 public class ReflectionWizard {
 
+	@Autowired
+	ReflectionUnderworld reflectionUnderworld;
+
 	public Object getOriginalObjectFromSignature(ProceedingJoinPoint proceedingJoinPoint, String number) {
 		return proceedingJoinPoint.getArgs()[Integer.parseInt(number)];
 	}
 
-	public <T extends Annotation> T getAnnotation(Signature signature, Class<T> type) {
-		Method ownersMethod = getOwnersMethod(signature, type);
+	public <T extends Annotation> T getAnnotation(ProceedingJoinPoint proceedingJoinPoint, Class<T> type) {
+		Method ownersMethod = getOwnersMethod(proceedingJoinPoint, type);
 		return ownersMethod.getAnnotation(type);
 	}
 
-	public Method getOwnersMethod(Signature signature, Class<? extends Annotation> type) {
-		for (Method method : signature.getDeclaringType().getDeclaredMethods()) {
-			if ((method.getName().equals(signature.getName()) && method.isAnnotationPresent(type))) {
-				return method;
-			}
+	public Method getOwnersMethod(ProceedingJoinPoint proceedingJoinPoint, Class<? extends Annotation> type) {
+		Signature signature = proceedingJoinPoint.getSignature();
+		List<Method> collect = Arrays.stream(signature.getDeclaringType().getDeclaredMethods())
+				.filter(method -> method.getName().equals(signature.getName()))
+				.filter(method -> method.isAnnotationPresent(type))
+				.collect(Collectors.toList());
+
+		if (collect.size() == 1) {
+			return collect.get(0);
+		} else {
+			return reflectionUnderworld.getMethodIfOverloading(proceedingJoinPoint, collect);
 		}
-		throw new RuntimeException("Не случится, т.к. аспект вызвал какой-то метод.");
 	}
 
 	@SneakyThrows

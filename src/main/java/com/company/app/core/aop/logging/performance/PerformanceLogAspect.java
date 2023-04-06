@@ -17,18 +17,23 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Аспект, логирует разными способами производительность метода.
- * Метод должен быть помечен аннотацией @PerformanceLogAnnotation
+ * Метод должен быть помечен аннотацией {@link PerformanceLogAnnotation}
  * <p>
  * Способы логирования:
  * 1. Стандартный, пример:
+ * <p>
  * PerformanceLogAspect] [] [] [76069a35-dab7-45bf-968e-a24281ac5a21]: запущен com.company.app.exchangeRate.ExchangeRateFacade.extract
+ * <p>
  * PerformanceLogAspect] [] [] [76069a35-dab7-45bf-968e-a24281ac5a21]: за [1757] ms выполнен com.company.app.exchangeRate.ExchangeRateFacade.extract
+ * <p>
  * 2. Для Collection - пишет размер, пример:
+ * <p>
  * PerformanceLogAspect] [] [] [42db76b0-f2e2-4994-9b12-6fa603e62e72]: запущен com.company.app.wildberries.WildberriesFacade.getDesiredLots
+ * <p>
  * PerformanceLogAspect] [] [] [42db76b0-f2e2-4994-9b12-6fa603e62e72]: за [351] ms вернул [0] шт. выполнен com.company.app.wildberries.WildberriesFacade.getDesiredLots
  * <p>
  * Способы получения GUID:
- * см. PerformanceLogAnnotation
+ * {@link com.company.app.core.aop.logging.performance.component.ActionType}
  *
  * @author shibaev.aleksey 30.03.2023
  */

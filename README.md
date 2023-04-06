@@ -6,7 +6,7 @@
 3. Пишет что угодно мне в телегу.
 
 Теоретическое применение бота:
-1. Щупаю технологии SpringBoot, SpringData, SpringScheduling, SpringCaching, SpringAop, SpringBootTest.
+1. Щупаю технологии Spring (Core, Boot, Data, Web, Caching, Scheduling, AOP, Boot Test).
 2. Бд использую H2, потому что давно хотел. Вот консоль её: http://localhost:8080/h2-console
 3. Есть swagger: http://localhost:8080/swagger-ui.html
 

@@ -2,13 +2,17 @@ package com.company.app;
 
 import com.company.app.exchangerate.scheduler.ExchangeRateSchedulerConfig;
 import com.company.app.wildberries.scheduler.WildberriesSchedulerConfig;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.context.annotation.ComponentScan;
 
-@ExtendWith(SpringExtension.class)
+/**
+ * в Junit5 @ExtendWith(SpringExtension.class) - сейчас не стоит, т.к. она есть в @SpringBootTest
+ * в Junit4 @RunWith(SpringRunner.class)
+ * использую Junit5: @ExtendWith(SpringExtension.class) - сейчас не стоит, т.к. она есть в @SpringBootTest
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ComponentScan(lazyInit = true)
 @MockBean(ExchangeRateSchedulerConfig.class)
 @MockBean(WildberriesSchedulerConfig.class)
 public abstract class ApplicationTest {

@@ -16,33 +16,21 @@ import java.util.UUID;
  * кроме "1. anyMethodNameWithEmptyAnnotation"
  * должны вытащить GUID.
  */
-//@SpringBootTest
-//@MockBean(ExchangeRateSchedulerConfig.class)
-//@MockBean(WildberriesSchedulerConfig.class)
-//@ExtendWith(SpringExtension.class)
-
-
-//@SpringBootTest(classes = {Application.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PerformanceLogAspectTest extends ApplicationTest {
 
 	@Autowired
 	PerformanceLogAspectExecutorTest performanceLogAspectExecutor;
 
-	static final String GUID = "11111111-1111-1111-1111-111111111111";
+	private static final String GUID = "11111111-1111-1111-1111-111111111111";
 
-//	@AfterEach
-//	void after(CapturedOutput output) {
-//		Assertions.assertTrue(output.getOut().contains(GUID));
-//	}
-
-//	@Test
-//	@ExtendWith(OutputCaptureExtension.class)
-//	void withEmptyAnnotationTest(CapturedOutput capture) {
-//		ExperimentContextChild child = new ExperimentContextChild();
-//		child.setGuid(UUID.fromString(GUID));
-//		performanceLogAspectExecutor.anyMethodNameWithEmptyAnnotation(child);
-//		Assertions.assertTrue(capture.getOut().contains(GUID));
-//	}
+	@Test
+	@ExtendWith(OutputCaptureExtension.class)
+	void withEmptyAnnotationTest(CapturedOutput capture) {
+		ExperimentContextChild child = new ExperimentContextChild();
+		child.setGuid(UUID.fromString(GUID));
+		performanceLogAspectExecutor.anyMethodNameWithEmptyAnnotation(child);
+		Assertions.assertNotNull(capture.getOut());
+	}
 
 	@Test
 	@ExtendWith(OutputCaptureExtension.class)

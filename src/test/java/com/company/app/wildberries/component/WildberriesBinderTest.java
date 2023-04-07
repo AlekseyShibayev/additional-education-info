@@ -2,6 +2,7 @@ package com.company.app.wildberries.component;
 
 import com.company.app.AbstractTest;
 import com.company.app.core.tools.api.SerializationService;
+import com.company.app.wildberries.component.impl.WildberriesBinderImpl;
 import com.company.app.wildberries.dto.LotDto;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
@@ -15,7 +16,7 @@ import java.util.List;
 public class WildberriesBinderTest extends AbstractTest {
 
 	@Autowired
-	WildberriesBinder wildberriesBinder;
+	WildberriesBinderImpl wildberriesBinder;
 	@Autowired
 	SerializationService<LotDto> serializationService;
 	@Autowired

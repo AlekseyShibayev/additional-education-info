@@ -7,8 +7,13 @@ import com.company.app.exchangeRate.repository.ExchangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @Component
 public class ExchangeRateBinderImpl implements ExchangeRateBinder {
+
+	private static final String TYPE = "EX";
 
 	@Autowired
 	ExchangeRepository exchangeRepository;
@@ -16,8 +21,17 @@ public class ExchangeRateBinderImpl implements ExchangeRateBinder {
 	NotificationService notificationService;
 
 	@Override
+	public String getType() {
+		return TYPE;
+	}
+
+	@Override
 	public void bind(String string) {
-		ExchangeRate exchange = exchangeRepository.findAllByOrderByDateDesc().get(0);
-		notificationService.notify(exchange);
+		Optional<ExchangeRate> optional = exchangeRepository.findOneByOrderByDateDesc();
+		if (optional.isPresent()) {
+			notificationService.notify(optional.get());
+		} else {
+			throw new NoSuchElementException("Курса еще нет.");
+		}
 	}
 }

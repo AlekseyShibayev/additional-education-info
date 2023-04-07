@@ -1,12 +1,12 @@
 package com.company.app.telegram.component.impl;
 
 import com.company.app.exchangeRate.component.api.ExchangeRateBinder;
+import com.company.app.telegram.component.api.BinderExecutor;
 import com.company.app.telegram.component.api.ChatRegistry;
 import com.company.app.telegram.component.api.TelegramBotConfig;
 import com.company.app.telegram.component.api.TelegramService;
-import com.company.app.telegram.entity.History;
-import com.company.app.telegram.repository.HistoryRepository;
-import com.company.app.wildberries.component.WildberriesBinder;
+import com.company.app.telegram.service.api.HistoryService;
+import com.company.app.wildberries.component.impl.WildberriesBinderImpl;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +15,16 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.Date;
-
 @Slf4j
 @Component
 public class TelegramServiceImpl implements TelegramService {
 
 	@Autowired
-	HistoryRepository historyRepository;
+	HistoryService historyService;
 	@Autowired
 	TelegramBotConfig telegramBotConfig;
 	@Autowired
-	WildberriesBinder wildberriesBinder;
-	@Autowired
-	ExchangeRateBinder exchangeRateBinder;
+	BinderExecutor binderExecutor;
 	@Autowired
 	ChatRegistry chatService;
 
@@ -39,37 +35,19 @@ public class TelegramServiceImpl implements TelegramService {
 		String text = message.getText();
 
 		log.debug("[{}]: [{}].", chatId, text);
+		historyService.save(text);
 
-		historyRepository.save(History.builder()
-				.message(text)
-				.date(new Date())
-				.build());
-
-		if (text.startsWith("ER")) {
-			exchangeRateBinder.bind(text);
-		} else if (text.startsWith("WB")) {
-			wildberriesBinder.bind(text);
-		}
+		binderExecutor.execute(text);
 	}
 
 	@SneakyThrows
 	@Override
 	public void write(Object message) {
-		History history = History.builder()
-				.message(String.valueOf(message))
-				.date(new Date())
-				.build();
-		historyRepository.save(history);
+		log.debug("[{}].", message);
+		historyService.save(String.valueOf(message));
 
 		chatService.getChats().keySet().stream()
-				.map(chatId -> getSendMessage(message, chatId))
+				.map(chatId -> SendMessage.builder().text(message.toString()).chatId(chatId.toString()).build())
 				.forEach(telegramBotConfig::write);
-	}
-
-	private SendMessage getSendMessage(Object message, Long chatId) {
-		SendMessage answer = new SendMessage();
-		answer.setText(message.toString());
-		answer.setChatId(chatId.toString());
-		return answer;
 	}
 }

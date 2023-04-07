@@ -1,6 +1,6 @@
 package com.company.app.exchangeRate.component.api;
 
-public interface ExchangeRateBinder {
+import com.company.app.telegram.component.api.Binder;
 
-	void bind(String string);
+public interface ExchangeRateBinder extends Binder {
 }

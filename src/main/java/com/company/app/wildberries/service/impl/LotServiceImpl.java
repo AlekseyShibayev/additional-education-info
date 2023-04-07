@@ -1,8 +1,9 @@
-package com.company.app.wildberries.service;
+package com.company.app.wildberries.service.impl;
 
 import com.company.app.wildberries.dto.LotDto;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
+import com.company.app.wildberries.service.api.LotService;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LotService {
+public class LotServiceImpl implements LotService {
 
 	@Autowired
 	LotRepository lotRepository;

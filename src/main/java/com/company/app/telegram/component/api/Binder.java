@@ -1,7 +1,7 @@
 package com.company.app.telegram.component.api;
 
 /**
- * Класс, связывающий модуль и входящее сообщение из телеграмм.
+ * Связывает модуль и входящее сообщение из телеграмм.
  */
 public interface Binder {
 

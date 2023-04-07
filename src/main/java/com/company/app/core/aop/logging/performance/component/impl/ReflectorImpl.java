@@ -31,7 +31,7 @@ public class ReflectorImpl implements Reflector {
 				.filter(method -> method.isAnnotationPresent(type))
 				.filter(method -> sameNumberOfArgs(proceedingJoinPoint, method))
 				.findFirst()
-				.get();
+				.orElseThrow();
 	}
 
 	public Object getArg(ProceedingJoinPoint proceedingJoinPoint, String number) {

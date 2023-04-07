@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -26,8 +27,9 @@ public class BinderExecutorImpl implements BinderExecutor {
 
 	@Override
 	public void execute(String text) {
-		String binderType = Arrays.stream(text.split(" ")).findFirst().get();
-		Binder binder = binders.get(binderType);
+		String binderType = Arrays.stream(text.split(" ")).findFirst().orElseThrow();
+		Binder binder = Optional.ofNullable(binders.get(binderType))
+				.orElseThrow(() -> new IllegalArgumentException(String.format("Не смог вытащить тип binderType из [%s].", text)));
 		binder.bind(text);
 	}
 }

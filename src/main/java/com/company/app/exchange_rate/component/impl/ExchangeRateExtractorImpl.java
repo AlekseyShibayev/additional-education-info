@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import java.util.Optional;
+import java.util.Objects;
 
 @Component
 @Setter
@@ -50,22 +50,20 @@ public class ExchangeRateExtractorImpl implements ExchangeRateExtractor {
 	}
 
 	private JSONObject getActivityAmount(Elements scripts) {
-		JSONObject activityAmount = null;
-		for (Element script : scripts) {
-			try {
-				activityAmount = getActivityAmount_(script);
-				if (activityAmount != null) {
-					break;
-				}
-			} catch (Exception e) {
-			}
-		}
-		return Optional.ofNullable(activityAmount).orElseThrow(() -> new RuntimeException("Не смог вытащить курс али."));
+		return scripts.stream()
+				.map(this::getInner)
+				.filter(Objects::nonNull)
+				.findFirst()
+				.orElseThrow();
 	}
 
-	private JSONObject getActivityAmount_(Element script) {
-		String s = script.childNodes().get(0).attributes().get("#data");
-		JSONObject jsonObject = new JSONObject(s);
-		return dataExtractorTool.getJsonObject(jsonObject, "activityAmount");
+	private JSONObject getInner(Element script) {
+		try {
+			String s = script.childNodes().get(0).attributes().get("#data");
+			JSONObject jsonObject = new JSONObject(s);
+			return dataExtractorTool.getJsonObject(jsonObject, "activityAmount");
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

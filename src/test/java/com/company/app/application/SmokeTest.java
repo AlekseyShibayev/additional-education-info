@@ -1,6 +1,6 @@
 package com.company.app.application;
 
-import com.company.app.AbstractTest;
+import com.company.app.ApplicationTest;
 import com.company.app.core.service.api.NotificationService;
 import com.company.app.telegram.entity.History;
 import com.company.app.telegram.repository.HistoryRepository;
@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public class ApplicationTest extends AbstractTest {
+public class SmokeTest extends ApplicationTest {
 
 	@LocalServerPort
 	private Integer port;

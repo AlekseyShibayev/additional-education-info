@@ -2,7 +2,7 @@ package com.company.app.wildberries.scheduler;
 
 import com.company.app.core.service.api.NotificationService;
 import com.company.app.wildberries.WildberriesFacade;
-import com.company.app.wildberries.component.WildberriesURLCreator;
+import com.company.app.wildberries.util.WBUtils;
 import com.company.app.wildberries.entity.Lot;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.internal.util.collections.CollectionHelper;
@@ -32,7 +32,7 @@ public class WildberriesSchedulerConfig {
 		}
 
 		if (CollectionHelper.isNotEmpty(desiredLots)) {
-			desiredLots.forEach(lot -> notificationService.notify(WildberriesURLCreator.getUrlForResponse(lot.getName())));
+			desiredLots.forEach(lot -> notificationService.notify(WBUtils.getUrlForResponse(lot.getName())));
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.company.app.wildberries.component;
+package com.company.app.wildberries.util;
 
 import com.company.app.wildberries.entity.Lot;
 import com.google.common.collect.ImmutableList;
@@ -7,12 +7,12 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class WildberriesURLCreatorTest {
+public class WBUtilsTest {
 
 	@Test
 	public void getUrlForPriceSearch() {
-		String urlForPriceSearch = WildberriesURLCreator.getUrlForPriceSearch(createLots());
-		String manualCreated = WildberriesURLCreator.URL_BONE + "43409221;" + "15694225;";
+		String urlForPriceSearch = WBUtils.getUrlForPriceSearch(createLots());
+		String manualCreated = WBUtils.URL_BONE + "43409221;" + "15694225;";
 		Assert.assertEquals(urlForPriceSearch, manualCreated);
 	}
 

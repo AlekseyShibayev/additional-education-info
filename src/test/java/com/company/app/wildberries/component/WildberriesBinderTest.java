@@ -1,6 +1,6 @@
 package com.company.app.wildberries.component;
 
-import com.company.app.AbstractTest;
+import com.company.app.ApplicationTest;
 import com.company.app.core.tools.api.SerializationService;
 import com.company.app.wildberries.component.impl.WildberriesBinderImpl;
 import com.company.app.wildberries.dto.LotDto;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Collections;
 import java.util.List;
 
-public class WildberriesBinderTest extends AbstractTest {
+public class WildberriesBinderTest extends ApplicationTest {
 
 	@Autowired
 	WildberriesBinderImpl wildberriesBinder;

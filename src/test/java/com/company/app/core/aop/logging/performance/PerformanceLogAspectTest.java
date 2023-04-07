@@ -1,6 +1,6 @@
 package com.company.app.core.aop.logging.performance;
 
-import com.company.app.AbstractTest;
+import com.company.app.ApplicationTest;
 import com.company.app.core.aop.logging.performance.testEntity.ExperimentContextChild;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import java.util.UUID;
  * должны вытащить GUID.
  */
 @Slf4j
-public class PerformanceLogAspectTest extends AbstractTest {
+public class PerformanceLogAspectTest extends ApplicationTest {
 
 	@Autowired
 	PerformanceLogAspectExecutorTest performanceLogAspectExecutor;

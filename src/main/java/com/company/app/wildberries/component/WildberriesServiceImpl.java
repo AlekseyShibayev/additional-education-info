@@ -5,6 +5,7 @@ import com.company.app.core.tools.api.DataExtractorService;
 import com.company.app.core.tools.api.SerializationService;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
+import com.company.app.wildberries.util.WBUtils;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class WildberriesServiceImpl {
 
 	public List<Lot> getDesiredLots() {
 		List<Lot> lots = lotRepository.findAll();
-		String url = WildberriesURLCreator.getUrlForPriceSearch(lots);
+		String url = WBUtils.getUrlForPriceSearch(lots);
 		String htmlResponse = dataExtractorService.getHtmlResponse(url);
 		return lots.stream()
 				.filter(lot -> isDesireLot(htmlResponse, lot))

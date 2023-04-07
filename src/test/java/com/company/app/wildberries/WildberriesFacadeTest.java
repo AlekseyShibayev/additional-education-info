@@ -1,6 +1,6 @@
 package com.company.app.wildberries;
 
-import com.company.app.AbstractTest;
+import com.company.app.ApplicationTest;
 import com.company.app.core.tools.api.SerializationService;
 import com.company.app.wildberries.component.WildberriesServiceImplTest;
 import com.company.app.wildberries.entity.Lot;
@@ -16,7 +16,7 @@ import java.io.File;
 import java.util.List;
 
 @Slf4j
-public class WildberriesFacadeTest extends AbstractTest {
+public class WildberriesFacadeTest extends ApplicationTest {
 
 	@Autowired
 	private WildberriesFacade wildberriesFacade;

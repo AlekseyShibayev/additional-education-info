@@ -32,7 +32,7 @@ public class TelegramServiceImpl implements TelegramService {
 		Long chatId = message.getChatId();
 		String text = message.getText();
 
-		log.debug("[{}]: [{}].", chatId, text);
+		log.debug("Читаю из чата [{}] сообщение [{}].", chatId, text);
 		historyService.save(text);
 
 		binderExecutor.execute(text);
@@ -41,7 +41,7 @@ public class TelegramServiceImpl implements TelegramService {
 	@SneakyThrows
 	@Override
 	public void write(Object message) {
-		log.debug("[{}].", message);
+		log.debug("Пишу в телеграм: [{}].", message);
 		historyService.save(String.valueOf(message));
 
 		chatRegistry.getAll().keySet().stream()

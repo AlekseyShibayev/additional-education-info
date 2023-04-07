@@ -1,6 +1,7 @@
-package com.company.app.wildberries.component;
+package com.company.app.wildberries.component.impl;
 
 import com.company.app.core.tools.api.DataExtractorService;
+import com.company.app.wildberries.component.api.WildberriesPriceExtractor;
 import lombok.Setter;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Setter
 @Component
-public class WildberriesPriceExtractor {
+public class WildberriesPriceExtractorImpl implements WildberriesPriceExtractor {
 
 	@Autowired
 	private DataExtractorService dataExtractorService;

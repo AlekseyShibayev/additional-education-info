@@ -2,7 +2,6 @@ package com.company.app.telegram.component.impl;
 
 import com.company.app.core.tools.api.DataExtractorService;
 import com.company.app.telegram.component.api.ChatRegistry;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;

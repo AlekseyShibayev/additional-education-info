@@ -4,6 +4,8 @@ import com.company.app.core.tools.api.DataExtractorService;
 import com.company.app.core.tools.api.SerializationService;
 import com.company.app.core.tools.impl.DataExtractorServiceImpl;
 import com.company.app.core.tools.impl.SerializationServiceImpl;
+import com.company.app.wildberries.component.impl.WildberriesPriceExtractorImpl;
+import com.company.app.wildberries.component.impl.WildberriesServiceImpl;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
 import org.junit.Assert;
@@ -20,7 +22,7 @@ public class WildberriesServiceImplTest {
 
 	WildberriesServiceImpl wildberriesService;
 	DataExtractorService dataExtractorService;
-	WildberriesPriceExtractor wildberriesPriceExtractor;
+	WildberriesPriceExtractorImpl wildberriesPriceExtractor;
 	LotRepository lotRepository;
 	SerializationService<Lot> serializationService;
 
@@ -29,7 +31,7 @@ public class WildberriesServiceImplTest {
 		wildberriesService = new WildberriesServiceImpl();
 
 		dataExtractorService = new DataExtractorServiceImpl();
-		wildberriesPriceExtractor = new WildberriesPriceExtractor();
+		wildberriesPriceExtractor = new WildberriesPriceExtractorImpl();
 		lotRepository = Mockito.mock(LotRepository.class);
 
 		wildberriesService.setDataExtractorService(dataExtractorService);

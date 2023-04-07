@@ -1,8 +1,10 @@
-package com.company.app.wildberries.component;
+package com.company.app.wildberries.component.impl;
 
 import com.company.app.core.aop.logging.util.LogUtils;
 import com.company.app.core.tools.api.DataExtractorService;
 import com.company.app.core.tools.api.SerializationService;
+import com.company.app.wildberries.component.api.WildberriesPriceExtractor;
+import com.company.app.wildberries.component.api.WildberriesService;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
 import com.company.app.wildberries.util.WBUtils;
@@ -20,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Setter
 @Component
-public class WildberriesServiceImpl {
+public class WildberriesServiceImpl implements WildberriesService {
 
 	@Value("classpath:wildberries_lot.json")
 	private Resource resource;

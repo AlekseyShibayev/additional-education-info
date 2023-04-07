@@ -1,7 +1,7 @@
 package com.company.app.wildberries;
 
 import com.company.app.core.aop.logging.performance.PerformanceLogAnnotation;
-import com.company.app.wildberries.component.WildberriesServiceImpl;
+import com.company.app.wildberries.component.impl.WildberriesServiceImpl;
 import com.company.app.wildberries.entity.Lot;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;

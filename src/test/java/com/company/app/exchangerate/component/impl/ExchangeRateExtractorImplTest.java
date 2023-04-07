@@ -1,10 +1,10 @@
-package com.company.app.exchange_rate.component.impl;
+package com.company.app.exchangerate.component.impl;
 
 import com.company.app.core.tool.impl.DataExtractorToolImpl;
 import lombok.SneakyThrows;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ExchangeRateExtractorImplTest {
 	private static final String FILE_NAME = "exchangeRate/AliexpressUsdResponseExample.html";
@@ -12,7 +12,7 @@ public class ExchangeRateExtractorImplTest {
 	private ExchangeRateExtractorImpl exchangeExtractorService;
 	private DataExtractorToolImpl dataExtractorService;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		exchangeExtractorService = new ExchangeRateExtractorImpl();
 		dataExtractorService = new DataExtractorToolImpl();
@@ -23,6 +23,6 @@ public class ExchangeRateExtractorImplTest {
 	@Test
 	public void canExtractCurseFromHtmlResponseTest() {
 		String fileAsString = dataExtractorService.getFileAsString(FILE_NAME);
-		Assert.assertEquals("78.17", exchangeExtractorService.getExchangeRate(fileAsString));
+		Assertions.assertEquals("78.17", exchangeExtractorService.getExchangeRate(fileAsString));
 	}
 }

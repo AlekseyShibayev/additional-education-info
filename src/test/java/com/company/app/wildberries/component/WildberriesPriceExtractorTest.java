@@ -2,9 +2,9 @@ package com.company.app.wildberries.component;
 
 import com.company.app.core.tool.impl.DataExtractorToolImpl;
 import com.company.app.wildberries.component.impl.WildberriesPriceExtractorImpl;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class WildberriesPriceExtractorTest {
 
@@ -13,7 +13,7 @@ public class WildberriesPriceExtractorTest {
 	private WildberriesPriceExtractorImpl wildberriesPriceExtractor;
 	private DataExtractorToolImpl dataExtractorService;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		wildberriesPriceExtractor = new WildberriesPriceExtractorImpl();
 		dataExtractorService = new DataExtractorToolImpl();
@@ -23,6 +23,6 @@ public class WildberriesPriceExtractorTest {
 	@Test
 	public void extract() {
 		String fileAsString = dataExtractorService.getFileAsString(FILE_NAME);
-		Assert.assertEquals("109900", wildberriesPriceExtractor.extract(fileAsString, "43409221"));
+		Assertions.assertEquals("109900", wildberriesPriceExtractor.extract(fileAsString, "43409221"));
 	}
 }

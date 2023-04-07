@@ -6,8 +6,8 @@ import com.company.app.wildberries.component.impl.WildberriesBinderImpl;
 import com.company.app.wildberries.dto.LotDto;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collections;
@@ -36,6 +36,6 @@ public class WildberriesBinderTest extends ApplicationTest {
 
 		List<Lot> after = lotRepository.findAll();
 
-		Assert.assertEquals(1, after.size() - before.size());
+		Assertions.assertEquals(1, after.size() - before.size());
 	}
 }

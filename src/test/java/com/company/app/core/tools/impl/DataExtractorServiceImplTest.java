@@ -4,14 +4,12 @@ import com.company.app.core.tool.JsonSearcher;
 import com.company.app.core.tool.impl.DataExtractorToolImpl;
 import lombok.SneakyThrows;
 import org.json.JSONObject;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 public class DataExtractorServiceImplTest {
 
@@ -19,7 +17,7 @@ public class DataExtractorServiceImplTest {
 
 	private DataExtractorToolImpl dataExtractorService;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		dataExtractorService = new DataExtractorToolImpl();
 	}
@@ -34,12 +32,12 @@ public class DataExtractorServiceImplTest {
 
 		JSONObject result = jsonSearcher.getResult();
 		Object value = result.getDouble("value");
-		assertEquals("65.85", value.toString());
+		Assertions.assertEquals("65.85", value.toString());
 	}
 
 	@Test
 	public void getFiles() {
 		List<File> files = dataExtractorService.getFiles("src/test/resources/core/forGetFilesTest");
-		Assert.assertEquals(3, files.size());
+		Assertions.assertEquals(3, files.size());
 	}
 }

@@ -1,4 +1,4 @@
-package com.company.app.exchange_rate.entity;
+package com.company.app.exchangerate.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

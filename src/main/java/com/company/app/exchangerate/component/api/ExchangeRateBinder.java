@@ -1,4 +1,4 @@
-package com.company.app.exchange_rate.component.api;
+package com.company.app.exchangerate.component.api;
 
 import com.company.app.telegram.component.api.Binder;
 

@@ -17,7 +17,7 @@
 4. docker stop
 
 Маленькая jira (todo'шки):
-- написать нормальный юнит тест, для PerformanceLogAspect, перехватив сообщение из логгера и проверив, что в нем есть нужный гуид
+- пощупать AssertJ https://habr.com/ru/articles/675778/
 
 - найти или сделать Dockerfile openjre_alpine-musl, выкинув не нужные пакеты из jre, ожидаемый вес < 80 mb
 

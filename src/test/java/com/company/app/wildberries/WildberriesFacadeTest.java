@@ -6,8 +6,8 @@ import com.company.app.wildberries.component.WildberriesServiceImplTest;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -16,7 +16,7 @@ import java.io.File;
 import java.util.List;
 
 @Slf4j
-public class WildberriesFacadeTest extends ApplicationTest {
+class WildberriesFacadeTest extends ApplicationTest {
 
 	@Autowired
 	private WildberriesFacade wildberriesFacade;
@@ -26,12 +26,12 @@ public class WildberriesFacadeTest extends ApplicationTest {
 	private LotRepository lotRepository;
 
 	@Test
-	public void doMainLogicTest() {
+	void doMainLogicTest() {
 		File file = new File(WildberriesServiceImplTest.FILE_NAME);
 		List<Lot> lots = serializationService.load(file, Lot.class);
 		Mockito.when(lotRepository.findAll()).thenReturn(lots);
 
 		List<Lot> desiredLots = wildberriesFacade.getDesiredLots();
-		Assert.assertEquals(1, desiredLots.size());
+		Assertions.assertEquals(1, desiredLots.size());
 	}
 }

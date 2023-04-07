@@ -8,9 +8,9 @@ import com.company.app.wildberries.component.impl.WildberriesPriceExtractorImpl;
 import com.company.app.wildberries.component.impl.WildberriesServiceImpl;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.File;
@@ -26,7 +26,7 @@ public class WildberriesServiceImplTest {
 	LotRepository lotRepository;
 	JsonSerializationTool<Lot> serializationService;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		wildberriesService = new WildberriesServiceImpl();
 
@@ -48,6 +48,6 @@ public class WildberriesServiceImplTest {
 		Mockito.when(lotRepository.findAll()).thenReturn(lots);
 
 		List<Lot> desiredLots = wildberriesService.getDesiredLots();
-		Assert.assertEquals(1, desiredLots.size());
+		Assertions.assertEquals(1, desiredLots.size());
 	}
 }

@@ -6,9 +6,9 @@ import com.company.app.wildberries.entity.Lot;
 import com.google.common.collect.ImmutableList;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class SerializationServiceImplTest {
 
 	private JsonSerializationTool<Lot> serializationService;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		serializationService = new JsonSerializationToolImpl<>();
 	}
@@ -46,7 +46,7 @@ public class SerializationServiceImplTest {
 		serializationService.save(list, new File(FILE_NAME));
 		List<Lot> load = serializationService.load(new File(FILE_NAME), Lot.class);
 
-		Assert.assertEquals(2, load.size());
-		Assert.assertEquals(list.get(0).getPrice(), load.get(0).getPrice());
+		Assertions.assertEquals(2, load.size());
+		Assertions.assertEquals(list.get(0).getPrice(), load.get(0).getPrice());
 	}
 }

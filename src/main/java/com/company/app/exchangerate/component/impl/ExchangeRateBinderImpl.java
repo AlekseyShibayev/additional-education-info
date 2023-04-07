@@ -1,9 +1,9 @@
-package com.company.app.exchange_rate.component.impl;
+package com.company.app.exchangerate.component.impl;
 
 import com.company.app.core.service.api.NotificationService;
-import com.company.app.exchange_rate.component.api.ExchangeRateBinder;
-import com.company.app.exchange_rate.entity.ExchangeRate;
-import com.company.app.exchange_rate.repository.ExchangeRepository;
+import com.company.app.exchangerate.component.api.ExchangeRateBinder;
+import com.company.app.exchangerate.entity.ExchangeRate;
+import com.company.app.exchangerate.repository.ExchangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

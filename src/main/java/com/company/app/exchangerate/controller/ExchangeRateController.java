@@ -1,7 +1,7 @@
-package com.company.app.exchange_rate.controller;
+package com.company.app.exchangerate.controller;
 
-import com.company.app.exchange_rate.ExchangeRateFacade;
-import com.company.app.exchange_rate.entity.ExchangeRate;
+import com.company.app.exchangerate.ExchangeRateFacade;
+import com.company.app.exchangerate.entity.ExchangeRate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

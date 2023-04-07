@@ -1,9 +1,9 @@
-package com.company.app.exchange_rate;
+package com.company.app.exchangerate;
 
 import com.company.app.ApplicationTest;
-import com.company.app.exchange_rate.entity.ExchangeRate;
-import org.junit.Assert;
-import org.junit.Test;
+import com.company.app.exchangerate.entity.ExchangeRate;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ExchangeRateFacadeTest extends ApplicationTest {
@@ -14,6 +14,6 @@ public class ExchangeRateFacadeTest extends ApplicationTest {
 	@Test
 	public void extractCurse() {
 		ExchangeRate exchangeRate = exchangeRateFacade.extract();
-		Assert.assertNotNull(exchangeRate.getAliexpressExchangeRate());
+		Assertions.assertNotNull(exchangeRate.getAliexpressExchangeRate());
 	}
 }

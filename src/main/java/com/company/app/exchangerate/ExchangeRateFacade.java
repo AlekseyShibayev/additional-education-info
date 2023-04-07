@@ -1,8 +1,8 @@
-package com.company.app.exchange_rate;
+package com.company.app.exchangerate;
 
 import com.company.app.core.aop.logging.performance.PerformanceLogAnnotation;
-import com.company.app.exchange_rate.component.api.ExchangeRateExtractor;
-import com.company.app.exchange_rate.entity.ExchangeRate;
+import com.company.app.exchangerate.component.api.ExchangeRateExtractor;
+import com.company.app.exchangerate.entity.ExchangeRate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

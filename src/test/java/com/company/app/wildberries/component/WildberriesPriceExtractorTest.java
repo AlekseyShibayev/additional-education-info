@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class WildberriesPriceExtractorTest {
+class WildberriesPriceExtractorTest {
 
 	private static final String FILE_NAME = "wildberries/WildberriesHtmlResponseExample.html";
 
@@ -21,7 +21,7 @@ public class WildberriesPriceExtractorTest {
 	}
 
 	@Test
-	public void extract() {
+	void extract() {
 		String fileAsString = dataExtractorService.getFileAsString(FILE_NAME);
 		Assertions.assertEquals("109900", wildberriesPriceExtractor.extract(fileAsString, "43409221"));
 	}

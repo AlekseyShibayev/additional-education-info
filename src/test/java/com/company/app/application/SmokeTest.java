@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public class SmokeTest extends ApplicationTest {
+class SmokeTest extends ApplicationTest {
 
 	@LocalServerPort
 	private Integer port;
@@ -28,7 +28,7 @@ public class SmokeTest extends ApplicationTest {
 	private HistoryRepository historyRepository;
 
 	@Test
-	public void historyRepositorySmokeTest() {
+	void historyRepositorySmokeTest() {
 		historyRepository.deleteAll();
 		historyRepository.save(History.builder()
 				.message("0. Успешное сохранение в бд.")
@@ -37,14 +37,14 @@ public class SmokeTest extends ApplicationTest {
 	}
 
 	@Test
-	public void notificationServiceSmokeTest() {
+	void notificationServiceSmokeTest() {
 		notificationService.notify("1. Тестовое приложение поднялось.");
 		List<History> all = historyRepository.findAll();
 		Assertions.assertNotNull(all);
 	}
 
 	@Test
-	public void controllerSmokeTest() {
+	void controllerSmokeTest() {
 		String message = String.format("2. На порту %s успешно поднялось тестовое приложение.", port);
 		ResponseEntity<Object> entity = testRestTemplate.getForEntity(String.format("/telegram/say?message=%s", message), Object.class);
 		Assertions.assertEquals(HttpStatus.OK, entity.getStatusCode());

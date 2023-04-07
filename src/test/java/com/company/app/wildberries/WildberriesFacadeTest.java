@@ -2,7 +2,6 @@ package com.company.app.wildberries;
 
 import com.company.app.ApplicationTest;
 import com.company.app.core.tool.api.JsonSerializationTool;
-import com.company.app.wildberries.component.WildberriesServiceImplTest;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +17,8 @@ import java.util.List;
 @Slf4j
 class WildberriesFacadeTest extends ApplicationTest {
 
+	private static final String FILE_NAME = "src/test/resources/wildberries/lot.json";
+
 	@Autowired
 	private WildberriesFacade wildberriesFacade;
 	@Autowired
@@ -27,7 +28,7 @@ class WildberriesFacadeTest extends ApplicationTest {
 
 	@Test
 	void doMainLogicTest() {
-		File file = new File(WildberriesServiceImplTest.FILE_NAME);
+		File file = new File(FILE_NAME);
 		List<Lot> lots = serializationService.load(file, Lot.class);
 		Mockito.when(lotRepository.findAll()).thenReturn(lots);
 

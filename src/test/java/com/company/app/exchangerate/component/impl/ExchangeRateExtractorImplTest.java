@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ExchangeRateExtractorImplTest {
+class ExchangeRateExtractorImplTest {
 	private static final String FILE_NAME = "exchangeRate/AliexpressUsdResponseExample.html";
 
 	private ExchangeRateExtractorImpl exchangeExtractorService;
@@ -21,7 +21,7 @@ public class ExchangeRateExtractorImplTest {
 
 	@SneakyThrows
 	@Test
-	public void canExtractCurseFromHtmlResponseTest() {
+	void canExtractCurseFromHtmlResponseTest() {
 		String fileAsString = dataExtractorService.getFileAsString(FILE_NAME);
 		Assertions.assertEquals("78.17", exchangeExtractorService.getExchangeRate(fileAsString));
 	}

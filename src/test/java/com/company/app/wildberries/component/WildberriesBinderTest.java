@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Collections;
 import java.util.List;
 
-public class WildberriesBinderTest extends ApplicationTest {
+class WildberriesBinderTest extends ApplicationTest {
 
 	@Autowired
 	WildberriesBinderImpl wildberriesBinder;
@@ -23,7 +23,7 @@ public class WildberriesBinderTest extends ApplicationTest {
 	LotRepository lotRepository;
 
 	@Test
-	public void bind() {
+	void bind() {
 		List<Lot> before = lotRepository.findAll();
 
 		LotDto lot = LotDto.builder()

@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
 
-public class SerializationServiceImplTest {
+class SerializationServiceImplTest {
 
 	private static final String FILE_NAME = "src/test/resources/wildberries/lot_test.json";
 
@@ -39,7 +39,7 @@ public class SerializationServiceImplTest {
 
 	@SneakyThrows
 	@Test
-	public void saveAndLoadTest() {
+	void saveAndLoadTest() {
 		cleanFile();
 		List<Lot> list = createLots();
 

@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class WBUtilsTest {
+class WBUtilsTest {
 
 	@Test
-	public void getUrlForPriceSearch() {
+	void getUrlForPriceSearch() {
 		String urlForPriceSearch = WBUtils.getUrlForPriceSearch(createLots());
 		String manualCreated = WBUtils.URL_BONE + "43409221;" + "15694225;";
 		Assertions.assertEquals(urlForPriceSearch, manualCreated);

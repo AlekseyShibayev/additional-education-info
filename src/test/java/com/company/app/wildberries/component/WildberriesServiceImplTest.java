@@ -16,9 +16,9 @@ import org.mockito.Mockito;
 import java.io.File;
 import java.util.List;
 
-public class WildberriesServiceImplTest {
+class WildberriesServiceImplTest {
 
-	public static final String FILE_NAME = "src/test/resources/wildberries/lot.json";
+	private static final String FILE_NAME = "src/test/resources/wildberries/lot.json";
 
 	WildberriesServiceImpl wildberriesService;
 	DataExtractorTool dataExtractorService;
@@ -43,7 +43,7 @@ public class WildberriesServiceImplTest {
 	}
 
 	@Test
-	public void getDesiredLots() {
+	void getDesiredLots() {
 		List<Lot> lots = serializationService.load(new File(FILE_NAME), Lot.class);
 		Mockito.when(lotRepository.findAll()).thenReturn(lots);
 

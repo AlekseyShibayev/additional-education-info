@@ -1,9 +1,9 @@
 package com.company.app.wildberries.component;
 
-import com.company.app.core.tools.api.DataExtractorService;
-import com.company.app.core.tools.api.SerializationService;
-import com.company.app.core.tools.impl.DataExtractorServiceImpl;
-import com.company.app.core.tools.impl.SerializationServiceImpl;
+import com.company.app.core.tool.api.DataExtractorTool;
+import com.company.app.core.tool.api.JsonSerializationTool;
+import com.company.app.core.tool.impl.DataExtractorToolImpl;
+import com.company.app.core.tool.impl.JsonSerializationToolImpl;
 import com.company.app.wildberries.component.impl.WildberriesPriceExtractorImpl;
 import com.company.app.wildberries.component.impl.WildberriesServiceImpl;
 import com.company.app.wildberries.entity.Lot;
@@ -21,25 +21,25 @@ public class WildberriesServiceImplTest {
 	public static final String FILE_NAME = "src/test/resources/wildberries/lot.json";
 
 	WildberriesServiceImpl wildberriesService;
-	DataExtractorService dataExtractorService;
+	DataExtractorTool dataExtractorService;
 	WildberriesPriceExtractorImpl wildberriesPriceExtractor;
 	LotRepository lotRepository;
-	SerializationService<Lot> serializationService;
+	JsonSerializationTool<Lot> serializationService;
 
 	@Before
 	public void init() {
 		wildberriesService = new WildberriesServiceImpl();
 
-		dataExtractorService = new DataExtractorServiceImpl();
+		dataExtractorService = new DataExtractorToolImpl();
 		wildberriesPriceExtractor = new WildberriesPriceExtractorImpl();
 		lotRepository = Mockito.mock(LotRepository.class);
 
-		wildberriesService.setDataExtractorService(dataExtractorService);
+		wildberriesService.setDataExtractorTool(dataExtractorService);
 		wildberriesService.setWildberriesPriceExtractor(wildberriesPriceExtractor);
 		wildberriesService.setLotRepository(lotRepository);
 
 		wildberriesPriceExtractor.setDataExtractorService(dataExtractorService);
-		serializationService = new SerializationServiceImpl<>();
+		serializationService = new JsonSerializationToolImpl<>();
 	}
 
 	@Test

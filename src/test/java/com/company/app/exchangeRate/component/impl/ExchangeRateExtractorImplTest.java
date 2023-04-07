@@ -1,6 +1,6 @@
 package com.company.app.exchangeRate.component.impl;
 
-import com.company.app.core.tools.impl.DataExtractorServiceImpl;
+import com.company.app.core.tool.impl.DataExtractorToolImpl;
 import lombok.SneakyThrows;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,12 +10,12 @@ public class ExchangeRateExtractorImplTest {
 	private static final String FILE_NAME = "exchangeRate/AliexpressUsdResponseExample.html";
 
 	private ExchangeRateExtractorImpl exchangeExtractorService;
-	private DataExtractorServiceImpl dataExtractorService;
+	private DataExtractorToolImpl dataExtractorService;
 
 	@Before
 	public void init() {
 		exchangeExtractorService = new ExchangeRateExtractorImpl();
-		dataExtractorService = new DataExtractorServiceImpl();
+		dataExtractorService = new DataExtractorToolImpl();
 		exchangeExtractorService.setDataExtractorService(dataExtractorService);
 	}
 

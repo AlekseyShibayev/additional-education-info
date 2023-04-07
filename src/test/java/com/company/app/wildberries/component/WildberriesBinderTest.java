@@ -1,7 +1,7 @@
 package com.company.app.wildberries.component;
 
 import com.company.app.ApplicationTest;
-import com.company.app.core.tools.api.SerializationService;
+import com.company.app.core.tool.api.JsonSerializationTool;
 import com.company.app.wildberries.component.impl.WildberriesBinderImpl;
 import com.company.app.wildberries.dto.LotDto;
 import com.company.app.wildberries.entity.Lot;
@@ -18,7 +18,7 @@ public class WildberriesBinderTest extends ApplicationTest {
 	@Autowired
 	WildberriesBinderImpl wildberriesBinder;
 	@Autowired
-	SerializationService<LotDto> serializationService;
+	JsonSerializationTool<LotDto> serializationService;
 	@Autowired
 	LotRepository lotRepository;
 

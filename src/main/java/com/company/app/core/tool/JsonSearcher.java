@@ -1,4 +1,4 @@
-package com.company.app.core.tools;
+package com.company.app.core.tool;
 
 import lombok.Getter;
 import lombok.Setter;

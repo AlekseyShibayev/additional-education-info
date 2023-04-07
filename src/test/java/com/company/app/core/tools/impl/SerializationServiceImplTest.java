@@ -1,6 +1,7 @@
 package com.company.app.core.tools.impl;
 
-import com.company.app.core.tools.api.SerializationService;
+import com.company.app.core.tool.api.JsonSerializationTool;
+import com.company.app.core.tool.impl.JsonSerializationToolImpl;
 import com.company.app.wildberries.entity.Lot;
 import com.google.common.collect.ImmutableList;
 import lombok.SneakyThrows;
@@ -18,11 +19,11 @@ public class SerializationServiceImplTest {
 
 	private static final String FILE_NAME = "src/test/resources/wildberries/lot_test.json";
 
-	private SerializationService<Lot> serializationService;
+	private JsonSerializationTool<Lot> serializationService;
 
 	@Before
 	public void init() {
-		serializationService = new SerializationServiceImpl<>();
+		serializationService = new JsonSerializationToolImpl<>();
 	}
 
 	private void cleanFile() throws IOException {

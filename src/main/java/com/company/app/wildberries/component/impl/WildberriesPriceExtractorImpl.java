@@ -1,6 +1,6 @@
 package com.company.app.wildberries.component.impl;
 
-import com.company.app.core.tools.api.DataExtractorService;
+import com.company.app.core.tool.api.DataExtractorTool;
 import com.company.app.wildberries.component.api.WildberriesPriceExtractor;
 import lombok.Setter;
 import org.json.JSONArray;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class WildberriesPriceExtractorImpl implements WildberriesPriceExtractor {
 
 	@Autowired
-	private DataExtractorService dataExtractorService;
+	private DataExtractorTool dataExtractorService;
 
 	public String extract(String jsonResponse, String id) {
 		JSONObject jsonObject = new JSONObject(jsonResponse);

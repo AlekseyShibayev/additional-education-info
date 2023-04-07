@@ -1,7 +1,7 @@
 package com.company.app.core.service.impl;
 
 import com.company.app.core.service.api.LogService;
-import com.company.app.core.tools.api.DataExtractorService;
+import com.company.app.core.tool.api.DataExtractorTool;
 import lombok.SneakyThrows;
 import net.lingala.zip4j.ZipFile;
 import org.apache.commons.io.FileUtils;
@@ -19,7 +19,7 @@ public class LogServiceImpl implements LogService {
 	public static final String PACKAGE_NAME = "logs";
 
 	@Autowired
-	DataExtractorService dataExtractorService;
+	DataExtractorTool dataExtractorService;
 
 	@SneakyThrows
 	public byte[] getLogsAsZip() {

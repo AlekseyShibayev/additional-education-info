@@ -1,6 +1,6 @@
 package com.company.app.exchangeRate.component.impl;
 
-import com.company.app.core.tools.api.DataExtractorService;
+import com.company.app.core.tool.api.DataExtractorTool;
 import com.company.app.exchangeRate.component.api.ExchangeRateExtractor;
 import com.company.app.exchangeRate.entity.ExchangeRate;
 import com.company.app.exchangeRate.repository.ExchangeRepository;
@@ -25,7 +25,7 @@ public class ExchangeRateExtractorImpl implements ExchangeRateExtractor {
 	private String aliexpressUrl;
 
 	@Autowired
-	private DataExtractorService dataExtractorService;
+	private DataExtractorTool dataExtractorService;
 	@Autowired
 	private ExchangeRepository exchangeRepository;
 

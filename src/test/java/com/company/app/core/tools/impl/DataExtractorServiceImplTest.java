@@ -1,6 +1,7 @@
 package com.company.app.core.tools.impl;
 
-import com.company.app.core.tools.JsonSearcher;
+import com.company.app.core.tool.JsonSearcher;
+import com.company.app.core.tool.impl.DataExtractorToolImpl;
 import lombok.SneakyThrows;
 import org.json.JSONObject;
 import org.junit.Assert;
@@ -16,11 +17,11 @@ public class DataExtractorServiceImplTest {
 
 	private static final String FILE_NAME = "core/JsonObjectExample.html";
 
-	private DataExtractorServiceImpl dataExtractorService;
+	private DataExtractorToolImpl dataExtractorService;
 
 	@Before
 	public void init() {
-		dataExtractorService = new DataExtractorServiceImpl();
+		dataExtractorService = new DataExtractorToolImpl();
 	}
 
 	@SneakyThrows

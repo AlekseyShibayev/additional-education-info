@@ -1,6 +1,6 @@
 package com.company.app.wildberries.component.impl;
 
-import com.company.app.core.tools.api.SerializationService;
+import com.company.app.core.tool.api.JsonSerializationTool;
 import com.company.app.wildberries.component.api.WildberriesBinder;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
@@ -19,7 +19,7 @@ public class WildberriesBinderImpl implements WildberriesBinder {
 	@Autowired
 	LotRepository lotRepository;
 	@Autowired
-	SerializationService<Lot> serializationService;
+	JsonSerializationTool<Lot> jsonSerializationTool;
 
 	@Override
 	public String getType() {
@@ -29,7 +29,7 @@ public class WildberriesBinderImpl implements WildberriesBinder {
 	@Override
 	public void bind(String string) {
 		string = string.substring(3);
-		List<Lot> lots = serializationService.load(string, Lot.class);
+		List<Lot> lots = jsonSerializationTool.load(string, Lot.class);
 		if (log.isDebugEnabled()) {
 			log.debug("Пробую добавить лотов [{}].", lots.size());
 		}

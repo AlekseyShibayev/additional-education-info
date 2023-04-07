@@ -1,6 +1,6 @@
 package com.company.app.wildberries.component;
 
-import com.company.app.core.tools.impl.DataExtractorServiceImpl;
+import com.company.app.core.tool.impl.DataExtractorToolImpl;
 import com.company.app.wildberries.component.impl.WildberriesPriceExtractorImpl;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,12 +11,12 @@ public class WildberriesPriceExtractorTest {
 	private static final String FILE_NAME = "wildberries/WildberriesHtmlResponseExample.html";
 
 	private WildberriesPriceExtractorImpl wildberriesPriceExtractor;
-	private DataExtractorServiceImpl dataExtractorService;
+	private DataExtractorToolImpl dataExtractorService;
 
 	@Before
 	public void init() {
 		wildberriesPriceExtractor = new WildberriesPriceExtractorImpl();
-		dataExtractorService = new DataExtractorServiceImpl();
+		dataExtractorService = new DataExtractorToolImpl();
 		wildberriesPriceExtractor.setDataExtractorService(dataExtractorService);
 	}
 

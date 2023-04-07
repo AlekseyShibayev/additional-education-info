@@ -1,15 +1,13 @@
-package com.company.app.core.tools.api;
+package com.company.app.core.tool.api;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.List;
 import java.util.Map;
 
-@Service
-public interface DataExtractorService {
+public interface DataExtractorTool {
 
 	String getFileAsString(String fileName);
 

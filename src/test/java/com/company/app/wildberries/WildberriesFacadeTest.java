@@ -1,7 +1,7 @@
 package com.company.app.wildberries;
 
 import com.company.app.ApplicationTest;
-import com.company.app.core.tools.api.SerializationService;
+import com.company.app.core.tool.api.JsonSerializationTool;
 import com.company.app.wildberries.component.WildberriesServiceImplTest;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
@@ -21,7 +21,7 @@ public class WildberriesFacadeTest extends ApplicationTest {
 	@Autowired
 	private WildberriesFacade wildberriesFacade;
 	@Autowired
-	private SerializationService<Lot> serializationService;
+	private JsonSerializationTool<Lot> serializationService;
 	@MockBean
 	private LotRepository lotRepository;
 

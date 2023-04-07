@@ -1,6 +1,6 @@
 package com.company.app.telegram.component.impl;
 
-import com.company.app.core.tools.api.DataExtractorService;
+import com.company.app.core.tool.api.DataExtractorTool;
 import com.company.app.telegram.component.api.ChatRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,11 +17,11 @@ public class CharRegistryImpl implements ChatRegistry {
 	private Map<String, String> chats;
 
 	@Autowired
-	private DataExtractorService dataExtractorService;
+	private DataExtractorTool dataExtractorTool;
 
 	@PostConstruct
 	public void init() throws TelegramApiException {
-		this.chats = dataExtractorService.getProperties(CHAT_PROPERTIES);
+		this.chats = dataExtractorTool.getProperties(CHAT_PROPERTIES);
 	}
 
 	@Override

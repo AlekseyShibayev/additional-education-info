@@ -1,14 +1,12 @@
-package com.company.app.core.tools.api;
+package com.company.app.core.tool.api;
 
 import org.springframework.core.io.Resource;
-import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
-@Service
-public interface SerializationService<T> {
+public interface JsonSerializationTool<T> {
 
 	void save(List<T> list, File file);
 

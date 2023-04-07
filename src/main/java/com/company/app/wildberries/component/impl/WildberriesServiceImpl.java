@@ -1,8 +1,8 @@
 package com.company.app.wildberries.component.impl;
 
 import com.company.app.core.aop.logging.util.LogUtils;
-import com.company.app.core.tools.api.DataExtractorService;
-import com.company.app.core.tools.api.SerializationService;
+import com.company.app.core.tool.api.DataExtractorTool;
+import com.company.app.core.tool.api.JsonSerializationTool;
 import com.company.app.wildberries.component.api.WildberriesPriceExtractor;
 import com.company.app.wildberries.component.api.WildberriesService;
 import com.company.app.wildberries.entity.Lot;
@@ -30,23 +30,23 @@ public class WildberriesServiceImpl implements WildberriesService {
 	@Autowired
 	private WildberriesPriceExtractor wildberriesPriceExtractor;
 	@Autowired
-	private DataExtractorService dataExtractorService;
+	private DataExtractorTool dataExtractorTool;
 	@Autowired
 	private LotRepository lotRepository;
 	@Autowired
-	private SerializationService<Lot> serializationService;
+	private JsonSerializationTool<Lot> jsonSerializationTool;
 
 	@SneakyThrows
 	@PostConstruct
 	void init() {
-		List<Lot> lots = serializationService.load(resource, Lot.class);
+		List<Lot> lots = jsonSerializationTool.load(resource, Lot.class);
 		lotRepository.saveAll(lots);
 	}
 
 	public List<Lot> getDesiredLots() {
 		List<Lot> lots = lotRepository.findAll();
 		String url = WBUtils.getUrlForPriceSearch(lots);
-		String htmlResponse = dataExtractorService.getHtmlResponse(url);
+		String htmlResponse = dataExtractorTool.getHtmlResponse(url);
 		return lots.stream()
 				.filter(lot -> isDesireLot(htmlResponse, lot))
 				.collect(Collectors.toList());

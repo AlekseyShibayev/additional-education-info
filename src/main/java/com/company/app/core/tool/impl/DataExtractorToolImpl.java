@@ -1,7 +1,7 @@
-package com.company.app.core.tools.impl;
+package com.company.app.core.tool.impl;
 
-import com.company.app.core.tools.JsonSearcher;
-import com.company.app.core.tools.api.DataExtractorService;
+import com.company.app.core.tool.JsonSearcher;
+import com.company.app.core.tool.api.DataExtractorTool;
 import com.google.common.collect.Maps;
 import lombok.SneakyThrows;
 import org.apache.commons.io.IOUtils;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-public class DataExtractorServiceImpl implements DataExtractorService {
+public class DataExtractorToolImpl implements DataExtractorTool {
 
 	@Override
 	public JSONObject getJsonObject(JSONObject jsonObject, String searchString) {

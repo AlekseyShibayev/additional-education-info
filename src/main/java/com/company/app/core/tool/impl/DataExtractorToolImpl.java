@@ -40,13 +40,12 @@ public class DataExtractorToolImpl implements DataExtractorTool {
 	}
 
 	@Override
+	@SneakyThrows
 	public String getFileAsString(String fileName) {
 		String result;
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		try (InputStream inputStream = classLoader.getResourceAsStream(fileName)) {
 			result = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-		} catch (Exception e) {
-			throw new RuntimeException("Can't read from file.", e);
 		}
 		return result;
 	}
@@ -62,31 +61,25 @@ public class DataExtractorToolImpl implements DataExtractorTool {
 		}
 	}
 
+	@SneakyThrows
 	@Override
 	public Map<String, String> getProperties(String fileName) {
 		Properties properties = new Properties();
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		try (InputStream stream = classLoader.getResourceAsStream(fileName)) {
 			properties.load(stream);
-		} catch (IOException e) {
-			throw new RuntimeException("Can't read properties from file.", e);
 		}
 		return Maps.fromProperties(properties);
 	}
 
+	@SneakyThrows
 	@Override
 	public String getHtmlResponse(String urlName) {
 		StringBuilder response = new StringBuilder();
-		try {
-			URL url = new URL(urlName);
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-				fillResponse(connection, response);
-			} else {
-				throw new RuntimeException("http request is not 200.");
-			}
-		} catch (Exception e) {
-			throw new RuntimeException("Can't read html from URL.", e);
+		URL url = new URL(urlName);
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+			fillResponse(connection, response);
 		}
 		return response.toString();
 	}

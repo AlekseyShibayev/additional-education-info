@@ -1,9 +1,9 @@
-package com.company.app.exchangeRate.component.impl;
+package com.company.app.exchange_rate.component.impl;
 
 import com.company.app.core.tool.api.DataExtractorTool;
-import com.company.app.exchangeRate.component.api.ExchangeRateExtractor;
-import com.company.app.exchangeRate.entity.ExchangeRate;
-import com.company.app.exchangeRate.repository.ExchangeRepository;
+import com.company.app.exchange_rate.component.api.ExchangeRateExtractor;
+import com.company.app.exchange_rate.entity.ExchangeRate;
+import com.company.app.exchange_rate.repository.ExchangeRepository;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import org.json.JSONObject;
@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Component
 @Setter
@@ -25,7 +26,7 @@ public class ExchangeRateExtractorImpl implements ExchangeRateExtractor {
 	private String aliexpressUrl;
 
 	@Autowired
-	private DataExtractorTool dataExtractorService;
+	private DataExtractorTool dataExtractorTool;
 	@Autowired
 	private ExchangeRepository exchangeRepository;
 
@@ -33,7 +34,7 @@ public class ExchangeRateExtractorImpl implements ExchangeRateExtractor {
 	@Override
 	public ExchangeRate extract() {
 		ExchangeRate exchange = ExchangeRate.builder()
-				.aliexpressExchangeRate(getExchangeRate(dataExtractorService.getHtmlResponse(aliexpressUrl)))
+				.aliexpressExchangeRate(getExchangeRate(dataExtractorTool.getHtmlResponse(aliexpressUrl)))
 				.date(new Date())
 				.build();
 		exchangeRepository.save(exchange);
@@ -52,21 +53,19 @@ public class ExchangeRateExtractorImpl implements ExchangeRateExtractor {
 		JSONObject activityAmount = null;
 		for (Element script : scripts) {
 			try {
-				String s = script.childNodes().get(0).attributes().get("#data");
-				JSONObject jsonObject = new JSONObject(s);
-				activityAmount = dataExtractorService.getJsonObject(jsonObject, "activityAmount");
+				activityAmount = getActivityAmount_(script);
 				if (activityAmount != null) {
 					break;
 				}
 			} catch (Exception e) {
-				continue;
 			}
 		}
+		return Optional.ofNullable(activityAmount).orElseThrow(() -> new RuntimeException("Не смог вытащить курс али."));
+	}
 
-		if (activityAmount == null) {
-			throw new RuntimeException("не смог определить курс  али");
-		} else {
-			return activityAmount;
-		}
+	private JSONObject getActivityAmount_(Element script) {
+		String s = script.childNodes().get(0).attributes().get("#data");
+		JSONObject jsonObject = new JSONObject(s);
+		return dataExtractorTool.getJsonObject(jsonObject, "activityAmount");
 	}
 }

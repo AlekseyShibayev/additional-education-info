@@ -1,8 +1,8 @@
-package com.company.app.exchangeRate.scheduler;
+package com.company.app.exchange_rate.scheduler;
 
 import com.company.app.core.service.api.NotificationService;
-import com.company.app.exchangeRate.ExchangeRateFacade;
-import com.company.app.exchangeRate.entity.ExchangeRate;
+import com.company.app.exchange_rate.ExchangeRateFacade;
+import com.company.app.exchange_rate.entity.ExchangeRate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

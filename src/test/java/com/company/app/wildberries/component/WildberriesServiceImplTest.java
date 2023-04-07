@@ -48,6 +48,6 @@ public class WildberriesServiceImplTest {
 		Mockito.when(lotRepository.findAll()).thenReturn(lots);
 
 		List<Lot> desiredLots = wildberriesService.getDesiredLots();
-		Assert.assertEquals(desiredLots.size(), 1);
+		Assert.assertEquals(1, desiredLots.size());
 	}
 }

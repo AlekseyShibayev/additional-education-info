@@ -1,4 +1,4 @@
-package com.company.app.exchangeRate.component.impl;
+package com.company.app.exchange_rate.component.impl;
 
 import com.company.app.core.tool.impl.DataExtractorToolImpl;
 import lombok.SneakyThrows;
@@ -16,7 +16,7 @@ public class ExchangeRateExtractorImplTest {
 	public void init() {
 		exchangeExtractorService = new ExchangeRateExtractorImpl();
 		dataExtractorService = new DataExtractorToolImpl();
-		exchangeExtractorService.setDataExtractorService(dataExtractorService);
+		exchangeExtractorService.setDataExtractorTool(dataExtractorService);
 	}
 
 	@SneakyThrows

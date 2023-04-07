@@ -40,6 +40,6 @@ public class DataExtractorServiceImplTest {
 	@Test
 	public void getFiles() {
 		List<File> files = dataExtractorService.getFiles("src/test/resources/core/forGetFilesTest");
-		Assert.assertEquals(files.size(), 3);
+		Assert.assertEquals(3, files.size());
 	}
 }

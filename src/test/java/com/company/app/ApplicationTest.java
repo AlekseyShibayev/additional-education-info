@@ -1,6 +1,6 @@
 package com.company.app;
 
-import com.company.app.exchangeRate.scheduler.ExchangeRateSchedulerConfig;
+import com.company.app.exchange_rate.scheduler.ExchangeRateSchedulerConfig;
 import com.company.app.wildberries.scheduler.WildberriesSchedulerConfig;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

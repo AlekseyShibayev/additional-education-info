@@ -27,12 +27,11 @@ public class WildberriesFacadeTest extends ApplicationTest {
 
 	@Test
 	public void doMainLogicTest() {
-		log.debug("Я заставляю поднять Spring Boot Test еще раз, потому что у меня @MockBean.");
 		File file = new File(WildberriesServiceImplTest.FILE_NAME);
 		List<Lot> lots = serializationService.load(file, Lot.class);
 		Mockito.when(lotRepository.findAll()).thenReturn(lots);
 
 		List<Lot> desiredLots = wildberriesFacade.getDesiredLots();
-		Assert.assertEquals(desiredLots.size(), 1);
+		Assert.assertEquals(1, desiredLots.size());
 	}
 }

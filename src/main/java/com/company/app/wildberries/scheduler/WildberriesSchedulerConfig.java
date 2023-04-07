@@ -1,6 +1,6 @@
 package com.company.app.wildberries.scheduler;
 
-import com.company.app.telegram.component.api.NotificationService;
+import com.company.app.core.service.api.NotificationService;
 import com.company.app.wildberries.WildberriesFacade;
 import com.company.app.wildberries.component.WildberriesURLCreator;
 import com.company.app.wildberries.entity.Lot;
@@ -32,7 +32,7 @@ public class WildberriesSchedulerConfig {
 		}
 
 		if (CollectionHelper.isNotEmpty(desiredLots)) {
-			desiredLots.forEach(lot -> notificationService.eventNotification(WildberriesURLCreator.getUrlForResponse(lot.getName())));
+			desiredLots.forEach(lot -> notificationService.notify(WildberriesURLCreator.getUrlForResponse(lot.getName())));
 		}
 	}
 }

@@ -1,7 +1,8 @@
 package com.company.app.telegram.component.api;
 
-import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
-@Component
 public interface TelegramBotConfig {
+
+	void write(SendMessage sendMessage);
 }

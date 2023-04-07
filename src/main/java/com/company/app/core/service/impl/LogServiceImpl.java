@@ -1,5 +1,6 @@
-package com.company.app.core.service;
+package com.company.app.core.service.impl;
 
+import com.company.app.core.service.api.LogService;
 import com.company.app.core.tools.api.DataExtractorService;
 import lombok.SneakyThrows;
 import net.lingala.zip4j.ZipFile;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class LogService {
+public class LogServiceImpl implements LogService {
 
 	public static final String LOG_ZIP_FILE_NAME = "logs.zip";
 	public static final String PACKAGE_NAME = "logs";

@@ -1,8 +1,8 @@
 package com.company.app.exchangeRate.scheduler;
 
+import com.company.app.core.service.api.NotificationService;
 import com.company.app.exchangeRate.ExchangeRateFacade;
 import com.company.app.exchangeRate.entity.ExchangeRate;
-import com.company.app.telegram.component.api.NotificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -26,6 +26,6 @@ public class ExchangeRateSchedulerConfig {
 		if (log.isDebugEnabled()) {
 			log.debug("Определён курс: [{}].", notification);
 		}
-		notificationService.eventNotification(notification);
+		notificationService.notify(notification);
 	}
 }

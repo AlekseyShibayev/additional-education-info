@@ -1,7 +1,7 @@
 package com.company.app.application;
 
 import com.company.app.AbstractTest;
-import com.company.app.telegram.component.api.NotificationService;
+import com.company.app.core.service.api.NotificationService;
 import com.company.app.telegram.entity.History;
 import com.company.app.telegram.repository.HistoryRepository;
 import com.google.common.collect.Lists;
@@ -38,7 +38,7 @@ public class ApplicationTest extends AbstractTest {
 
 	@Test
 	public void notificationServiceSmokeTest() {
-		notificationService.eventNotification("1. Тестовое приложение поднялось.");
+		notificationService.notify("1. Тестовое приложение поднялось.");
 		List<History> all = historyRepository.findAll();
 		Assert.assertNotNull(all);
 	}

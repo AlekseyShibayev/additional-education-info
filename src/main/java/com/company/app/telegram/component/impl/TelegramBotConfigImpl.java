@@ -2,11 +2,13 @@ package com.company.app.telegram.component.impl;
 
 import com.company.app.telegram.component.api.TelegramBotConfig;
 import com.company.app.telegram.component.api.TelegramService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
@@ -43,5 +45,11 @@ public class TelegramBotConfigImpl extends TelegramLongPollingCommandBot impleme
 	@Override
 	public void processNonCommandUpdate(Update update) {
 		telegramService.read(update);
+	}
+
+	@SneakyThrows
+	@Override
+	public void write(SendMessage sendMessage) {
+		this.execute(sendMessage);
 	}
 }

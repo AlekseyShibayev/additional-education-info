@@ -1,7 +1,7 @@
 package com.company.app.telegram.component.impl;
 
 import com.company.app.core.tools.api.DataExtractorService;
-import com.company.app.telegram.component.api.ChatService;
+import com.company.app.telegram.component.api.ChatRegistry;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Getter
 @Component
-public class ChatServiceImpl implements ChatService {
+public class CharRegistryImpl implements ChatRegistry {
 
 	private static final String CHAT_PROPERTIES = "telegram/chat.properties";
 
@@ -22,6 +22,7 @@ public class ChatServiceImpl implements ChatService {
 	@Autowired
 	private DataExtractorService dataExtractorService;
 
+	// todo создай нормально мапу с чатами
 	@PostConstruct
 	public void init() throws TelegramApiException {
 		Map<Long, String> result = new HashMap<>();

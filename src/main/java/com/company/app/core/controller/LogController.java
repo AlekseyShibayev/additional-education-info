@@ -1,6 +1,6 @@
 package com.company.app.core.controller;
 
-import com.company.app.core.service.LogService;
+import com.company.app.core.service.api.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

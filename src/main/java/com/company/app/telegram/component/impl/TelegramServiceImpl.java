@@ -1,12 +1,10 @@
 package com.company.app.telegram.component.impl;
 
-import com.company.app.exchangeRate.component.api.ExchangeRateBinder;
 import com.company.app.telegram.component.api.BinderExecutor;
 import com.company.app.telegram.component.api.ChatRegistry;
 import com.company.app.telegram.component.api.TelegramBotConfig;
 import com.company.app.telegram.component.api.TelegramService;
 import com.company.app.telegram.service.api.HistoryService;
-import com.company.app.wildberries.component.impl.WildberriesBinderImpl;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +24,7 @@ public class TelegramServiceImpl implements TelegramService {
 	@Autowired
 	BinderExecutor binderExecutor;
 	@Autowired
-	ChatRegistry chatService;
+	ChatRegistry chatRegistry;
 
 	@Override
 	public void read(Update update) {
@@ -46,8 +44,8 @@ public class TelegramServiceImpl implements TelegramService {
 		log.debug("[{}].", message);
 		historyService.save(String.valueOf(message));
 
-		chatService.getChats().keySet().stream()
-				.map(chatId -> SendMessage.builder().text(message.toString()).chatId(chatId.toString()).build())
+		chatRegistry.getAll().keySet().stream()
+				.map(chatId -> SendMessage.builder().text(message.toString()).chatId(chatId).build())
 				.forEach(telegramBotConfig::write);
 	}
 }

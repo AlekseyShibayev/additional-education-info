@@ -8,26 +8,25 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
 import java.util.Map;
 
-@Getter
 @Component
 public class CharRegistryImpl implements ChatRegistry {
 
 	private static final String CHAT_PROPERTIES = "telegram/chat.properties";
 
-	private Map<Long, String> chats;
+	private Map<String, String> chats;
 
 	@Autowired
 	private DataExtractorService dataExtractorService;
 
-	// todo создай нормально мапу с чатами
 	@PostConstruct
 	public void init() throws TelegramApiException {
-		Map<Long, String> result = new HashMap<>();
-		dataExtractorService.getProperties(CHAT_PROPERTIES)
-				.forEach((key, value) -> result.put(Long.parseLong(key), value));
-		this.chats = result;
+		this.chats = dataExtractorService.getProperties(CHAT_PROPERTIES);
+	}
+
+	@Override
+	public Map<String, String> getAll() {
+		return chats;
 	}
 }

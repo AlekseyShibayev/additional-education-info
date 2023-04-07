@@ -4,5 +4,5 @@ import java.util.Map;
 
 public interface ChatRegistry {
 
-	Map<Long, String> getChats();
+	Map<String, String> getAll();
 }

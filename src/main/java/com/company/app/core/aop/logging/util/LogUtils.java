@@ -1,4 +1,4 @@
-package com.company.app.core.util;
+package com.company.app.core.aop.logging.util;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,6 +9,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class LogUtils {
+
+	private LogUtils() {
+		throw new UnsupportedOperationException();
+	}
 
 	public static void doExceptionLog(Throwable e, String message) {
 		log.error(message, e.getMessage(), e);

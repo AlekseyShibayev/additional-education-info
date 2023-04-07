@@ -2,7 +2,7 @@ package com.company.app.wildberries.component;
 
 import com.company.app.core.tools.api.DataExtractorService;
 import com.company.app.core.tools.api.SerializationService;
-import com.company.app.core.util.LogUtils;
+import com.company.app.core.aop.logging.util.LogUtils;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
 import lombok.Setter;

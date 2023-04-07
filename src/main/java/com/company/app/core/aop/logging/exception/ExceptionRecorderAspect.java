@@ -1,12 +1,15 @@
-package com.company.app.core.aop.logging;
+package com.company.app.core.aop.logging.exception;
 
-import com.company.app.core.util.LogUtils;
+import com.company.app.core.aop.logging.util.LogUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Аспект, который пишет в ERROR любой Throwable для endpoint'ов приложения.
@@ -37,10 +40,15 @@ public class ExceptionRecorderAspect {
 	@Around("ifEndpointsMethod()")
 	public Object recordExceptionAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 		try {
-			return proceedingJoinPoint.proceed();
+			return proceedingJoinPoint.proceed(proceedingJoinPoint.getArgs());
 		} catch (Throwable throwable) {
-			LogUtils.doExceptionLog(throwable);
+			LogUtils.doExceptionLog(throwable, getMessage(proceedingJoinPoint.getSignature()));
 			throw throwable;
 		}
+	}
+
+	@NotNull
+	private String getMessage(Signature signature) {
+		return "Error from: " + signature.getDeclaringType().getName() + "." + signature.getName();
 	}
 }

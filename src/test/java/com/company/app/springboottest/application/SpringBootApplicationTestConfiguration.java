@@ -8,4 +8,5 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 @TestConfiguration
 @MockBean(ExchangeRateSchedulerConfig.class)
 @MockBean(WildberriesSchedulerConfig.class)
-public class SpringBootApplicationTestConfiguration {}
+public class SpringBootApplicationTestConfiguration {
+}

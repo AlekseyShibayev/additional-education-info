@@ -1,8 +1,7 @@
 package com.company.app.wildberries.component;
 
-import com.company.app.springboottest.application.SpringBootApplicationTestContext;
 import com.company.app.core.tool.api.JsonSerializationTool;
-import com.company.app.wildberries.component.WildberriesFacade;
+import com.company.app.springboottest.application.SpringBootApplicationTestContext;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
 import org.junit.jupiter.api.Assertions;

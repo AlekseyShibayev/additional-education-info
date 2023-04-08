@@ -1,7 +1,6 @@
 package com.company.app.wildberries.component.impl;
 
 import com.company.app.core.tool.impl.DataExtractorToolImpl;
-import com.company.app.wildberries.component.impl.WildberriesPriceExtractorImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

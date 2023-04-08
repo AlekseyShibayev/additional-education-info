@@ -4,8 +4,6 @@ import com.company.app.core.tool.api.DataExtractorTool;
 import com.company.app.core.tool.api.JsonSerializationTool;
 import com.company.app.core.tool.impl.DataExtractorToolImpl;
 import com.company.app.core.tool.impl.JsonSerializationToolImpl;
-import com.company.app.wildberries.component.impl.WildberriesPriceExtractorImpl;
-import com.company.app.wildberries.component.impl.WildberriesServiceImpl;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
 import org.junit.jupiter.api.Assertions;

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ExchangeRateExtractorImplTest {
+
 	private static final String FILE_NAME = "exchangeRate/AliexpressUsdResponseExample.html";
 
 	private ExchangeRateExtractorImpl exchangeExtractorService;

@@ -1,8 +1,7 @@
 package com.company.app.wildberries.component.impl;
 
-import com.company.app.AbstractSpringBootTest;
+import com.company.app.springboot.application.SpringBootApplicationContext;
 import com.company.app.core.tool.api.JsonSerializationTool;
-import com.company.app.wildberries.component.impl.WildberriesBinderImpl;
 import com.company.app.wildberries.dto.LotDto;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
@@ -13,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Collections;
 import java.util.List;
 
-class WildberriesBinderTest extends AbstractSpringBootTest {
+class WildberriesBinderTest extends SpringBootApplicationContext {
 
 	@Autowired
 	WildberriesBinderImpl wildberriesBinder;

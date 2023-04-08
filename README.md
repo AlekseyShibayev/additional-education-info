@@ -4,11 +4,14 @@
 ## Цели проекта:
 ### 1. Учебная:
 1. Получить продвинутые навыки в разработке Java + Spring Framework приложений:
-- Spring(Core, Boot, Data, Web, Caching, Scheduling, AOP)
-- Spring Boot Test, JUnit5
-- Reflection
-- Refactoring, Patterns, SOLID, DRY, KISS
-- Spring Security, Kafka
+⋅⋅* Spring(Core, Boot, Data, Web, Caching, Scheduling, AOP)
+⋅⋅* Spring Boot Test, JUnit5
+⋅⋅* Reflection
+⋅⋅* Refactoring, Patterns, SOLID, DRY, KISS
+2. Изучить технологии:
+⋅⋅* Spring Boot Starter
+⋅⋅* Spring Security
+..* Kafka
 
 ### 2. Прикладная:
 1. Написать приложение, с использованием микросервисной архитектуры.

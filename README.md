@@ -11,7 +11,7 @@
 2. Изучить технологии:
   * Spring Boot Starter
   * Spring Security
-  * Docker Compose Kubernetes
+  * Docker Compose, Kubernetes
   * Kafka
   * AssertJ
 
@@ -23,8 +23,8 @@
 ## Что уже есть в проекте:
 1. Модули:
   * модуль core - содержит удобные штуковины, которые будут нужны в каждом микросервсисе
-  * модуль Telegram
-  * модуль exchangerate - показывает курс доллара aliexpress
+  * модуль telegram
+  * модуль exchangerate - отслеживает курс доллара aliexpress
   * модуль wildberries - отслеживает желаемые лоты
 2. Технологии:
   * java 11 + spring boot + maven
@@ -40,18 +40,20 @@
 4. docker stop {$name}
 
 ## Маленькая jira (todo'шки, мысли):
-- пощупать AssertJ https://habr.com/ru/articles/675778/
+1. Простые:
+  - пощупать AssertJ https://habr.com/ru/articles/675778/
 
-- найти или сделать Dockerfile openjre_alpine-musl, выкинув не нужные пакеты из jre, ожидаемый вес < 80 mb
+2. Сложные:
+  - вынести core в отдельный проект, который остальные проекты должны подключать, при этом @Component из core должны работать
+  - разбить оставшийся проект на 3 модуля, научить общаться их между собой
+  - засунуть 3 проекта + core в docker-compose
+  - сделать общение через kafka
+  - засунуть 3 проекта (с общим core) + kafka в kuber
 
-- вынести core в отдельный проект, который остальные проекты должны подключать, при этом @Component из core должны работать
-- разбить оставшийся проект на 3 модуля, научить общаться их между собой
-- засунуть 3 проекта + core в docker-compose
-- сделать общение через kafka
-
-- в core, сделать админку для сброса спринг кеш
-
-- посмотреть io.micrometer.core.annotation.Timed io.micrometer.core.aop.TimedAspect
+3. Прочие:
+  - посмотреть io.micrometer.core.annotation.Timed io.micrometer.core.aop.TimedAspect
+  - найти или сделать Dockerfile openjre_alpine-musl, выкинув не нужные пакеты из jre, ожидаемый вес < 80 mb
+  - в core, сделать админку для сброса спринг кеш
 
 ## Список полезной информации для потомков, скопившийся за N лет разработки:
 

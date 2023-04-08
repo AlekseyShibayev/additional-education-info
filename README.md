@@ -1,4 +1,10 @@
-# TelegramNotificationService
+# Учебно-практический проект TelegramNotificationService
+
+Цель проекта:
+1. фыв
+
+Учебная цель проекта:
+1.
 
 Практическое применение бота:
 1. Показывает курс доллара aliexpress.
@@ -29,3 +35,10 @@
 - в core, сделать админку для сброса спринг кеш
 
 - посмотреть io.micrometer.core.annotation.Timed io.micrometer.core.aop.TimedAspect
+
+Список полезной информации для потомков (пишу сюда всё полезное за последние Х лет разработки):
+1. Spring Core:
+Базовый уровень, для тех кто слышит про Spring впервые
+<a href="https://www.youtube.com/watch?v=6mXTY7RSAf0&ab_channel=%D0%9E%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%D1%83%D1%80%D0%BE%D0%BA%D0%B8%D0%BF%D0%BEJava">
+   Базовый уровень, для тех кто слышит про Spring впервые
+</a>

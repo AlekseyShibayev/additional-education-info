@@ -1,4 +1,4 @@
-package com.company.app.wildberries.component;
+package com.company.app.wildberries.component.impl;
 
 import com.company.app.core.tool.impl.DataExtractorToolImpl;
 import com.company.app.wildberries.component.impl.WildberriesPriceExtractorImpl;

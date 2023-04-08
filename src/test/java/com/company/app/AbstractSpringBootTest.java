@@ -21,5 +21,5 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @MockBean(ExchangeRateSchedulerConfig.class)
 @MockBean(WildberriesSchedulerConfig.class)
-public abstract class ApplicationTest {
+public abstract class AbstractSpringBootTest {
 }

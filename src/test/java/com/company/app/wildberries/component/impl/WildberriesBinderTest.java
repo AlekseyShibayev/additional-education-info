@@ -1,6 +1,6 @@
-package com.company.app.wildberries.component;
+package com.company.app.wildberries.component.impl;
 
-import com.company.app.ApplicationTest;
+import com.company.app.AbstractSpringBootTest;
 import com.company.app.core.tool.api.JsonSerializationTool;
 import com.company.app.wildberries.component.impl.WildberriesBinderImpl;
 import com.company.app.wildberries.dto.LotDto;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Collections;
 import java.util.List;
 
-class WildberriesBinderTest extends ApplicationTest {
+class WildberriesBinderTest extends AbstractSpringBootTest {
 
 	@Autowired
 	WildberriesBinderImpl wildberriesBinder;
@@ -31,6 +31,7 @@ class WildberriesBinderTest extends ApplicationTest {
 				.price("900")
 				.discount("0.11")
 				.build();
+
 		String rightPart = "WB " + serializationService.asString(Collections.singletonList(lot));
 		wildberriesBinder.bind(rightPart);
 

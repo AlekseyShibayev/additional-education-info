@@ -1,4 +1,4 @@
-package com.company.app.springboot.application;
+package com.company.app.springboottest.application;
 
 import com.company.app.core.service.api.NotificationService;
 import com.company.app.telegram.entity.History;
@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-class SmokeTest extends SpringBootApplicationContext {
+class SmokeTest extends SpringBootApplicationTestContext {
 
 	@LocalServerPort
 	private Integer port;

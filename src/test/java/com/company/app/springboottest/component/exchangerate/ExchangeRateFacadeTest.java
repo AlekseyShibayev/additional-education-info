@@ -1,12 +1,13 @@
-package com.company.app.exchangerate;
+package com.company.app.springboottest.component.exchangerate;
 
-import com.company.app.springboot.application.SpringBootApplicationContext;
+import com.company.app.exchangerate.ExchangeRateFacade;
+import com.company.app.springboottest.application.SpringBootApplicationTestContext;
 import com.company.app.exchangerate.entity.ExchangeRate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-class ExchangeRateFacadeTest extends SpringBootApplicationContext {
+class ExchangeRateFacadeTest extends SpringBootApplicationTestContext {
 
 	@Autowired
 	private ExchangeRateFacade exchangeRateFacade;

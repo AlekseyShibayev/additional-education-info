@@ -1,4 +1,4 @@
-package com.company.app.springboot.application;
+package com.company.app.springboottest.application;
 
 import com.company.app.exchangerate.scheduler.ExchangeRateSchedulerConfig;
 import com.company.app.wildberries.scheduler.WildberriesSchedulerConfig;
@@ -32,5 +32,5 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @MockBean(ExchangeRateSchedulerConfig.class)
 @MockBean(WildberriesSchedulerConfig.class)
-public abstract class SpringBootApplicationContext {
+public abstract class SpringBootApplicationTestContext {
 }

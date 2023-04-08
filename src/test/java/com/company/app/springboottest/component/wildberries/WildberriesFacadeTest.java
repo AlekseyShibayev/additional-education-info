@@ -1,7 +1,8 @@
-package com.company.app.wildberries;
+package com.company.app.springboottest.component.wildberries;
 
-import com.company.app.springboot.application.SpringBootApplicationContext;
+import com.company.app.springboottest.application.SpringBootApplicationTestContext;
 import com.company.app.core.tool.api.JsonSerializationTool;
+import com.company.app.wildberries.WildberriesFacade;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import java.io.File;
 import java.util.List;
 
-class WildberriesFacadeTest extends SpringBootApplicationContext {
+class WildberriesFacadeTest extends SpringBootApplicationTestContext {
 
 	private static final String FILE_NAME = "src/test/resources/wildberries/lot.json";
 

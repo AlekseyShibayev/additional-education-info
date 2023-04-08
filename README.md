@@ -4,26 +4,34 @@
 ## Цели проекта:
 ### 1. Учебная:
 1. Получить продвинутые навыки в разработке Java + Spring Framework приложений:
+  * Java 11, Stream API, Lambdas, Optional, Reflection
   * Spring(Core, Boot, Data, Web, Caching, Scheduling, AOP)
   * Spring Boot Test, JUnit5
-  * Reflection
   * Refactoring, Patterns, SOLID, DRY, KISS
 2. Изучить технологии:
   * Spring Boot Starter
   * Spring Security
+  * Docker Compose Kubernetes
   * Kafka
+  * AssertJ
 
 ### 2. Прикладная:
-1. Написать приложение, с использованием микросервисной архитектуры.
+1. Написать приложение c использованием микросервисной архитектуры.
 2. Развернуть сервер на одноплатнике Orange Pi 4.
 3. Пользоваться благами написанных модулей.
 
 ## Что уже есть в проекте:
-* Показывает курс доллара aliexpress.
-* Следит за ценами заданных товаров wildberries.
-* Пишет что угодно мне в телегу.
-* Бд использую H2, потому что давно хотел. Вот консоль её: http://localhost:8080/h2-console
-* Есть swagger: http://localhost:8080/swagger-ui.html
+1. Модули:
+  * модуль core - содержит удобные штуковины, которые будут нужны в каждом микросервсисе
+  * модуль Telegram
+  * модуль exchangerate - показывает курс доллара aliexpress
+  * модуль wildberries - отслеживает желаемые лоты
+2. Технологии:
+  * java 11 + spring boot + maven
+  * бд использую H2, потому что давно хотел. Вот консоль её: http://localhost:8080/h2-console
+  * swagger: http://localhost:8080/swagger-ui.html
+  * есть возможность запуска в Docker
+  * перешел с JUnit4 на JUnit5
 
 ## Вечно забываемые, команды docker:
 1. docker build --tag "app:0" .
@@ -31,7 +39,7 @@
 3. docker run -d -p 8080:8080 -p 5005:5005 app:0
 4. docker stop {$name}
 
-## Маленькая jira (todo'шки):
+## Маленькая jira (todo'шки, мысли):
 - пощупать AssertJ https://habr.com/ru/articles/675778/
 
 - найти или сделать Dockerfile openjre_alpine-musl, выкинув не нужные пакеты из jre, ожидаемый вес < 80 mb

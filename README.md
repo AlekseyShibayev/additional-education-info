@@ -8,7 +8,7 @@
   * Spring Boot Test, JUnit5
   * Reflection
   * Refactoring, Patterns, SOLID, DRY, KISS
-1. Изучить технологии:
+2. Изучить технологии:
   * Spring Boot Starter
   * Spring Security
   * Kafka

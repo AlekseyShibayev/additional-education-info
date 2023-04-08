@@ -34,16 +34,9 @@
 
 - посмотреть io.micrometer.core.annotation.Timed io.micrometer.core.aop.TimedAspect
 
-### Список полезной информации для потомков, скопившийся за Х лет разработки:
+### Список полезной информации для потомков, скопившийся за N лет разработки:
 
-* Spring Boot
-
-[Как мы жили до Spring Boot. Плейлист](https://www.youtube.com/watch?v=P_W3NbkwdIM&list=PLVJtKDGxOX1V8NpyHUAkrdezZDvgDhe4b&ab_channel=FIXGroupofCompanies)
-
-[Spring Cache](https://habr.com/ru/articles/465667/)
-
-
-* Java Core:
+* Java Core
 
 [Теория, просто включаем фоном и слушаем.](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
  
@@ -51,11 +44,11 @@
 
 [Очень подробный просмотр основных структур языка. Выбираем любой понравившийся плейлист JavaCore.](https://www.youtube.com/user/KharkovITCourses/playlists?view=50&sort=dd&shelf_id=12)
 
-* Data Base + SQL:
+* Data Base + SQL
 
 [Плейлист (канал Аве Кодер)](https://www.youtube.com/watch?v=PfyC39EzTmk&list=PLPPIc-4tm3YQsdhSV1qzAgDKTuMUNnPmp&index=3&ab_channel=%D0%90%D0%B2%D0%B5%D0%9A%D0%BE%D0%B4%D0%B5%D1%80)
 
-* Spring Core:
+* Spring Core
 
 [Базовый уровень, для тех кто слышит про Spring впервые](https://www.youtube.com/watch?v=6mXTY7RSAf0&ab_channel=%D0%9E%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%D1%83%D1%80%D0%BE%D0%BA%D0%B8%D0%BF%D0%BEJava)
 
@@ -65,6 +58,10 @@
 
 [Дополнительно: эволюция spring core. Та самая инфа, которая заполнит пробел, появившийся между java core и использованием spring di/ioc.](https://www.youtube.com/watch?v=rd6wxPzXQvo&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
+* Hibernate
+
+[Базовый уровень. Делаем hbm в xml. Плейлист.](https://www.youtube.com/watch?v=VQPoe2OVghQ&list=PL7Bt6mWpiiza3rrRXmMwWdsQFDlmF2bWQ&index=4&ab_channel=JavaVision)
+
 * Java Core Ext
 
 [Многоядерное программирование на Java Плейлист.](https://www.youtube.com/watch?v=4YGqahTTWtQ&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=2&ab_channel=GolovachCourses)
@@ -72,10 +69,6 @@
 [Lambdas](https://www.youtube.com/watch?v=hqRVz_4wCrc&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=10&ab_channel=GolovachCourses)
 
 [Stream API](https://www.youtube.com/watch?v=D4CScx_4xUg&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=11&ab_channel=GolovachCourses)
-
-* Hibernate
-
-[Базовый уровень. Делаем hbm в xml. Плейлист.](https://www.youtube.com/watch?v=VQPoe2OVghQ&list=PL7Bt6mWpiiza3rrRXmMwWdsQFDlmF2bWQ&index=4&ab_channel=JavaVision)
 
 * Refactoring
 
@@ -92,6 +85,18 @@
 [Spring Patterns](https://www.youtube.com/watch?v=61duchvKI6o&ab_channel=TechTrain)
 
 [Spring Patterns ещё](https://www.youtube.com/watch?v=zLFgvdHUlA0&ab_channel=jeeconf)
+
+* Spring Boot
+
+[Как мы жили до Spring Boot. Плейлист](https://www.youtube.com/watch?v=P_W3NbkwdIM&list=PLVJtKDGxOX1V8NpyHUAkrdezZDvgDhe4b&ab_channel=FIXGroupofCompanies)
+
+[Spring Cache](https://habr.com/ru/articles/465667/)
+
+[Spring AOP. Плейлист](https://www.youtube.com/watch?v=IDVHzrreYU4&list=PLqj7-hRTFl_p-t5F2zSUlG6_9UIoE2r70&index=25&ab_channel=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%B0%D0%BD%D0%B8%D1%8F)
+
+[Spring Boot Test](https://www.youtube.com/watch?v=uc-cfX-5wQA&ab_channel=Heisenbug)
+
+[Spring Boot Test](https://www.youtube.com/watch?v=7mZqJShu_3c&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
 * Docker
 

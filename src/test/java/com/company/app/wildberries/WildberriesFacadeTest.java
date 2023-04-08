@@ -20,14 +20,14 @@ class WildberriesFacadeTest extends AbstractSpringBootTest {
 	@Autowired
 	private WildberriesFacade wildberriesFacade;
 	@Autowired
-	private JsonSerializationTool<Lot> serializationService;
+	private JsonSerializationTool<Lot> jsonSerializationTool;
 	@MockBean
 	private LotRepository lotRepository;
 
 	@Test
 	void doMainLogicTest() {
 		File file = new File(FILE_NAME);
-		List<Lot> lots = serializationService.load(file, Lot.class);
+		List<Lot> lots = jsonSerializationTool.load(file, Lot.class);
 		Mockito.when(lotRepository.findAll()).thenReturn(lots);
 
 		List<Lot> desiredLots = wildberriesFacade.getDesiredLots();

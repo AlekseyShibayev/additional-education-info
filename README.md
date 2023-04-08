@@ -35,6 +35,7 @@
 - посмотреть io.micrometer.core.annotation.Timed io.micrometer.core.aop.TimedAspect
 
 ### Список полезной информации для потомков, скопившийся за Х лет разработки:
+
 * Java Core:
 
 [Теория, просто включаем фоном и слушаем.](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
@@ -50,3 +51,25 @@
 * Spring Core:
 
 [Базовый уровень, для тех кто слышит про Spring впервые](https://www.youtube.com/watch?v=6mXTY7RSAf0&ab_channel=%D0%9E%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%D1%83%D1%80%D0%BE%D0%BA%D0%B8%D0%BF%D0%BEJava)
+
+[Средний уровень](https://www.youtube.com/watch?v=5ePo08sqcpk&list=PLAma_mKffTOR5o0WNHnY0mTjKxnCgSXrZ&ab_channel=alishev)
+
+[Продвинутый уровень](https://www.youtube.com/watch?v=BmBr5diz8WA&ab_channel=JPoint%2CJoker%D0%B8JUGru)
+
+[Дополнительно: эволюция spring core. Та самая инфа, которая заполнит пробел, появившийся между java core и использованием spring di/ioc.](https://www.youtube.com/watch?v=rd6wxPzXQvo&ab_channel=JPoint%2CJoker%D0%B8JUGru)
+
+* Java Core Ext
+
+[Многоядерное программирование на Java Плейлист.](https://www.youtube.com/watch?v=4YGqahTTWtQ&list=RDCMUCuIctN7x71qam9K_ZxS1W2A&index=2&ab_channel=GolovachCourses)
+
+[Lambdas](https://www.youtube.com/watch?v=hqRVz_4wCrc&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=10&ab_channel=GolovachCourses)
+
+* Hibernate
+
+[Базовый уровень. Делаем hbm в xml. Плейлист.](https://www.youtube.com/watch?v=VQPoe2OVghQ&list=PL7Bt6mWpiiza3rrRXmMwWdsQFDlmF2bWQ&index=4&ab_channel=JavaVision)
+
+* Refactoring
+
+[Обзорная лекция по книге Clean Code](https://www.youtube.com/watch?v=otrfSgeK3JI&ab_channel=SergeyNemchinskiy)
+
+[Что-то древнее от Немчинского, уже не вспомню годное или нет. Плейлист](https://www.youtube.com/watch?v=j38-ZSyOAvc&list=PLmqFxxywkatR5zj5M4WdUyyKyLoJSZZrQ&ab_channel=SergeyNemchinskiy)

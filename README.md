@@ -1,30 +1,26 @@
 # Учебно-практический проект TelegramNotificationService
 [Ссылка на себя же](https://github.com/AlekseyShibayev/TelegramNotificationService)
 
-
-Цель проекта:
+### Цель проекта:
 1. фыв
 
-Учебная цель проекта:
-1.
-
-Практическое применение бота:
-1. Показывает курс доллара aliexpress.
-2. Следит за ценами заданных товаров wildberries.
-3. Пишет что угодно мне в телегу.
-
-Теоретическое применение бота:
+### Учебная цель проекта:
 1. Щупаю технологии Spring (Core, Boot, Data, Web, Caching, Scheduling, AOP, Boot Test).
 2. Бд использую H2, потому что давно хотел. Вот консоль её: http://localhost:8080/h2-console
 3. Есть swagger: http://localhost:8080/swagger-ui.html
 
-Вечно забываемые, команды docker:
+### Практическая цель проекта:
+1. Показывает курс доллара aliexpress.
+2. Следит за ценами заданных товаров wildberries.
+3. Пишет что угодно мне в телегу.
+
+### Вечно забываемые, команды docker:
 1. docker build --tag "app:0" .
 2. docker save -o app.tar app:0
 3. docker run -d -p 8080:8080 -p 5005:5005 app:0
-4. docker stop
+4. docker stop {$name}
 
-Маленькая jira (todo'шки):
+### Маленькая jira (todo'шки):
 - пощупать AssertJ https://habr.com/ru/articles/675778/
 
 - найти или сделать Dockerfile openjre_alpine-musl, выкинув не нужные пакеты из jre, ожидаемый вес < 80 mb
@@ -38,8 +34,8 @@
 
 - посмотреть io.micrometer.core.annotation.Timed io.micrometer.core.aop.TimedAspect
 
-## Список полезной информации для потомков, скопившийся за Х лет разработки:
-1. Java Core:
+### Список полезной информации для потомков, скопившийся за Х лет разработки:
+* Java Core:
 
 [Теория, просто включаем фоном и слушаем.](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
  
@@ -47,10 +43,10 @@
 
 [Очень подробный просмотр основных структур языка. Выбираем любой понравившийся плейлист JavaCore.](https://www.youtube.com/user/KharkovITCourses/playlists?view=50&sort=dd&shelf_id=12)
 
-2. Data Base + SQL:
+* Data Base + SQL:
 
 [Плейлист (канал Аве Кодер)](https://www.youtube.com/watch?v=PfyC39EzTmk&list=PLPPIc-4tm3YQsdhSV1qzAgDKTuMUNnPmp&index=3&ab_channel=%D0%90%D0%B2%D0%B5%D0%9A%D0%BE%D0%B4%D0%B5%D1%80)
 
-3. Spring Core:
+* Spring Core:
 
 [Базовый уровень, для тех кто слышит про Spring впервые](https://www.youtube.com/watch?v=6mXTY7RSAf0&ab_channel=%D0%9E%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%D1%83%D1%80%D0%BE%D0%BA%D0%B8%D0%BF%D0%BEJava)

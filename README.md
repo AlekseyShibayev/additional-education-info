@@ -1,18 +1,23 @@
-# Учебно-практический проект TelegramNotificationService
+# Учебно-прикладной проект TelegramNotificationService
 [Ссылка на себя же](https://github.com/AlekseyShibayev/TelegramNotificationService)
 
-### Цель проекта:
-1. фыв
+## Цели проекта:
+### 1. Учебная:
+* Получить продвинутые навыки в разработке Java + Spring приложений:
+- Spring(Core, Boot, Data, Web, Caching, Scheduling, AOP)
+- Spring Boot Test, JUnit5
 
-### Учебная цель проекта:
-1. Щупаю технологии Spring (Core, Boot, Data, Web, Caching, Scheduling, AOP, Boot Test).
-2. Бд использую H2, потому что давно хотел. Вот консоль её: http://localhost:8080/h2-console
-3. Есть swagger: http://localhost:8080/swagger-ui.html
+### 2. Прикладная:
+* Написать приложение, с использованием микросервисной архитектуры.
+* Развернуть сервер на одноплатнике Orange Pi 4.
+* Пользоваться благами написанных модулей.
 
-### Практическая цель проекта:
-1. Показывает курс доллара aliexpress.
-2. Следит за ценами заданных товаров wildberries.
-3. Пишет что угодно мне в телегу.
+### Что уже есть в проекте:
+* Показывает курс доллара aliexpress.
+* Следит за ценами заданных товаров wildberries.
+* Пишет что угодно мне в телегу.
+* Бд использую H2, потому что давно хотел. Вот консоль её: http://localhost:8080/h2-console
+* Есть swagger: http://localhost:8080/swagger-ui.html
 
 ### Вечно забываемые, команды docker:
 1. docker build --tag "app:0" .

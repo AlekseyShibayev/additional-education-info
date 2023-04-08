@@ -3,31 +3,32 @@
 
 ## Цели проекта:
 ### 1. Учебная:
-1. Получить продвинутые навыки в разработке Java + Spring приложений:
+1. Получить продвинутые навыки в разработке Java + Spring Framework приложений:
 - Spring(Core, Boot, Data, Web, Caching, Scheduling, AOP)
 - Spring Boot Test, JUnit5
 - Reflection
 - Refactoring, Patterns, SOLID, DRY, KISS
+- Spring Security, Kafka
 
 ### 2. Прикладная:
 1. Написать приложение, с использованием микросервисной архитектуры.
 2. Развернуть сервер на одноплатнике Orange Pi 4.
 3. Пользоваться благами написанных модулей.
 
-### Что уже есть в проекте:
+## Что уже есть в проекте:
 * Показывает курс доллара aliexpress.
 * Следит за ценами заданных товаров wildberries.
 * Пишет что угодно мне в телегу.
 * Бд использую H2, потому что давно хотел. Вот консоль её: http://localhost:8080/h2-console
 * Есть swagger: http://localhost:8080/swagger-ui.html
 
-### Вечно забываемые, команды docker:
+## Вечно забываемые, команды docker:
 1. docker build --tag "app:0" .
 2. docker save -o app.tar app:0
 3. docker run -d -p 8080:8080 -p 5005:5005 app:0
 4. docker stop {$name}
 
-### Маленькая jira (todo'шки):
+## Маленькая jira (todo'шки):
 - пощупать AssertJ https://habr.com/ru/articles/675778/
 
 - найти или сделать Dockerfile openjre_alpine-musl, выкинув не нужные пакеты из jre, ожидаемый вес < 80 mb
@@ -41,7 +42,7 @@
 
 - посмотреть io.micrometer.core.annotation.Timed io.micrometer.core.aop.TimedAspect
 
-### Список полезной информации для потомков, скопившийся за N лет разработки:
+## Список полезной информации для потомков, скопившийся за N лет разработки:
 
 * Java Core
 

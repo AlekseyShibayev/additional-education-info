@@ -1,4 +1,4 @@
-package com.company.app.exchangerate;
+package com.company.app.exchangerate.component;
 
 import com.company.app.core.aop.logging.performance.PerformanceLogAnnotation;
 import com.company.app.exchangerate.component.api.ExchangeRateExtractor;

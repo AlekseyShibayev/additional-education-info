@@ -9,7 +9,14 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * ссылка для swagger: http://localhost:8080/swagger-ui.html
+ * swagger: http://localhost:8080/swagger-ui.html
+ * <p>
+ * Тесты:
+ * 1. JUnit
+ * 2. Component test. С использованием SpringBootComponentScanStopper. Example:
+ * {@link com.company.app.exchangerate.component.ExchangeRateFacadeTest}
+ * 3. Full application test. Example:
+ * {@link com.company.app.springboottest.application.ApplicationTest}
  */
 @Slf4j
 //@EnableCaching

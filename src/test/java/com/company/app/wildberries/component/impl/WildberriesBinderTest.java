@@ -1,4 +1,4 @@
-package com.company.app.springboottest.component.wildberries.component.impl;
+package com.company.app.wildberries.component.impl;
 
 import com.company.app.core.tool.api.JsonSerializationTool;
 import com.company.app.springboottest.application.SpringBootApplicationTestContext;

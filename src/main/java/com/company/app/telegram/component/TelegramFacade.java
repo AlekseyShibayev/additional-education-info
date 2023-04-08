@@ -1,4 +1,4 @@
-package com.company.app.telegram;
+package com.company.app.telegram.component;
 
 import com.company.app.telegram.component.api.TelegramService;
 import org.springframework.beans.factory.annotation.Autowired;

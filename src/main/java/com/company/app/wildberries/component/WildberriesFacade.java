@@ -1,4 +1,4 @@
-package com.company.app.wildberries;
+package com.company.app.wildberries.component;
 
 import com.company.app.core.aop.logging.performance.PerformanceLogAnnotation;
 import com.company.app.wildberries.component.api.WildberriesService;

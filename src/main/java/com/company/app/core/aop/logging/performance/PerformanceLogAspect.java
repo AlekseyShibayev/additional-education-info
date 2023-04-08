@@ -25,8 +25,8 @@ import java.util.concurrent.TimeUnit;
  * <li> [76069a35-dab7-45bf-968e-a24281ac5a21]: запущен com.company.app.exchangeRate.ExchangeRateFacade.extract
  * <li> [76069a35-dab7-45bf-968e-a24281ac5a21]: за [1757] ms выполнен com.company.app.exchangeRate.ExchangeRateFacade.extract
  * <li> 2. Для Collection - пишет размер, пример:
- * <li> [42db76b0-f2e2-4994-9b12-6fa603e62e72]: запущен com.company.app.wildberries.WildberriesFacade.getDesiredLots
- * <li> [42db76b0-f2e2-4994-9b12-6fa603e62e72]: за [351] ms вернул [0] шт. выполнен com.company.app.wildberries.WildberriesFacade.getDesiredLots
+ * <li> [42db76b0-f2e2-4994-9b12-6fa603e62e72]: запущен com.company.app.wildberries.component.WildberriesFacade.getDesiredLots
+ * <li> [42db76b0-f2e2-4994-9b12-6fa603e62e72]: за [351] ms вернул [0] шт. выполнен com.company.app.wildberries.component.WildberriesFacade.getDesiredLots
  * </ul>
  * Способы получения GUID:
  * {@link ActionType}

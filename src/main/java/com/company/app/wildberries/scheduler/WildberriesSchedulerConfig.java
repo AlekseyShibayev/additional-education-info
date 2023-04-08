@@ -1,7 +1,7 @@
 package com.company.app.wildberries.scheduler;
 
 import com.company.app.core.service.api.NotificationService;
-import com.company.app.wildberries.WildberriesFacade;
+import com.company.app.wildberries.component.WildberriesFacade;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.util.WBUtils;
 import lombok.extern.slf4j.Slf4j;

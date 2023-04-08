@@ -1,6 +1,6 @@
 package com.company.app.exchangerate.controller;
 
-import com.company.app.exchangerate.ExchangeRateFacade;
+import com.company.app.exchangerate.component.ExchangeRateFacade;
 import com.company.app.exchangerate.entity.ExchangeRate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

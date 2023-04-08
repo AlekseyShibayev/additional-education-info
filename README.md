@@ -38,8 +38,9 @@
 
 - посмотреть io.micrometer.core.annotation.Timed io.micrometer.core.aop.TimedAspect
 
-Список полезной информации для потомков, скопившийся за Х лет разработки:
+## Список полезной информации для потомков, скопившийся за Х лет разработки:
 1. Java Core:
+
 [Теория, просто включаем фоном и слушаем.](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
  
 [Краткие примеры основных структур языка.](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)

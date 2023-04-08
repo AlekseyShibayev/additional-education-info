@@ -1,17 +1,15 @@
 package com.company.app.springboottest.application;
 
-import com.company.app.exchangerate.scheduler.ExchangeRateSchedulerConfig;
-import com.company.app.wildberries.scheduler.WildberriesSchedulerConfig;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 /**
  * @SpringBootTest - имеет 2 реализации
- * 1. Если передали конфигурацию, то делает что в ней.
- * 2. Идёт к корню приложения, ничего не считывает, ищет @SpringBootConfiguration
+ * 1. Без classes. Идёт к корню приложения, ничего не считывает, ищет @SpringBootConfiguration
  * которая, обычно есть в Application.class в @SpringBootApplication
  * когда нашёл - выполняет её, т.е. поднимает весь спринг бут контекст
  * после идет обратно и считывает конфигурации для тестов.
+ * 2. classes = @Configuration. Поднимет только указанные конфигурации.
+ * 3. classes = @TestConfiguration. Поднимет указанный контекст и продолжит сканирование (см. п. 1).
  *
  * @DataJpaTest - тоже что и @SpringBootTest, но создает только @Repository
  * Можно сделать @Autowired TestEntityManager
@@ -29,8 +27,5 @@ import org.springframework.boot.test.mock.mockito.MockBean;
  * @RunWith(SpringRunner.class) - для движка JUnit4.
  * @ExtendWith(SpringExtension.class) - для движка JUnit5, сейчас не стоит, т.к. она есть в @SpringBootTest.
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@MockBean(ExchangeRateSchedulerConfig.class)
-@MockBean(WildberriesSchedulerConfig.class)
-public abstract class SpringBootApplicationTestContext {
-}
+@SpringBootTest(classes = SpringBootApplicationTestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public abstract class SpringBootApplicationTestContext {}

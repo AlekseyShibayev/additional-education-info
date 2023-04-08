@@ -82,13 +82,17 @@
 
 [SOLID. Примеры](https://www.youtube.com/watch?v=StWB7NJjPZc&ab_channel=TechTrain)
 
-[Spring Patterns](https://www.youtube.com/watch?v=61duchvKI6o&ab_channel=TechTrain)
+[Евгений Борисов — Spring Patterns](https://www.youtube.com/watch?v=61duchvKI6o&ab_channel=TechTrain)
 
-[Spring Patterns ещё](https://www.youtube.com/watch?v=zLFgvdHUlA0&ab_channel=jeeconf)
+[Spring Patterns (Evgeny Borisov, Israel)](https://www.youtube.com/watch?v=zLFgvdHUlA0&ab_channel=jeeconf)
+
+[Евгений Борисов — Spring Patterns для взрослых](https://www.youtube.com/watch?v=GL1txFxswHA&t=2936s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
 * Spring Boot
 
 [Как мы жили до Spring Boot. Плейлист](https://www.youtube.com/watch?v=P_W3NbkwdIM&list=PLVJtKDGxOX1V8NpyHUAkrdezZDvgDhe4b&ab_channel=FIXGroupofCompanies)
+
+[Spring Boot - Евгений Борисов, Кирилл Толкачев](https://www.youtube.com/watch?v=UYre4_bytD4&t=3345s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
 [Spring Cache](https://habr.com/ru/articles/465667/)
 

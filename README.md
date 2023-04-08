@@ -38,11 +38,11 @@
 
 * Java Core
 
-[Теория, просто включаем фоном и слушаем.](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
+[Теория, просто включаем фоном и слушаем](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
  
-[Краткие примеры основных структур языка.](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
+[Краткие примеры основных структур языка](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
 
-[Очень подробный просмотр основных структур языка. Выбираем любой понравившийся плейлист JavaCore.](https://www.youtube.com/user/KharkovITCourses/playlists?view=50&sort=dd&shelf_id=12)
+[Очень подробный просмотр основных структур языка. Выбираем любой понравившийся плейлист JavaCore](https://www.youtube.com/user/KharkovITCourses/playlists?view=50&sort=dd&shelf_id=12)
 
 * Data Base + SQL
 
@@ -56,15 +56,15 @@
 
 [Продвинутый уровень](https://www.youtube.com/watch?v=BmBr5diz8WA&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
-[Дополнительно: эволюция spring core. Та самая инфа, которая заполнит пробел, появившийся между java core и использованием spring di/ioc.](https://www.youtube.com/watch?v=rd6wxPzXQvo&ab_channel=JPoint%2CJoker%D0%B8JUGru)
+[Дополнительно: эволюция spring core. Та самая инфа, которая заполнит пробел, появившийся между java core и использованием spring di/ioc](https://www.youtube.com/watch?v=rd6wxPzXQvo&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
 * Hibernate
 
-[Базовый уровень. Делаем hbm в xml. Плейлист.](https://www.youtube.com/watch?v=VQPoe2OVghQ&list=PL7Bt6mWpiiza3rrRXmMwWdsQFDlmF2bWQ&index=4&ab_channel=JavaVision)
+[Базовый уровень. Делаем hbm в xml. Плейлист](https://www.youtube.com/watch?v=VQPoe2OVghQ&list=PL7Bt6mWpiiza3rrRXmMwWdsQFDlmF2bWQ&index=4&ab_channel=JavaVision)
 
 * Java Core Ext
 
-[Многоядерное программирование на Java Плейлист.](https://www.youtube.com/watch?v=4YGqahTTWtQ&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=2&ab_channel=GolovachCourses)
+[Многоядерное программирование на Java Плейлист](https://www.youtube.com/watch?v=4YGqahTTWtQ&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=2&ab_channel=GolovachCourses)
 
 [Lambdas](https://www.youtube.com/watch?v=hqRVz_4wCrc&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=10&ab_channel=GolovachCourses)
 
@@ -80,7 +80,7 @@
 
 [SOLID. Теория. Плейлист](https://www.youtube.com/watch?v=O4uhPCEDzSo&list=PLmqFxxywkatQNWLG1IZYUhKoQrnuZHqaK&ab_channel=SergeyNemchinskiy)
 
-[SOLID. Примеры.](https://www.youtube.com/watch?v=StWB7NJjPZc&ab_channel=TechTrain)
+[SOLID. Примеры](https://www.youtube.com/watch?v=StWB7NJjPZc&ab_channel=TechTrain)
 
 [Spring Patterns](https://www.youtube.com/watch?v=61duchvKI6o&ab_channel=TechTrain)
 
@@ -100,9 +100,9 @@
 
 * Docker
 
-[Основы. Теория.](https://www.youtube.com/watch?v=QF4ZF857m44&t=1700s&ab_channel=%D0%90%D1%80%D1%82%D0%B5%D0%BC%D0%9C%D0%B0%D1%82%D1%8F%D1%88%D0%BE%D0%B2)
+[Основы. Теория](https://www.youtube.com/watch?v=QF4ZF857m44&t=1700s&ab_channel=%D0%90%D1%80%D1%82%D0%B5%D0%BC%D0%9C%D0%B0%D1%82%D1%8F%D1%88%D0%BE%D0%B2)
 
-[Основы. Практика. Плейлист.](https://www.youtube.com/watch?v=Sa7uOGczoHc&list=PLU2ftbIeotGoGFC_2lj-OplT_cItXfu48&ab_channel=letsCode)
+[Основы. Практика. Плейлист](https://www.youtube.com/watch?v=Sa7uOGczoHc&list=PLU2ftbIeotGoGFC_2lj-OplT_cItXfu48&ab_channel=letsCode)
 
 * CI/CD
 
@@ -116,7 +116,7 @@
 
 * Kafka
 
-[Теория.](https://www.youtube.com/watch?v=-AZOi3kP9Js&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80%D0%91%D0%BE%D0%B3%D0%B4%D0%B0%D0%BD%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9)
+[Теория](https://www.youtube.com/watch?v=-AZOi3kP9Js&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80%D0%91%D0%BE%D0%B3%D0%B4%D0%B0%D0%BD%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9)
 
 * Прочее
 
@@ -124,7 +124,7 @@
 
 * Еще не смотрел, но надо бы:
 
-[микросервисы ](https://www.youtube.com/watch?v=bAhxpqHfP8I&t=1915s&ab_channel=AvitoTech)
+[микросервисы](https://www.youtube.com/watch?v=bAhxpqHfP8I&t=1915s&ab_channel=AvitoTech)
 
 [микросервисы еще](https://www.youtube.com/watch?v=6HvSpqBc8fA&ab_channel=HighLoadChannel)
 

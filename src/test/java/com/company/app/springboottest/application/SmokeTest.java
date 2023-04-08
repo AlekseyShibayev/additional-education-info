@@ -17,14 +17,14 @@ import java.util.List;
 class SmokeTest extends SpringBootApplicationTestContext {
 
 	@LocalServerPort
-	private Integer port;
+	Integer port;
+	@Autowired
+	TestRestTemplate testRestTemplate;
 
 	@Autowired
-	private NotificationService notificationService;
+	NotificationService notificationService;
 	@Autowired
-	private TestRestTemplate testRestTemplate;
-	@Autowired
-	private HistoryRepository historyRepository;
+	HistoryRepository historyRepository;
 
 	@Test
 	void historyRepositorySmokeTest() {

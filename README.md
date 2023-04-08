@@ -1,5 +1,5 @@
 # Учебно-практический проект TelegramNotificationService
-https://github.com/AlekseyShibayev/TelegramNotificationService
+[Ссылка на себя же](https://github.com/AlekseyShibayev/TelegramNotificationService)
 
 
 Цель проекта:
@@ -40,28 +40,10 @@ https://github.com/AlekseyShibayev/TelegramNotificationService
 
 Список полезной информации для потомков, скопившийся за Х лет разработки:
 1. Java Core:
-[https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU](Теория, просто включаем фоном и слушаем.)
 [Теория, просто включаем фоном и слушаем.](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
-
-<a href="https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU">
-   Теория, просто включаем фоном и слушаем.
-</a>
-<a href="https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU">
-   Краткие примеры основных структур языка.
-</a>
-<a href="https://www.youtube.com/user/KharkovITCourses/playlists?view=50&sort=dd&shelf_id=12">
-   Очень подробный просмотр основных структур языка. Выбираем любой понравившийся плейлист JavaCore.
-</a>
+[Краткие примеры основных структур языка.](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
+[Очень подробный просмотр основных структур языка. Выбираем любой понравившийся плейлист JavaCore.](https://www.youtube.com/user/KharkovITCourses/playlists?view=50&sort=dd&shelf_id=12)
 2. Data Base + SQL:
-<a href=" https://www.youtube.com/watch?v=PfyC39EzTmk&list=PLPPIc-4tm3YQsdhSV1qzAgDKTuMUNnPmp&index=3&ab_channel=%D0%90%D0%B2%D0%B5%D0%9A%D0%BE%D0%B4%D0%B5%D1%80">
-   Плейлист (канал Аве Кодер)
-</a>
+[Плейлист (канал Аве Кодер)](https://www.youtube.com/watch?v=PfyC39EzTmk&list=PLPPIc-4tm3YQsdhSV1qzAgDKTuMUNnPmp&index=3&ab_channel=%D0%90%D0%B2%D0%B5%D0%9A%D0%BE%D0%B4%D0%B5%D1%80)
 3. Spring Core:
-<a href="https://www.youtube.com/watch?v=6mXTY7RSAf0&ab_channel=%D0%9E%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%D1%83%D1%80%D0%BE%D0%BA%D0%B8%D0%BF%D0%BEJava">
-   Базовый уровень, для тех кто слышит про Spring впервые
-</a>
-
-
-<a href="">
-
-</a>
+[Базовый уровень, для тех кто слышит про Spring впервые](https://www.youtube.com/watch?v=6mXTY7RSAf0&ab_channel=%D0%9E%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%D1%83%D1%80%D0%BE%D0%BA%D0%B8%D0%BF%D0%BEJava)

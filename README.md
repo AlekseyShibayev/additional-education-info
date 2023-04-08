@@ -40,6 +40,9 @@ https://github.com/AlekseyShibayev/TelegramNotificationService
 
 Список полезной информации для потомков, скопившийся за Х лет разработки:
 1. Java Core:
+[https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU](Теория, просто включаем фоном и слушаем.)
+[Теория, просто включаем фоном и слушаем.](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
+
 <a href="https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU">
    Теория, просто включаем фоном и слушаем.
 </a>

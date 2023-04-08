@@ -11,7 +11,7 @@
 2. Изучить технологии:
   * Spring Boot Starter
   * Spring Security
-  * Docker Compose, Kubernetes
+  * Docker Compose, Kubernetes, Testcontainers
   * Kafka
   * AssertJ
 
@@ -50,6 +50,7 @@
   - засунуть 3 проекта + core в docker-compose
   - сделать общение через kafka
   - засунуть 3 проекта (с общим core) + kafka в kuber
+  - прикрутить Testcontainers
 
 3. Прочие:
   - посмотреть io.micrometer.core.annotation.Timed io.micrometer.core.aop.TimedAspect

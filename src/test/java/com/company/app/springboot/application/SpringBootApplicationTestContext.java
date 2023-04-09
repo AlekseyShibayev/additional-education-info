@@ -1,6 +1,8 @@
 package com.company.app.springboot.application;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 
 /**
  * @SpringBootTest - имеет 2 реализации
@@ -22,6 +24,11 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @RunWith(SpringRunner.class) - для движка JUnit4.
  * @ExtendWith(SpringExtension.class) - для движка JUnit5, сейчас не стоит, т.к. она есть в @SpringBootTest.
  */
-@SpringBootTest(classes = SpringBootApplicationTestConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(
+		classes = SpringBootApplicationTestConfiguration.class,
+		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+		properties = "spring.profiles.active:test"
+)
+@TestPropertySource("/test.properties")
 public abstract class SpringBootApplicationTestContext {
 }

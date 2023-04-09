@@ -22,6 +22,8 @@ import org.springframework.boot.test.context.SpringBootTest;
  * 6. Сканирует все бины в test и main, т.к. они в тестах слиты.
  * 7. ...
  * 8. Инжектит мне @Autowired ExchangeRateFacade exchangeRateFacade;
+ * <p>
+ * @ComponentScan(lazyInit = true) - уменьшит количество Mock
  */
 @Slf4j
 @SpringBootTest(classes = ExchangeRateTestConfiguration.class)

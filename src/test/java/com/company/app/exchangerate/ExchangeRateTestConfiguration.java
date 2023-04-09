@@ -1,6 +1,5 @@
 package com.company.app.exchangerate;
 
-import com.company.app.core.service.api.NotificationService;
 import com.company.app.core.tool.api.DataExtractorTool;
 import com.company.app.core.tool.impl.DataExtractorToolImpl;
 import com.company.app.exchangerate.repository.ExchangeRepository;
@@ -13,8 +12,6 @@ public class ExchangeRateTestConfiguration {
 
 	@MockBean
 	ExchangeRepository exchangeRepository;
-	@MockBean
-	NotificationService notificationService;
 
 	@Bean
 	DataExtractorTool dataExtractorTool() {

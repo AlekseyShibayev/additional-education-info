@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 /**
  * Component Test - без поднятия всего спринг контекста приложения.
@@ -27,6 +28,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @Slf4j
 @SpringBootTest(classes = ExchangeRateTestConfiguration.class)
+@TestPropertySource("/test.properties")
 class ExchangeRateFacadeTest {
 
 	@Autowired

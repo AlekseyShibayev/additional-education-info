@@ -1,7 +1,6 @@
 package com.company.app.springboot.application;
 
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
 /**
@@ -26,9 +25,8 @@ import org.springframework.test.context.TestPropertySource;
  */
 @SpringBootTest(
 		classes = SpringBootApplicationTestConfiguration.class,
-		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-		properties = "spring.profiles.active:test"
+		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 @TestPropertySource("/test.properties")
-public abstract class SpringBootApplicationTestContext {
+public abstract class SpringBootApplicationTest {
 }

@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-class SmokeTest extends SpringBootApplicationTestContext {
+class SmokeTest extends SpringBootApplicationTest {
 
 	@LocalServerPort
 	Integer port;

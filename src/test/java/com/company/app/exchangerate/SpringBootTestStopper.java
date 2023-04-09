@@ -5,5 +5,5 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootConfiguration
 @ComponentScan(basePackages = "com.company.app.exchangerate.component", lazyInit = true)
-public class SpringBootTestContextBootstrapperStopper {
+public class SpringBootTestStopper {
 }

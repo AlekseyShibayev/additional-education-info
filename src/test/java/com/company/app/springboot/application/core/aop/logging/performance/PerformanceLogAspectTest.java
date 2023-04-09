@@ -1,7 +1,7 @@
-package com.company.app.springboottest.application.core.aop.logging.performance;
+package com.company.app.springboot.application.core.aop.logging.performance;
 
-import com.company.app.springboottest.application.SpringBootApplicationTestContext;
-import com.company.app.springboottest.application.core.aop.logging.performance.testEntity.ExperimentContextChild;
+import com.company.app.springboot.application.SpringBootApplicationTestContext;
+import com.company.app.springboot.application.core.aop.logging.performance.testEntity.ExperimentContextChild;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

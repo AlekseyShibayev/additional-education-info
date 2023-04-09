@@ -1,4 +1,4 @@
-package com.company.app.springboottest.jpa;
+package com.company.app.springboot.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

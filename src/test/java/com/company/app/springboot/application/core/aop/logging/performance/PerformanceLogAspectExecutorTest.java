@@ -1,8 +1,8 @@
-package com.company.app.springboottest.application.core.aop.logging.performance;
+package com.company.app.springboot.application.core.aop.logging.performance;
 
 import com.company.app.core.aop.logging.performance.PerformanceLogAnnotation;
 import com.company.app.core.aop.logging.performance.component.ActionType;
-import com.company.app.springboottest.application.core.aop.logging.performance.testEntity.Context;
+import com.company.app.springboot.application.core.aop.logging.performance.testEntity.Context;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

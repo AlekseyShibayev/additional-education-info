@@ -1,4 +1,4 @@
-package com.company.app.springboottest.application;
+package com.company.app.springboot.application;
 
 import com.company.app.core.service.api.NotificationService;
 import com.company.app.telegram.entity.History;

@@ -1,4 +1,4 @@
-package com.company.app.springboottest.application;
+package com.company.app.springboot.application;
 
 import com.company.app.exchangerate.scheduler.ExchangeRateSchedulerConfig;
 import com.company.app.wildberries.scheduler.WildberriesSchedulerConfig;

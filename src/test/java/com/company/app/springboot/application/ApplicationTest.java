@@ -1,4 +1,4 @@
-package com.company.app.springboottest.application;
+package com.company.app.springboot.application;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

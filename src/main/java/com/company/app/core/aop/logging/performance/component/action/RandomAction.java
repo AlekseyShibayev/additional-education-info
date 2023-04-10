@@ -11,7 +11,7 @@ import java.util.UUID;
 public class RandomAction extends AbstractAction {
 
 	@Override
-	public ActionType getActionType() {
+	public ActionType getType() {
 		return ActionType.RANDOM;
 	}
 

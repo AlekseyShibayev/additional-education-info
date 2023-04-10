@@ -13,7 +13,7 @@ import java.util.UUID;
 public class NumberAndFieldAction extends AbstractAction {
 
 	@Override
-	public ActionType getActionType() {
+	public ActionType getType() {
 		return ActionType.NUMBER_AND_FIELD;
 	}
 

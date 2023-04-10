@@ -11,7 +11,7 @@ import java.util.UUID;
 public class NumberAction extends AbstractAction {
 
 	@Override
-	public ActionType getActionType() {
+	public ActionType getType() {
 		return ActionType.NUMBER;
 	}
 

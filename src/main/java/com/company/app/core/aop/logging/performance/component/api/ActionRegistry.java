@@ -5,7 +5,5 @@ import com.company.app.core.aop.logging.performance.component.action.Action;
 
 public interface ActionRegistry {
 
-	void registerAction(Action action);
-
 	Action getAction(ActionType actionType);
 }

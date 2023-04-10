@@ -4,7 +4,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 /**
- * @SpringBootTest - имеет 2 реализации
+ * @SpringBootTest:
  * 1. Без classes. Идёт к корню приложения, ничего не считывает, ищет @SpringBootConfiguration
  * которая, обычно есть в Application.class в @SpringBootApplication
  * когда нашёл - выполняет её, т.е. поднимает весь спринг бут контекст

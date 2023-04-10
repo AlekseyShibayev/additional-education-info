@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PerformanceLogAspectExecutorTest {
 
-	@PerformanceLogAnnotation()
+	@PerformanceLogAnnotation
 	public void anyMethodNameWithEmptyAnnotation(Context context) {
 		log.debug("1. anyMethodNameWithEmptyAnnotation");
 	}

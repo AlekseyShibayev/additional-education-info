@@ -1,9 +1,9 @@
 package com.company.app.exchangerate.component.impl;
 
-import com.company.app.core.service.api.NotificationService;
 import com.company.app.exchangerate.component.api.ExchangeRateBinder;
 import com.company.app.exchangerate.entity.ExchangeRate;
 import com.company.app.exchangerate.repository.ExchangeRepository;
+import com.company.app.telegram.component.TelegramFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ public class ExchangeRateBinderImpl implements ExchangeRateBinder {
 	@Autowired
 	ExchangeRepository exchangeRepository;
 	@Autowired
-	NotificationService notificationService;
+	TelegramFacade telegramFacade;
 
 	@Override
 	public String getType() {
@@ -29,7 +29,7 @@ public class ExchangeRateBinderImpl implements ExchangeRateBinder {
 	public void bind(String string) {
 		Optional<ExchangeRate> optional = exchangeRepository.findOneByOrderByDateDesc();
 		if (optional.isPresent()) {
-			notificationService.notify(optional.get());
+			telegramFacade.write(optional.get());
 		} else {
 			throw new NoSuchElementException("Курса еще нет.");
 		}

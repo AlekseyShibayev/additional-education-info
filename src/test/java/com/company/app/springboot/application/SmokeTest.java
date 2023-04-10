@@ -1,6 +1,6 @@
 package com.company.app.springboot.application;
 
-import com.company.app.core.service.api.NotificationService;
+import com.company.app.telegram.component.TelegramFacade;
 import com.company.app.telegram.entity.History;
 import com.company.app.telegram.repository.HistoryRepository;
 import com.google.common.collect.Lists;
@@ -22,7 +22,7 @@ class SmokeTest extends SpringBootApplicationTest {
 	TestRestTemplate testRestTemplate;
 
 	@Autowired
-	NotificationService notificationService;
+	TelegramFacade telegramFacade;
 	@Autowired
 	HistoryRepository historyRepository;
 
@@ -37,7 +37,7 @@ class SmokeTest extends SpringBootApplicationTest {
 
 	@Test
 	void notificationServiceSmokeTest() {
-		notificationService.notify("1. Тестовое приложение поднялось.");
+		telegramFacade.write("1. Тестовое приложение поднялось.");
 		List<History> all = historyRepository.findAll();
 		Assertions.assertNotNull(all);
 	}

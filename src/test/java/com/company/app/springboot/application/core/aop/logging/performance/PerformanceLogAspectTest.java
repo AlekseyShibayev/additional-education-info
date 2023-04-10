@@ -24,7 +24,6 @@ class PerformanceLogAspectTest extends SpringBootApplicationTest {
 	private static final String GUID = "11111111-1111-1111-1111-111111111111";
 
 	@Test
-	@ExtendWith(OutputCaptureExtension.class)
 	void withEmptyAnnotationTest(CapturedOutput capture) {
 		ExperimentContextChild child = new ExperimentContextChild();
 		child.setGuid(UUID.fromString(GUID));
@@ -33,7 +32,6 @@ class PerformanceLogAspectTest extends SpringBootApplicationTest {
 	}
 
 	@Test
-	@ExtendWith(OutputCaptureExtension.class)
 	void testWithGuidAsParameter(CapturedOutput capture) {
 		ExperimentContextChild child = new ExperimentContextChild();
 		child.setGuid(UUID.fromString(GUID));
@@ -42,7 +40,6 @@ class PerformanceLogAspectTest extends SpringBootApplicationTest {
 	}
 
 	@Test
-	@ExtendWith(OutputCaptureExtension.class)
 	void testWithNumberAndMethodName(CapturedOutput capture) {
 		ExperimentContextChild child = new ExperimentContextChild();
 		child.setGuid(UUID.fromString(GUID));
@@ -51,7 +48,6 @@ class PerformanceLogAspectTest extends SpringBootApplicationTest {
 	}
 
 	@Test
-	@ExtendWith(OutputCaptureExtension.class)
 	void testWithNumberAndFieldName(CapturedOutput capture) {
 		ExperimentContextChild child = new ExperimentContextChild();
 		child.setGuid(UUID.fromString(GUID));

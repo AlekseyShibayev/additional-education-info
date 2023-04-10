@@ -1,6 +1,8 @@
 package com.company.app.springboot.application;
 
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.test.context.TestPropertySource;
 
 /**
@@ -27,6 +29,7 @@ import org.springframework.test.context.TestPropertySource;
 		classes = SpringBootApplicationTestConfiguration.class,
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
+@ExtendWith(OutputCaptureExtension.class)
 @TestPropertySource("/test.properties")
 public abstract class SpringBootApplicationTest {
 }

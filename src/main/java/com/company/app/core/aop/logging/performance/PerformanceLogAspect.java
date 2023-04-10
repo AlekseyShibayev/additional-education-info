@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -28,14 +29,23 @@ import java.util.concurrent.TimeUnit;
  * <li> [42db76b0-f2e2-4994-9b12-6fa603e62e72]: запущен com.company.app.wildberries.component.WildberriesFacade.getDesiredLots
  * <li> [42db76b0-f2e2-4994-9b12-6fa603e62e72]: за [351] ms вернул [0] шт. выполнен com.company.app.wildberries.component.WildberriesFacade.getDesiredLots
  * </ul>
+ * ВАЖНО!!!
+ * Для получения GUID - не надо переписывать сигнатуры существующих методов.
+ * Аспект расковыривает GUID сам.
  * Способы получения GUID:
  * {@link ActionType}
- *
+ * По дефолту - RANDOM.
+ * Если GUID вытащить не может - используется RANDOM. Для поиска причин: <logger name=".*.GuidExtractorImpl" level="TRACE" additivity="false">
+ * <p>
+ * Аспект будет создан, если application.performanceLogAnnotation=true
+ * Логирование будет, если <logger name=".*.PerformanceLogAspect" level="DEBUG" additivity="false">
+ * <p>
  * @author shibaev.aleksey 30.03.2023
  */
 @Slf4j
 @Aspect
 @Component
+@ConditionalOnProperty(prefix = "application", name = "performanceLogAnnotation")
 public class PerformanceLogAspect {
 
 	@Autowired

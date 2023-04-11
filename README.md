@@ -1,5 +1,5 @@
 # Учебно-прикладной проект TelegramNotificationService
-[Ссылка на себя же](https://github.com/AlekseyShibayev/TelegramNotificationService)
+[Ссылка на себя](https://github.com/AlekseyShibayev/TelegramNotificationService)
 
 ## Цели проекта:
 ### 1. Учебная:

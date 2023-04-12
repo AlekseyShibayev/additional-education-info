@@ -55,6 +55,8 @@
   - посмотреть io.micrometer.core.annotation.Timed io.micrometer.core.aop.TimedAspect
   - найти или сделать Dockerfile openjre_alpine-musl, выкинув не нужные пакеты из jre, ожидаемый вес < 80 mb
   - в core, сделать админку для сброса спринг кеш
+  - прикрутить kafka + ELK
+  - посмотреть Debezium(конфиги) + Redis(кеш)
 
 ## Список полезной информации (не вся - только та что понравилась) для потомков, скопившейся за N лет разработки:
 

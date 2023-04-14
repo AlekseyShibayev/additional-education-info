@@ -126,6 +126,8 @@
 
 [Spring Boot Test](https://www.youtube.com/watch?v=7mZqJShu_3c&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
+[Spring Boot + Kafka](https://habr.com/ru/articles/440400/)
+
 * Docker
 
 [Основы. Теория](https://www.youtube.com/watch?v=QF4ZF857m44&t=1700s&ab_channel=%D0%90%D1%80%D1%82%D0%B5%D0%BC%D0%9C%D0%B0%D1%82%D1%8F%D1%88%D0%BE%D0%B2)
@@ -145,6 +147,8 @@
 * Kafka
 
 [Теория](https://www.youtube.com/watch?v=-AZOi3kP9Js&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80%D0%91%D0%BE%D0%B3%D0%B4%D0%B0%D0%BD%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9)
+
+[Spring Boot + Kafka](https://habr.com/ru/articles/440400/)
 
 * Прочее
 

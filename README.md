@@ -124,11 +124,13 @@
 
 [Spring AOP. Плейлист](https://www.youtube.com/watch?v=IDVHzrreYU4&list=PLqj7-hRTFl_p-t5F2zSUlG6_9UIoE2r70&index=25&ab_channel=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%B0%D0%BD%D0%B8%D1%8F)
 
+* Test
+
+[AspectJ](https://habr.com/ru/articles/675778/)
+
 [Spring Boot Test](https://www.youtube.com/watch?v=uc-cfX-5wQA&ab_channel=Heisenbug)
 
 [Spring Boot Test](https://www.youtube.com/watch?v=7mZqJShu_3c&ab_channel=JPoint%2CJoker%D0%B8JUGru)
-
-[Spring Boot + Kafka](https://habr.com/ru/articles/440400/)
 
 * Docker
 
@@ -163,3 +165,5 @@
 [микросервисы еще](https://www.youtube.com/watch?v=6HvSpqBc8fA&ab_channel=HighLoadChannel)
 
 [и ещё](https://habr.com/ru/companies/avito/articles/426101/)
+
+[Spring Boot + Kafka](https://habr.com/ru/articles/440400/)

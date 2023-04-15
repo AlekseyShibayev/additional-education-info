@@ -86,6 +86,8 @@
 
 [Базовый уровень. Делаем hbm в xml. Плейлист](https://www.youtube.com/watch?v=VQPoe2OVghQ&list=PL7Bt6mWpiiza3rrRXmMwWdsQFDlmF2bWQ&index=4&ab_channel=JavaVision)
 
+[Немного теории](https://www.youtube.com/watch?v=C-wEZjEOhWc&list=LL&index=4&t=2224s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
+
 * Java Core Advanced
 
 [Многоядерное программирование на Java Плейлист](https://www.youtube.com/watch?v=4YGqahTTWtQ&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=2&ab_channel=GolovachCourses)

@@ -9,11 +9,9 @@
   * Spring Boot Test, JUnit5
   * Refactoring, Patterns, SOLID, DRY, KISS
 2. Изучить технологии:
-  * Spring Boot Starter
   * Spring Security
   * Docker Compose, Kubernetes, TestContainers
   * Kafka
-  * AssertJ
 
 ### 2. Прикладная:
 1. Написать приложение c использованием микросервисной архитектуры.

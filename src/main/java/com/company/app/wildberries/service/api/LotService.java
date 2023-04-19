@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface LotService {
 
-	Lot getLot(Long id);
+	Lot get(Long id);
 
 	List<Lot> getAll();
 
@@ -15,5 +15,7 @@ public interface LotService {
 
 	Long create(LotDto lotDto);
 
-	Boolean deleteLot(Long id);
+	Boolean delete(Long id);
+
+	Boolean update(Long id, LotDto lotDto);
 }

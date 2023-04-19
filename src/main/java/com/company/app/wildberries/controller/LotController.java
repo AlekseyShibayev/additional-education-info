@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+/**
+ * Божественный и великолепный, RESTful controller.
+ */
 @RestController
 @RequestMapping("/wildberries/lot")
 public class LotController {
@@ -16,35 +17,24 @@ public class LotController {
 	@Autowired
 	LotService lotService;
 
-	/**
-	 * пример запроса: http://localhost:8080/wildberries/lot/1
-	 */
-	@GetMapping(value = "/{id}", produces = "application/json")
-	public ResponseEntity<Lot> getById(@PathVariable Long id) {
-		return ResponseEntity.ok(lotService.getLot(id));
-	}
-
-	/**
-	 * пример запроса: http://localhost:8080/wildberries/lot/5
-	 */
-	@DeleteMapping(value = "/{id}", produces = "application/json")
-	public ResponseEntity<Boolean> deleteById(@PathVariable Long id) {
-		return ResponseEntity.ok(lotService.deleteLot(id));
-	}
-
-	/**
-	 * пример запроса: http://localhost:8080/wildberries/lot/all
-	 */
-	@GetMapping(value = "/all", produces = "application/json")
-	public ResponseEntity<List<Lot>> getAll() {
-		return ResponseEntity.ok(lotService.getAll());
-	}
-
-	/**
-	 * пример запроса: http://localhost:8080/wildberries/lot
-	 */
-	@PutMapping(value = "/", produces = "application/json")
+	@PostMapping(value = "/", produces = "application/json")
 	public ResponseEntity<Long> create(@RequestBody LotDto lotDto) {
 		return ResponseEntity.ok(lotService.create(lotDto));
+	}
+
+	@GetMapping(value = "/{id}", produces = "application/json")
+	public ResponseEntity<Lot> read(@PathVariable Long id) {
+		return ResponseEntity.ok(lotService.get(id));
+	}
+
+	@PutMapping(value = "/{id}", produces = "application/json")
+	public ResponseEntity<Boolean> update(@PathVariable Long id,
+										  @RequestBody LotDto lotDto) {
+		return ResponseEntity.ok(lotService.update(id, lotDto));
+	}
+
+	@DeleteMapping(value = "/{id}", produces = "application/json")
+	public ResponseEntity<Boolean> delete(@PathVariable Long id) {
+		return ResponseEntity.ok(lotService.delete(id));
 	}
 }

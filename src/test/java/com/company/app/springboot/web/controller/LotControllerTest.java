@@ -3,19 +3,14 @@ package com.company.app.springboot.web.controller;
 import com.company.app.springboot.web.WebMvcSpringBootTestContext;
 import com.company.app.wildberries.dto.LotDto;
 import com.company.app.wildberries.entity.Lot;
-import com.company.app.wildberries.service.api.LotService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 class LotControllerTest extends WebMvcSpringBootTestContext {
-
-	@MockBean
-	LotService lotService;
 
 	private Lot createTestLot() {
 		return Lot.builder().id(1L).name("name").price("price").build();

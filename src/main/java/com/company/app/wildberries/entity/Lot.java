@@ -26,4 +26,23 @@ public class Lot {
 
 	@Column(name = "discount")
 	private String discount;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		Lot lot = (Lot) o;
+
+		return id.equals(lot.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return id.hashCode();
+	}
 }

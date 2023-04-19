@@ -1,9 +1,12 @@
 package com.company.app.springboot.application;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.test.context.TestPropertySource;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @SpringBootTest:
@@ -26,6 +29,7 @@ import org.springframework.test.context.TestPropertySource;
  * @ExtendWith(SpringExtension.class) - для движка JUnit5, сейчас не стоит, т.к. она есть в @SpringBootTest.
  */
 
+@Slf4j
 @ExtendWith(OutputCaptureExtension.class)
 @TestPropertySource("/test.properties")
 @SpringBootTest(
@@ -33,4 +37,9 @@ import org.springframework.test.context.TestPropertySource;
 		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
 )
 public abstract class ApplicationSpringBootTestContext {
+
+	@PostConstruct
+	void init() {
+		log.debug("**********     запущена группа тестов всего приложения     **********");
+	}
 }

@@ -25,11 +25,12 @@ import org.springframework.test.context.TestPropertySource;
  * @RunWith(SpringRunner.class) - для движка JUnit4.
  * @ExtendWith(SpringExtension.class) - для движка JUnit5, сейчас не стоит, т.к. она есть в @SpringBootTest.
  */
-@SpringBootTest(
-		classes = SpringBootApplicationTestConfiguration.class,
-		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
-)
+
 @ExtendWith(OutputCaptureExtension.class)
 @TestPropertySource("/test.properties")
-public abstract class SpringBootApplicationTest {
+@SpringBootTest(
+		classes = ApplicationSpringBootTestConfiguration.class,
+		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
+)
+public abstract class ApplicationSpringBootTestContext {
 }

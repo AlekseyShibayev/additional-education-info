@@ -3,7 +3,6 @@ package com.company.app.telegram.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -12,17 +11,17 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "history")
-public class History {
+@Table(name = "chat")
+public class Chat {
 
 	@Id
 	@GeneratedValue
 	@Column(name = "id", nullable = false)
 	private Long id;
 
-	@Column(name = "message")
-	private String message;
+	@Column(name = "chatNumber")
+	private String chatNumber;
 
-	@Column(name = "date")
-	private Date date;
+	@Column(name = "role")
+	private String role;
 }

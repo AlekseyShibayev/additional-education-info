@@ -24,7 +24,7 @@ public class LotController {
 
 	@GetMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<Lot> read(@PathVariable Long id) {
-		return ResponseEntity.ok(lotService.get(id));
+		return ResponseEntity.ok(lotService.read(id));
 	}
 
 	@PutMapping(value = "/{id}", produces = "application/json")

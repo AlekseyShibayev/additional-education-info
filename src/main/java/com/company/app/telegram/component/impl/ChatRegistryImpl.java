@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 import java.util.Map;
 
 @Component
-public class CharRegistryImpl implements ChatRegistry {
+public class ChatRegistryImpl implements ChatRegistry {
 
 	private static final String CHAT_PROPERTIES = "telegram/chat.properties";
 

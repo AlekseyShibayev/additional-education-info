@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface LotService {
 
-	Lot get(Long id);
+	Long create(LotDto lotDto);
+
+	Lot read(Long id);
+
+	Boolean update(Long id, LotDto lotDto);
+
+	Boolean delete(Long id);
 
 	List<Lot> getAll();
 
 	Long create(String name, String price, String discount);
-
-	Long create(LotDto lotDto);
-
-	Boolean delete(Long id);
-
-	Boolean update(Long id, LotDto lotDto);
 }

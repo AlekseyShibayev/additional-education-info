@@ -19,13 +19,36 @@ public class LotServiceImpl implements LotService {
 	LotRepository lotRepository;
 
 	@Override
-	public Lot get(Long id) {
+	public Long create(LotDto lotDto) {
+		Lot lot = Lot.builder().build();
+		BeanUtils.copyProperties(lotDto, lot);
+		return lotRepository.save(lot).getId();
+	}
+
+	@Override
+	public Lot read(Long id) {
 		Optional<Lot> optional = lotRepository.findById(id);
 		if (optional.isPresent()) {
 			return optional.get();
 		} else {
 			throw new ObjectNotFoundException(id, Lot.class.getName());
 		}
+	}
+
+	@Override
+	public Boolean update(Long id, LotDto lotDto) {
+		Lot lot = Lot.builder()
+				.id(id)
+				.build();
+		BeanUtils.copyProperties(lotDto, lot);
+		lotRepository.save(lot);
+		return true;
+	}
+
+	@Override
+	public Boolean delete(Long id) {
+		lotRepository.deleteById(id);
+		return true;
 	}
 
 	@Override
@@ -41,31 +64,5 @@ public class LotServiceImpl implements LotService {
 				.discount(discount)
 				.build();
 		return lotRepository.save(lot).getId();
-	}
-
-	@Override
-	public Long create(LotDto lotDto) {
-		Lot lot = Lot.builder()
-				.name(lotDto.getName())
-				.price(lotDto.getPrice())
-				.discount(lotDto.getDiscount())
-				.build();
-		return lotRepository.save(lot).getId();
-	}
-
-	@Override
-	public Boolean delete(Long id) {
-		lotRepository.deleteById(id);
-		return true;
-	}
-
-	@Override
-	public Boolean update(Long id, LotDto lotDto) {
-		Lot lot = new Lot();
-		lot.setId(id);
-
-		BeanUtils.copyProperties(lotDto, lot);
-		lotRepository.save(lot);
-		return true;
 	}
 }

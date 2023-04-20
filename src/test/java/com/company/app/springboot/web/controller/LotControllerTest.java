@@ -23,7 +23,7 @@ class LotControllerTest extends WebMvcSpringBootTestContext {
 	@Test
 	void get_mustBe() throws Exception {
 		Lot lot = createTestLot();
-		Mockito.when(lotService.get(Mockito.any())).thenReturn(lot);
+		Mockito.when(lotService.read(Mockito.any())).thenReturn(lot);
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/wildberries/lot/1"))
 				.andDo(MockMvcResultHandlers.print())

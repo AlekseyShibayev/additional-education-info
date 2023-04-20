@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * swagger: http://localhost:8080/swagger-ui.html
+ * H2 http://localhost:8080/h2-console
  * <p>
  * Тесты:
  * 1. JUnit

@@ -1,8 +1,10 @@
 package com.company.app.telegram.component.api;
 
-import java.util.Map;
+import com.company.app.telegram.entity.Chat;
+
+import java.util.List;
 
 public interface ChatRegistry {
 
-	Map<String, String> getAll();
+	List<Chat> getAll();
 }

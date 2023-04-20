@@ -1,5 +1,6 @@
 package com.company.app.telegram.service.impl;
 
+import com.company.app.telegram.entity.Chat;
 import com.company.app.telegram.entity.History;
 import com.company.app.telegram.repository.HistoryRepository;
 import com.company.app.telegram.service.api.HistoryService;
@@ -17,6 +18,15 @@ public class HistoryServiceImpl implements HistoryService {
 	@Override
 	public void save(String text) {
 		historyRepository.save(History.builder()
+				.message(text)
+				.date(new Date())
+				.build());
+	}
+
+	@Override
+	public void save(Chat chat, String text) {
+		historyRepository.save(History.builder()
+				.chat(chat)
 				.message(text)
 				.date(new Date())
 				.build());

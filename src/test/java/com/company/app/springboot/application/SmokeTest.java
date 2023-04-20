@@ -1,6 +1,8 @@
 package com.company.app.springboot.application;
 
 import com.company.app.telegram.component.TelegramFacade;
+import com.company.app.telegram.component.api.ChatRegistry;
+import com.company.app.telegram.entity.Chat;
 import com.company.app.telegram.entity.History;
 import com.company.app.telegram.repository.HistoryRepository;
 import com.google.common.collect.Lists;
@@ -25,19 +27,27 @@ class SmokeTest extends ApplicationSpringBootTestContext {
 	TelegramFacade telegramFacade;
 	@Autowired
 	HistoryRepository historyRepository;
+	@Autowired
+	ChatRegistry chatRegistry;
 
 	@Test
 	void historyRepositorySmokeTest() {
 		historyRepository.deleteAll();
+
+		List<Chat> chatList = chatRegistry.getAll();
+
 		historyRepository.save(History.builder()
+				.chat(chatList.get(0))
 				.message("0. Успешное сохранение в бд.")
 				.build());
+
 		Assertions.assertEquals(1, Lists.newArrayList(historyRepository.findAll()).size());
 	}
 
 	@Test
 	void notificationServiceSmokeTest() {
 		telegramFacade.write("1. Тестовое приложение поднялось.");
+
 		List<History> all = historyRepository.findAll();
 		Assertions.assertNotNull(all);
 	}

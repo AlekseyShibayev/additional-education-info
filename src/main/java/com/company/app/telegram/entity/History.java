@@ -12,17 +12,21 @@ import java.util.Date;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Entity
-@Table(name = "history")
+@Table(name = "HISTORY")
 public class History {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "id", nullable = false)
+	@Column(name = "ID", nullable = false)
 	private Long id;
 
-	@Column(name = "message")
+	@Column(name = "MESSAGE")
 	private String message;
 
-	@Column(name = "date")
+	@Column(name = "DATE")
 	private Date date;
+
+	@ManyToOne
+	@JoinColumn(name="CHAT_ID", nullable=false, updatable=false)
+	private Chat chat;
 }

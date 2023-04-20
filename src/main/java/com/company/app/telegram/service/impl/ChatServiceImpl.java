@@ -4,7 +4,6 @@ import com.company.app.telegram.dto.ChatDto;
 import com.company.app.telegram.entity.Chat;
 import com.company.app.telegram.repository.ChatRepository;
 import com.company.app.telegram.service.api.ChatService;
-import com.company.app.wildberries.entity.Lot;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class ChatServiceImpl implements ChatService {
 		if (optional.isPresent()) {
 			return optional.get();
 		} else {
-			throw new ObjectNotFoundException(id, Lot.class.getName());
+			throw new ObjectNotFoundException(id, Chat.class.getName());
 		}
 	}
 

@@ -10,7 +10,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(of = {"id"})
 @Entity
 @Table(name = "CHAT")
 public class Chat {
@@ -26,6 +26,6 @@ public class Chat {
 	@Column(name = "ROLE")
 	private String role;
 
-	@OneToMany(mappedBy = "chat", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "chat", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<History> historyList;
 }

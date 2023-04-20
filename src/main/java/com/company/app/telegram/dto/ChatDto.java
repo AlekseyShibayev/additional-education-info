@@ -7,6 +7,6 @@ import lombok.Data;
 @Builder
 public class ChatDto {
 
-	private String chatNumber;
+	private Long chatId;
 	private String role;
 }

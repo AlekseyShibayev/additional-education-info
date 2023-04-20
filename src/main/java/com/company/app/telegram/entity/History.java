@@ -10,7 +10,7 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(of = {"id"})
 @Entity
 @Table(name = "HISTORY")
 public class History {
@@ -27,6 +27,6 @@ public class History {
 	private Date date;
 
 	@ManyToOne
-	@JoinColumn(name="CHAT_ID", nullable=false, updatable=false)
+	@JoinColumn(name="CHAT_ID", nullable = false)
 	private Chat chat;
 }

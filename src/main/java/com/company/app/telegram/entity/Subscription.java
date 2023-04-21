@@ -3,6 +3,7 @@ package com.company.app.telegram.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -10,20 +11,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "USER_INFO")
-public class UserInfo {
+@Table(name = "SUBSCRIPTION")
+public class Subscription {
 
 	@Id
 	@GeneratedValue
 	@Column(name = "ID", nullable = false)
 	private Long id;
 
-	@OneToOne(mappedBy = "userInfo")
-	Chat chat;
+	@Column(name = "TYPE")
+	private String type;
 
-	@Column(name = "NAME")
-	private String name;
-
-	@Column(name = "ROLE")
-	private String role;
+	@ManyToMany(mappedBy="subscriptions")
+	private List<Chat> chats;
 }

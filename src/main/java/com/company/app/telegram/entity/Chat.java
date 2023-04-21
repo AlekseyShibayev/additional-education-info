@@ -32,4 +32,8 @@ public class Chat {
 
 	@OneToMany(mappedBy = "chat", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<History> historyList;
+
+	@ManyToMany
+	@JoinTable(name="CHATS_SUBSCRIPTIONS")
+	private List<Subscription> subscriptions;
 }

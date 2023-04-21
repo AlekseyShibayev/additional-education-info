@@ -2,6 +2,8 @@ package com.company.app.telegram.component.impl;
 
 import com.company.app.telegram.component.api.Binder;
 import com.company.app.telegram.component.api.BinderExecutor;
+import com.company.app.telegram.component.data.BinderContainer;
+import com.company.app.telegram.entity.Chat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,10 +28,17 @@ public class BinderExecutorImpl implements BinderExecutor {
 	}
 
 	@Override
-	public void execute(String text) {
+	public void execute(Chat chat, String text) {
 		String binderType = Arrays.stream(text.split(" ")).findFirst().orElseThrow();
+
 		Binder binder = Optional.ofNullable(binders.get(binderType))
 				.orElseThrow(() -> new IllegalArgumentException(String.format("Не смог вытащить тип binderType из [%s].", text)));
-		binder.bind(text);
+
+		BinderContainer binderContainer = BinderContainer.builder()
+				.chat(chat)
+				.message(text)
+				.build();
+
+		binder.bind(binderContainer);
 	}
 }

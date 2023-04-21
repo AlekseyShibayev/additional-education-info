@@ -1,6 +1,7 @@
 package com.company.app.wildberries.component.impl;
 
 import com.company.app.core.tool.api.JsonSerializationTool;
+import com.company.app.telegram.component.data.BinderContainer;
 import com.company.app.wildberries.component.api.WildberriesBinder;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
@@ -27,8 +28,8 @@ public class WildberriesBinderImpl implements WildberriesBinder {
 	}
 
 	@Override
-	public void bind(String string) {
-		string = string.substring(3);
+	public void bind(BinderContainer binderContainer) {
+		String string = binderContainer.getMessage().substring(3);
 		List<Lot> lots = jsonSerializationTool.load(string, Lot.class);
 		if (log.isDebugEnabled()) {
 			log.debug("Пробую добавить лотов [{}].", lots.size());

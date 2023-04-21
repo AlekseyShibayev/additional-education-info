@@ -7,4 +7,6 @@ import java.util.List;
 public interface ChatRegistry {
 
 	List<Chat> getAll();
+
+	Chat saveIfNotExistAndGet(Long chatId);
 }

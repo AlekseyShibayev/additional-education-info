@@ -7,4 +7,6 @@ public interface HistoryService {
 	void save(String text);
 
 	void save(Chat chat, String text);
+
+	void save(Long chatId, String text);
 }

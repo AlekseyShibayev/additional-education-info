@@ -31,4 +31,13 @@ public class HistoryServiceImpl implements HistoryService {
 				.date(new Date())
 				.build());
 	}
+
+	@Override
+	public void save(Long chatId, String text) {
+		historyRepository.save(History.builder()
+				.chat(Chat.builder().chatId(chatId).build())
+				.message(text)
+				.date(new Date())
+				.build());
+	}
 }

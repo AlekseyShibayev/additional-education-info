@@ -2,6 +2,7 @@ package com.company.app.wildberries.component.impl;
 
 import com.company.app.core.tool.api.JsonSerializationTool;
 import com.company.app.springboot.application.ApplicationSpringBootTestContext;
+import com.company.app.telegram.component.data.BinderContainer;
 import com.company.app.wildberries.dto.LotDto;
 import com.company.app.wildberries.entity.Lot;
 import com.company.app.wildberries.repository.LotRepository;
@@ -31,8 +32,8 @@ class WildberriesBinderTest extends ApplicationSpringBootTestContext {
 				.discount("0.11")
 				.build();
 
-		String rightPart = "WB " + serializationService.asString(Collections.singletonList(lot));
-		wildberriesBinder.bind(rightPart);
+		String message = "WB " + serializationService.asString(Collections.singletonList(lot));
+		wildberriesBinder.bind(BinderContainer.builder().message(message).build());
 
 		List<Lot> after = lotRepository.findAll();
 

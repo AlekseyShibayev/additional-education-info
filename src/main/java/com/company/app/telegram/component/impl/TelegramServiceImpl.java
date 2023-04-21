@@ -33,10 +33,11 @@ public class TelegramServiceImpl implements TelegramService {
 		Long chatId = message.getChatId();
 		String text = message.getText();
 
+		Chat chat = chatRegistry.saveIfNotExistAndGet(chatId);
 		log.debug("Читаю из чата [{}] сообщение [{}].", chatId, text);
-		historyService.save(text);
+		historyService.save(chat, text);
 
-		binderExecutor.execute(text);
+		binderExecutor.execute(chat, text);
 	}
 
 	@SneakyThrows

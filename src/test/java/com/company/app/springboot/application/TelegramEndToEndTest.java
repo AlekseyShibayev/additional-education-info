@@ -7,6 +7,7 @@ import com.company.app.telegram.controller.TelegramController;
 import com.company.app.telegram.dto.ChatDto;
 import com.company.app.telegram.entity.Chat;
 import com.company.app.telegram.entity.History;
+import com.company.app.telegram.entity.UserInfo;
 import com.company.app.telegram.repository.ChatRepository;
 import com.company.app.telegram.service.api.ChatService;
 import com.company.app.telegram.util.ChatUtil;
@@ -60,7 +61,7 @@ class TelegramEndToEndTest extends ApplicationSpringBootTestContext {
 		Long id = chatController.create(chatDto).getBody();
 		Assertions.assertEquals(1, chatRepository.findAll().size());
 
-		chatDto.setRole("Test_Role");
+		chatDto.setUserInfo(UserInfo.builder().role("Test_Role").build());
 		chatController.update(id, chatDto);
 		Assertions.assertEquals(1, chatRepository.findAll().size());
 

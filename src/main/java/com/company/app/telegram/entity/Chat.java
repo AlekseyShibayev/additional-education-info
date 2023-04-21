@@ -26,8 +26,9 @@ public class Chat {
 	@Column(name = "ENABLE_NOTIFICATIONS")
 	private boolean enableNotifications;
 
-	@Column(name = "ROLE")
-	private String role;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_INFO_ID", referencedColumnName = "id")
+	UserInfo userInfo;
 
 	@OneToMany(mappedBy = "chat", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<History> historyList;

@@ -3,6 +3,7 @@ package com.company.app.telegram.component.impl;
 import com.company.app.core.tool.api.DataExtractorTool;
 import com.company.app.telegram.component.api.ChatRegistry;
 import com.company.app.telegram.entity.Chat;
+import com.company.app.telegram.entity.UserInfo;
 import com.company.app.telegram.repository.ChatRepository;
 import com.company.app.telegram.service.api.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,12 @@ public class ChatRegistryImpl implements ChatRegistry {
 		Map<String, String> chats = dataExtractorTool.getProperties(CHAT_PROPERTIES);
 
 		List<Chat> list = chats.keySet().stream()
-				.map(chatId -> Chat.builder().chatId(Long.valueOf(chatId)).role(chats.get(chatId)).build())
+				.map(chatId -> Chat.builder()
+						.chatId(Long.valueOf(chatId))
+						.enableNotifications(true)
+						.userInfo(UserInfo.builder().role(chats.get(chatId)).build())
+						.build()
+				)
 				.collect(Collectors.toList());
 
 		chatRepository.saveAll(list);

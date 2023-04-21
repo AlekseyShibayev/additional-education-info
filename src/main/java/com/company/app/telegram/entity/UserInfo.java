@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of = {"id"})
 @Entity
 @Table(name = "USER_INFO")
 public class UserInfo {
@@ -19,7 +20,7 @@ public class UserInfo {
 	private Long id;
 
 	@OneToOne(mappedBy = "userInfo")
-	Chat chat;
+	private Chat chat;
 
 	@Column(name = "NAME")
 	private String name;

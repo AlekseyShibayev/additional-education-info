@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -13,6 +14,13 @@ import java.util.List;
 @EqualsAndHashCode(of = {"id"})
 @Entity
 @Table(name = "CHAT")
+@NamedEntityGraph(name = "Chat.all",
+		attributeNodes = {
+				@NamedAttributeNode("subscriptions"),
+				@NamedAttributeNode("historyList"),
+				@NamedAttributeNode("userInfo")
+		}
+)
 public class Chat {
 
 	@Id
@@ -26,14 +34,14 @@ public class Chat {
 	@Column(name = "ENABLE_NOTIFICATIONS")
 	private boolean enableNotifications;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "USER_INFO_ID", referencedColumnName = "id")
-	UserInfo userInfo;
+	private UserInfo userInfo;
 
-	@OneToMany(mappedBy = "chat", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "chat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<History> historyList;
 
-	@ManyToMany
-	@JoinTable(name="CHATS_SUBSCRIPTIONS")
-	private List<Subscription> subscriptions;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "CHATS_SUBSCRIPTIONS")
+	private Set<Subscription> subscriptions;
 }

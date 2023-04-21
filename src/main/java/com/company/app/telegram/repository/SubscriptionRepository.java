@@ -3,9 +3,9 @@ package com.company.app.telegram.repository;
 import com.company.app.telegram.entity.Subscription;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
+import java.util.Set;
 
 public interface SubscriptionRepository extends CrudRepository<Subscription, Long> {
 
-	List<Subscription> findAll();
+	Set<Subscription> findAll();
 }

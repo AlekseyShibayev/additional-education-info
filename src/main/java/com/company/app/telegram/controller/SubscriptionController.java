@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/telegram/subscription")
@@ -24,7 +24,7 @@ public class SubscriptionController {
 	}
 
 	@GetMapping(value = "/all", produces = "application/json")
-	public ResponseEntity<List<Subscription>> read() {
+	public ResponseEntity<Set<Subscription>> readAll() {
 		return ResponseEntity.ok(subscriptionService.getAll());
 	}
 }

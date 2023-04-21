@@ -39,15 +39,7 @@
 
 ## Маленькая jira (todo'шки, мысли):
 1. Простые:
-
   - переделать связь Chat с History через поле CHAT_ID (сейчас через Chat.id)
-
-
-  - создать сущность "Подписка", сейчас есть подписка вб и курса, связать с Chat через @ManyToMany
-  - "TG +" подписывает на всё что есть
-
-
-
   - использовать бд PostgreSQL, H2 использовать в тестах
   - прикрутить flyway, делать DDL не авто, а скриптами
   - придумать, как связать таблички всеми видами связей
@@ -92,11 +84,13 @@
 
 [Дополнительно: эволюция spring core. Та самая инфа, которая заполнит пробел, появившийся между java core и использованием spring di/ioc](https://www.youtube.com/watch?v=rd6wxPzXQvo&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
-* Hibernate
+* Spring Data, JPA, Hibernate
 
 [Базовый уровень. Делаем hbm в xml. Плейлист](https://www.youtube.com/watch?v=VQPoe2OVghQ&list=PL7Bt6mWpiiza3rrRXmMwWdsQFDlmF2bWQ&index=4&ab_channel=JavaVision)
 
 [Немного теории](https://www.youtube.com/watch?v=C-wEZjEOhWc&list=LL&index=4&t=2224s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
+
+[Spring Data puzzler](https://www.youtube.com/watch?v=o8LN6NOFa3c&t=2127s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
 * Java Core Advanced
 

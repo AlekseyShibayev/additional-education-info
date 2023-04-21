@@ -3,13 +3,14 @@ package com.company.app.telegram.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of = {"id"})
 @Entity
 @Table(name = "SUBSCRIPTION")
 public class Subscription {
@@ -23,5 +24,5 @@ public class Subscription {
 	private String type;
 
 	@ManyToMany(mappedBy="subscriptions")
-	private List<Chat> chats;
+	private Set<Chat> chats;
 }

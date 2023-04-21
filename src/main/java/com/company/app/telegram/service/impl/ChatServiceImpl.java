@@ -8,6 +8,7 @@ import com.company.app.telegram.util.ChatUtil;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ public class ChatServiceImpl implements ChatService {
 	@Autowired
 	ChatRepository chatRepository;
 
+	@Transactional
 	@Override
 	public Long create(ChatDto chatDto) {
 		Optional<Chat> optional = chatRepository.findFirstByChatId(chatDto.getChatId());
@@ -28,6 +30,7 @@ public class ChatServiceImpl implements ChatService {
 		}
 	}
 
+	@Transactional
 	@Override
 	public Chat read(Long id) {
 		Optional<Chat> optional = chatRepository.findById(id);
@@ -38,6 +41,7 @@ public class ChatServiceImpl implements ChatService {
 		}
 	}
 
+	@Transactional
 	@Override
 	public Boolean update(Long id, ChatDto chatDto) {
 		Chat chat = ChatUtil.of(id, chatDto);
@@ -45,6 +49,7 @@ public class ChatServiceImpl implements ChatService {
 		return true;
 	}
 
+	@Transactional
 	@Override
 	public Boolean delete(Long id) {
 		chatRepository.deleteById(id);

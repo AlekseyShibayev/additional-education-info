@@ -7,19 +7,20 @@ import com.company.app.telegram.controller.TelegramController;
 import com.company.app.telegram.dto.ChatDto;
 import com.company.app.telegram.entity.Chat;
 import com.company.app.telegram.entity.History;
+import com.company.app.telegram.entity.Subscription;
 import com.company.app.telegram.entity.UserInfo;
 import com.company.app.telegram.repository.ChatRepository;
 import com.company.app.telegram.service.api.ChatService;
 import com.company.app.telegram.util.ChatUtil;
 import org.hibernate.ObjectNotFoundException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Set;
 
 class TelegramEndToEndTest extends ApplicationSpringBootTestContext {
 
@@ -133,5 +134,22 @@ class TelegramEndToEndTest extends ApplicationSpringBootTestContext {
 
 		List<Chat> chats = chatRepository.findAll();
 		Assertions.assertEquals(1, chats.size());
+	}
+
+	@Test
+	void subscribe_test() {
+		ChatDto chatDto = ChatDto.builder().chatId(653606407L).build();
+		Long id = chatController.create(chatDto).getBody();
+		Chat chat = ChatUtil.of(id, chatDto);
+		telegramBinder.bind(BinderContainer.builder()
+				.chat(chat)
+				.message("TG +")
+				.build());
+
+		Chat after = chatController.read(id).getBody();
+		Set<Subscription> subscriptions = after.getSubscriptions();
+		Assertions.assertNotNull(subscriptions);
+		Assertions.assertTrue(subscriptions.size() > 0);
+		Assertions.assertNotNull(subscriptions.stream().findFirst().get());
 	}
 }

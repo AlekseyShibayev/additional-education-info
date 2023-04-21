@@ -6,7 +6,7 @@ import com.company.app.telegram.service.api.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Set;
 
 @Service
 public class SubscriptionServiceImpl implements SubscriptionService {
@@ -20,7 +20,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 	}
 
 	@Override
-	public List<Subscription> getAll() {
+	public Set<Subscription> getAll() {
 		return subscriptionRepository.findAll();
 	}
 }

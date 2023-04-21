@@ -8,5 +8,6 @@ import lombok.Data;
 public class ChatDto {
 
 	private Long chatId;
+	private boolean enableNotifications;
 	private String role;
 }

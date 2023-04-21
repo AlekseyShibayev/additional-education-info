@@ -14,8 +14,6 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.List;
-
 @Slf4j
 @Component
 public class TelegramServiceImpl implements TelegramService {
@@ -46,10 +44,9 @@ public class TelegramServiceImpl implements TelegramService {
 	public void write(Object message) {
 		log.debug("Пишу в телеграм: [{}].", message);
 
-		List<Chat> chatList = chatRegistry.getAll();
-		chatList.forEach(chat -> historyService.save(chat, String.valueOf(message)));
-
-		chatList.stream()
+		chatRegistry.getAll().stream()
+				.filter(Chat::isEnableNotifications)
+				.peek(chat -> historyService.save(chat, String.valueOf(message)))
 				.map(chat -> SendMessage.builder().text(message.toString()).chatId(chat.getChatId().toString()).build())
 				.forEach(telegramBotConfig::write);
 	}

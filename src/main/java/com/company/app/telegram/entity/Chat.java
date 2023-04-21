@@ -23,6 +23,9 @@ public class Chat {
 	@Column(name = "CHAT_ID")
 	private Long chatId;
 
+	@Column(name = "ENABLE_NOTIFICATIONS")
+	private boolean enableNotifications;
+
 	@Column(name = "ROLE")
 	private String role;
 

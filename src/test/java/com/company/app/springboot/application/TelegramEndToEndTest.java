@@ -25,7 +25,10 @@ class TelegramEndToEndTest extends ApplicationSpringBootTestContext {
 
 	@Test
 	void telegram_chat_history_test() {
-		ResponseEntity<Long> chatId = chatController.create(ChatDto.builder().chatId(653606407L).role("Admin").build());
+		ResponseEntity<Long> chatId = chatController.create(ChatDto.builder()
+				.chatId(653606407L)
+				.enableNotifications(true)
+				.build());
 		telegramController.say("test_text");
 
 		Chat chat = chatService.read(chatId.getBody());
@@ -38,9 +41,22 @@ class TelegramEndToEndTest extends ApplicationSpringBootTestContext {
 
 	@Test
 	void chatController_create_delete_read_test() {
-		ResponseEntity<Long> chatId = chatController.create(ChatDto.builder().chatId(1974712519L).role("User").build());
+		ChatDto chatDto = ChatDto.builder().chatId(653606407L).role("User").build();
+		ResponseEntity<Long> chatId = chatController.create(chatDto);
 		Long id = chatId.getBody();
 		chatController.delete(id);
 		Assertions.assertThrows(ObjectNotFoundException.class, () -> chatController.read(id));
+	}
+
+	@Test
+	void chatController_enableNotifications_false_test() {
+		ChatDto chatDto = ChatDto.builder().chatId(653606407L).build();
+		Long id = chatController.create(chatDto).getBody();
+
+		telegramController.say("test_text");
+		Chat chat = chatController.read(id).getBody();
+
+		List<History> historyList = chat.getHistoryList();
+		Assertions.assertEquals(0, historyList.size());
 	}
 }

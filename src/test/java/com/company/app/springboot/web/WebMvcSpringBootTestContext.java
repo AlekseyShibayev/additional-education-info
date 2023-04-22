@@ -26,6 +26,6 @@ public abstract class WebMvcSpringBootTestContext {
 
 	@PostConstruct
 	void init() {
-		log.debug("**********     запущена группа тестов веб морды     **********");
+		log.debug("**********     запущена группа тестов web mvc     **********");
 	}
 }

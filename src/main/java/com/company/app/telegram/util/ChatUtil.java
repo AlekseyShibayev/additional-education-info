@@ -31,8 +31,15 @@ public class ChatUtil {
 	}
 
 	public static List<ChatDto> of(List<Chat> chatList) {
-		return chatList.stream()
+		List<ChatDto> dtoList = chatList.stream()
 				.map(ChatUtil::of)
 				.collect(Collectors.toList());
+
+		// пока что закостылим
+		dtoList.forEach(chatDto -> chatDto.getHistoryList().forEach(history -> history.setChat(null)));
+		dtoList.forEach(chatDto -> chatDto.getSubscriptions().forEach(subscription -> subscription.setChats(null)));
+		dtoList.forEach(chatDto -> chatDto.getUserInfo().setChat(null));
+
+		return dtoList;
 	}
 }

@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface ChatRepository extends CrudRepository<Chat, Long> {
 
+	@EntityGraph(value = "Chat.all")
 	List<Chat> findAll();
 
 	boolean existsChatByChatId(Long chatId);

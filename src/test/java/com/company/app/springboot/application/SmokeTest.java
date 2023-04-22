@@ -1,10 +1,11 @@
 package com.company.app.springboot.application;
 
 import com.company.app.telegram.component.TelegramFacade;
-import com.company.app.telegram.component.api.ChatRegistry;
+import com.company.app.telegram.component.api.InitialChatRegistry;
 import com.company.app.telegram.entity.Chat;
 import com.company.app.telegram.entity.History;
 import com.company.app.telegram.repository.HistoryRepository;
+import com.company.app.telegram.service.api.ChatService;
 import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,13 +29,15 @@ class SmokeTest extends ApplicationSpringBootTestContext {
 	@Autowired
 	HistoryRepository historyRepository;
 	@Autowired
-	ChatRegistry chatRegistry;
+	ChatService chatService;
+	@Autowired
+	InitialChatRegistry initialChatRegistry; // зовем его, потому что в тестах все ленивые, и он нам не создал стартовые чаты
 
 	@Test
 	void historyRepositorySmokeTest() {
 		historyRepository.deleteAll();
 
-		List<Chat> chatList = chatRegistry.getAll();
+		List<Chat> chatList = chatService.getAll();
 
 		historyRepository.save(History.builder()
 				.chat(chatList.get(0))

@@ -1,9 +1,11 @@
 package com.company.app.telegram.dto;
 
+import com.company.app.telegram.entity.History;
 import com.company.app.telegram.entity.Subscription;
 import com.company.app.telegram.entity.UserInfo;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -13,8 +15,10 @@ import java.util.Set;
 @Builder
 public class ChatDto {
 
+	private Long id;
 	private Long chatId;
 	private boolean enableNotifications;
-	UserInfo userInfo;
-	Set<Subscription> subscriptions;
+	private List<History> historyList;
+	private UserInfo userInfo;
+	private Set<Subscription> subscriptions;
 }

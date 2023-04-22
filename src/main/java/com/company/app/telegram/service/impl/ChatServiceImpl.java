@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -60,5 +61,25 @@ public class ChatServiceImpl implements ChatService {
 	public Boolean delete(Long id) {
 		chatRepository.deleteById(id);
 		return true;
+	}
+
+	@Transactional
+	@Override
+	public Chat saveIfNotExistAndGet(Long chatId) {
+		if (chatRepository.existsChatByChatId(chatId)) {
+			return chatRepository.findFirstByChatId(chatId).get();
+		} else {
+			return save(chatId);
+		}
+	}
+
+	private Chat save(Long chatId) {
+		Chat chat = Chat.builder().chatId(chatId).build();
+		return chatRepository.save(chat);
+	}
+	@Transactional
+	@Override
+	public List<Chat> getAll() {
+		return chatRepository.findAll();
 	}
 }

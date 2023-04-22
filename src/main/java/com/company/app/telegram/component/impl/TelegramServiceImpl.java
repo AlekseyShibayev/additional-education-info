@@ -1,10 +1,10 @@
 package com.company.app.telegram.component.impl;
 
 import com.company.app.telegram.component.api.BinderExecutor;
-import com.company.app.telegram.component.api.ChatRegistry;
 import com.company.app.telegram.component.api.TelegramBotConfig;
 import com.company.app.telegram.component.api.TelegramService;
 import com.company.app.telegram.entity.Chat;
+import com.company.app.telegram.service.api.ChatService;
 import com.company.app.telegram.service.api.HistoryService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class TelegramServiceImpl implements TelegramService {
 	@Autowired
 	BinderExecutor binderExecutor;
 	@Autowired
-	ChatRegistry chatRegistry;
+	ChatService chatService;
 
 	@Override
 	public void read(Update update) {
@@ -33,7 +33,7 @@ public class TelegramServiceImpl implements TelegramService {
 		Long chatId = message.getChatId();
 		String text = message.getText();
 
-		Chat chat = chatRegistry.saveIfNotExistAndGet(chatId);
+		Chat chat = chatService.saveIfNotExistAndGet(chatId);
 		log.debug("Читаю из чата [{}] сообщение [{}].", chatId, text);
 		historyService.save(chat, text);
 
@@ -45,7 +45,7 @@ public class TelegramServiceImpl implements TelegramService {
 	public void write(Object message) {
 		log.debug("Пишу в телеграм: [{}].", message);
 
-		chatRegistry.getAll().stream()
+		chatService.getAll().stream()
 				.filter(Chat::isEnableNotifications)
 				.peek(chat -> historyService.save(chat, String.valueOf(message)))
 				.map(chat -> SendMessage.builder().text(message.toString()).chatId(chat.getChatId().toString()).build())

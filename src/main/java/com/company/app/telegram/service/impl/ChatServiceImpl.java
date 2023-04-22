@@ -12,6 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+/**
+ * Магия @Transactional
+ * - при помощи прокси делает банальные begin, rollback, commit. т.е. объединяет действия в рамках одной транзакции.
+ * - с учетом проверяемых/не проверяемых исключений. Для проверяемых - commit.
+ * - внутри неё сущности находятся в hibernate l1 кеше и видят друг друга
+ */
 @Service
 public class ChatServiceImpl implements ChatService {
 

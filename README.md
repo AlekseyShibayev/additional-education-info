@@ -5,7 +5,7 @@
 ### 1. Учебная:
 1. Получить продвинутые навыки в разработке Java + Spring Framework приложений:
   * Java 11, Stream API, Lambdas, Optional, Reflection
-  * Spring(Core, Boot, Data, Web, Caching, Scheduling, AOP)
+  * Spring(Core, Boot, Data Jpa, Web, Caching, Scheduling, AOP)
   * Spring Boot Test, JUnit5
   * Refactoring, Patterns, SOLID, DRY, KISS
 2. Изучить технологии:

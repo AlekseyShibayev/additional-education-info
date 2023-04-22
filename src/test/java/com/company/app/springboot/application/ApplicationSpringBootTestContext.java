@@ -9,8 +9,7 @@ import org.springframework.test.context.TestPropertySource;
 import javax.annotation.PostConstruct;
 
 /**
- * @SpringBootTest:
- * 1. Без classes. Идёт к корню приложения, ничего не считывает, ищет @SpringBootConfiguration
+ * @SpringBootTest: 1. Без classes. Идёт к корню приложения, ничего не считывает, ищет @SpringBootConfiguration
  * которая, обычно есть в Application.class в @SpringBootApplication
  * когда нашёл - выполняет её, т.е. поднимает весь спринг бут контекст
  * после идет обратно и считывает конфигурации для тестов.

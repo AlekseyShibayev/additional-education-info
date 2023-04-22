@@ -14,7 +14,8 @@ import java.util.Set;
 @EqualsAndHashCode(of = {"id"})
 @Entity
 @Table(name = "CHAT")
-@NamedEntityGraph(name = "Chat.all",
+@NamedEntityGraph(
+		name = "Chat.all",
 		attributeNodes = {
 				@NamedAttributeNode("subscriptions"),
 				@NamedAttributeNode("historyList"),

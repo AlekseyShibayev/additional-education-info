@@ -24,6 +24,7 @@ import org.springframework.test.context.TestPropertySource;
  * 7. ...
  * 8. Инжектит мне @Autowired ExchangeRateFacade exchangeRateFacade;
  * <p>
+ *
  * @ComponentScan(lazyInit = true) - уменьшит количество Mock
  */
 @Slf4j

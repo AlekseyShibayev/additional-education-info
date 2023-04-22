@@ -23,6 +23,6 @@ public class Subscription {
 	@Column(name = "TYPE")
 	private String type;
 
-	@ManyToMany(mappedBy="subscriptions")
+	@ManyToMany(mappedBy = "subscriptions")
 	private Set<Chat> chats;
 }

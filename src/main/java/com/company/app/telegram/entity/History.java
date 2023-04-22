@@ -27,6 +27,6 @@ public class History {
 	private Date date;
 
 	@ManyToOne
-	@JoinColumn(name="CHAT_ID", nullable = false)
+	@JoinColumn(name = "CHAT_ID", nullable = false)
 	private Chat chat;
 }

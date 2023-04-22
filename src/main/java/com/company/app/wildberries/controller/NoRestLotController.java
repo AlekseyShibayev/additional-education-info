@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Страшный и ужасный неРЕСТконтролёр.
  * Создан специально, чтобы пугать адептов REST_FULL_AI_PI_AI.
-  */
+ */
 @RestController
 @RequestMapping("/wildberries/noRest/lot")
 public class NoRestLotController {

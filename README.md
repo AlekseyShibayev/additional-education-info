@@ -177,3 +177,4 @@ select * from history;
 select * from user_info;
 select * from CHATS_SUBSCRIPTIONS;
 select * from SUBSCRIPTION;
+select * from LOT;

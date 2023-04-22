@@ -16,7 +16,7 @@ import java.util.List;
 @Component
 public class InitialChatRegistryImpl implements InitialChatRegistry {
 
-	@Value("classpath:telegram/init.json")
+	@Value("classpath:telegram/init_chat.json")
 	private Resource resource;
 
 	@Autowired

@@ -171,3 +171,9 @@
 [и ещё](https://habr.com/ru/companies/avito/articles/426101/)
 
 [Spring Boot + Kafka](https://habr.com/ru/articles/440400/)
+
+select * from chat;
+select * from history;
+select * from user_info;
+select * from CHATS_SUBSCRIPTIONS;
+select * from SUBSCRIPTION;

@@ -2,7 +2,7 @@
 
   * [Ссылка на себя](https://github.com/AlekseyShibayev/TelegramNotificationService)
   * Проект использует: [telegram-bot-spring-boot-starter](https://github.com/AlekseyShibayev/telegram-bot-spring-boot-starter)
-  * Ссылка на различные обучающие курсы:
+  * Ссылка на различные обучающие курсы: [TODO]
 
 ## Цели проекта:
 ### 1. Учебная:

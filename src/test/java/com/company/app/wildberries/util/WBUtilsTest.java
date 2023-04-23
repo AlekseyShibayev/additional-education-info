@@ -18,11 +18,11 @@ class WBUtilsTest {
 
 	private List<Lot> createLots() {
 		return ImmutableList.<Lot>builder()
-				.add(Lot.builder().name("43409221").price("1500").discount("0.19").build())
-				.add(Lot.builder().name("43409221").price("1500").discount("0.19").build())
-				.add(Lot.builder().name("43409221").price("1500").discount("0.19").build())
-				.add(Lot.builder().name("15694225").price("5500").discount("0.17").build())
-				.add(Lot.builder().name("15694225").price("5500").discount("0.17").build())
+				.add(Lot.builder().article("43409221").desiredPrice("1500").discount("0.19").build())
+				.add(Lot.builder().article("43409221").desiredPrice("1500").discount("0.19").build())
+				.add(Lot.builder().article("43409221").desiredPrice("1500").discount("0.19").build())
+				.add(Lot.builder().article("15694225").desiredPrice("5500").discount("0.17").build())
+				.add(Lot.builder().article("15694225").desiredPrice("5500").discount("0.17").build())
 				.build();
 	}
 }

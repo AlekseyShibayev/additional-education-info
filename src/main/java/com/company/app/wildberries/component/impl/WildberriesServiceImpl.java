@@ -37,9 +37,9 @@ public class WildberriesServiceImpl implements WildberriesService {
 
 	private boolean isDesireLot(String htmlResponse, Lot lot) {
 		try {
-			String currentPriceString = wildberriesPriceExtractor.extract(htmlResponse, lot.getName());
+			String currentPriceString = wildberriesPriceExtractor.extract(htmlResponse, lot.getArticle());
 			BigDecimal currentPrice = getCurrentPrice(lot, currentPriceString);
-			BigDecimal desiredPrice = new BigDecimal(lot.getPrice() + "00.00");
+			BigDecimal desiredPrice = new BigDecimal(lot.getDesiredPrice() + "00.00");
 			int i = desiredPrice.compareTo(currentPrice);
 			return i > 0;
 		} catch (Exception e) {

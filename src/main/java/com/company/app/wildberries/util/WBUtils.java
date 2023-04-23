@@ -21,7 +21,7 @@ public class WBUtils {
 		StringBuilder stringBuilder = new StringBuilder();
 
 		lots.stream()
-				.map(Lot::getName)
+				.map(Lot::getArticle)
 				.distinct()
 				.forEach(name -> stringBuilder.append(name).append(";"));
 

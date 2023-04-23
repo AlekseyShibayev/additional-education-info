@@ -13,11 +13,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 class LotControllerTest extends WebMvcSpringBootTestContext {
 
 	private Lot createTestLot() {
-		return Lot.builder().id(1L).name("name").price("price").build();
+		return Lot.builder().id(1L).article("article").desiredPrice("desiredPrice").build();
 	}
 
 	private LotDto createLotDto() {
-		return LotDto.builder().name("name").price("price").discount("discount").build();
+		return LotDto.builder().article("article").desiredPrice("desiredPrice").discount("discount").build();
 	}
 
 	@Test
@@ -29,8 +29,8 @@ class LotControllerTest extends WebMvcSpringBootTestContext {
 				.andDo(MockMvcResultHandlers.print())
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1L))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.name").value("name"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.price").value("price"))
+				.andExpect(MockMvcResultMatchers.jsonPath("$.article").value("article"))
+				.andExpect(MockMvcResultMatchers.jsonPath("$.desiredPrice").value("desiredPrice"))
 		;
 	}
 

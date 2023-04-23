@@ -3,7 +3,7 @@ package com.company.app.exchangerate.component.impl;
 import com.company.app.core.tool.api.DataExtractorTool;
 import com.company.app.exchangerate.component.api.ExchangeRateExtractor;
 import com.company.app.exchangerate.entity.ExchangeRate;
-import com.company.app.exchangerate.repository.ExchangeRepository;
+import com.company.app.exchangerate.service.ExchangeRateService;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import org.json.JSONObject;
@@ -28,7 +28,7 @@ public class ExchangeRateExtractorImpl implements ExchangeRateExtractor {
 	@Autowired
 	private DataExtractorTool dataExtractorTool;
 	@Autowired
-	private ExchangeRepository exchangeRepository;
+	private ExchangeRateService exchangeRateService;
 
 	@SneakyThrows
 	@Override
@@ -37,7 +37,7 @@ public class ExchangeRateExtractorImpl implements ExchangeRateExtractor {
 				.aliexpressExchangeRate(getExchangeRate(dataExtractorTool.getHtmlResponse(aliexpressUrl)))
 				.creationDate(new Date())
 				.build();
-		exchangeRepository.save(exchange);
+		exchangeRateService.create(exchange);
 
 		return exchange;
 	}

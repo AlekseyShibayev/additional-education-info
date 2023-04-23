@@ -2,14 +2,11 @@ package com.company.app.exchangerate.component.impl;
 
 import com.company.app.exchangerate.component.api.ExchangeRateBinder;
 import com.company.app.exchangerate.entity.ExchangeRate;
-import com.company.app.exchangerate.repository.ExchangeRepository;
+import com.company.app.exchangerate.service.ExchangeRateService;
 import com.company.app.telegram.component.TelegramFacade;
 import com.company.app.telegram.component.data.BinderContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Component
 public class ExchangeRateBinderImpl implements ExchangeRateBinder {
@@ -17,7 +14,7 @@ public class ExchangeRateBinderImpl implements ExchangeRateBinder {
 	private static final String TYPE = "EX";
 
 	@Autowired
-	ExchangeRepository exchangeRepository;
+	ExchangeRateService exchangeRateService;
 	@Autowired
 	TelegramFacade telegramFacade;
 
@@ -28,11 +25,7 @@ public class ExchangeRateBinderImpl implements ExchangeRateBinder {
 
 	@Override
 	public void bind(BinderContainer binderContainer) {
-		Optional<ExchangeRate> optional = exchangeRepository.findOneByOrderByCreationDateDesc();
-		if (optional.isPresent()) {
-			telegramFacade.write(optional.get());
-		} else {
-			throw new NoSuchElementException("Курса еще нет.");
-		}
+		ExchangeRate last = exchangeRateService.getLast();
+		telegramFacade.write(last);
 	}
 }

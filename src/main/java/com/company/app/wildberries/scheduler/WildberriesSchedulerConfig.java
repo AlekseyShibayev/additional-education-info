@@ -32,7 +32,7 @@ public class WildberriesSchedulerConfig {
 		}
 
 		if (CollectionHelper.isNotEmpty(desiredLots)) {
-			desiredLots.forEach(lot -> telegramFacade.write(WBUtils.getUrlForResponse(lot.getName())));
+			desiredLots.forEach(lot -> telegramFacade.write(WBUtils.getUrlForResponse(lot.getArticle())));
 		}
 	}
 }

@@ -11,20 +11,20 @@ import javax.persistence.*;
 @Builder
 @Entity
 @EqualsAndHashCode
-@Table(name = "lot")
+@Table(name = "LOT")
 public class Lot {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "id", nullable = false)
+	@Column(name = "ID", nullable = false)
 	private Long id;
 
-	@Column(name = "name")
-	private String name;
+	@Column(name = "ARTICLE")
+	private String article;
 
-	@Column(name = "price")
-	private String price;
+	@Column(name = "DESIRED_PRICE")
+	private String desiredPrice;
 
-	@Column(name = "discount")
+	@Column(name = "DISCOUNT")
 	private String discount;
 }

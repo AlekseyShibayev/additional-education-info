@@ -59,8 +59,8 @@ public class LotServiceImpl implements LotService {
 	@Override
 	public Long create(String name, String price, String discount) {
 		Lot lot = Lot.builder()
-				.name(name)
-				.price(price)
+				.article(name)
+				.desiredPrice(price)
 				.discount(discount)
 				.build();
 		return lotRepository.save(lot).getId();

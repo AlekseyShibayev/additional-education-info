@@ -27,8 +27,8 @@ class WildberriesBinderTest extends ApplicationSpringBootTestContext {
 		List<Lot> before = lotRepository.findAll();
 
 		LotDto lot = LotDto.builder()
-				.name("17010096")
-				.price("900")
+				.article("17010096")
+				.desiredPrice("900")
 				.discount("0.11")
 				.build();
 

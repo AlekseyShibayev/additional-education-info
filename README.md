@@ -1,5 +1,8 @@
 # Учебно-прикладной проект TelegramNotificationService
+
 [Ссылка на себя](https://github.com/AlekseyShibayev/TelegramNotificationService)
+Проект использует: [telegram-bot-spring-boot-starter](https://github.com/AlekseyShibayev/telegram-bot-spring-boot-starter)
+Ссылка на различные обучающие курсы:
 
 ## Цели проекта:
 ### 1. Учебная:
@@ -21,7 +24,7 @@
 ## Что уже есть в проекте:
 1. Модули:
   * модуль core - содержит удобные штуковины, которые будут нужны в каждом микросервисе (вынесены в [telegram-bot-spring-boot-starter](https://github.com/AlekseyShibayev/telegram-bot-spring-boot-starter)
-  * модуль telegram
+  * модуль telegram - управляет подписками
   * модуль exchangerate - отслеживает курс доллара aliexpress
   * модуль wildberries - отслеживает желаемые лоты
 2. Технологии:

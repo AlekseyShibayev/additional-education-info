@@ -11,17 +11,17 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "exchange_rate")
+@Table(name = "EXCHANGE_RATE")
 public class ExchangeRate {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "id", nullable = false)
+	@Column(name = "ID", nullable = false)
 	private Long id;
 
-	@Column(name = "aliexpress_exchange_rate")
+	@Column(name = "ALIEXPRESS_EXCHANGE_RATE")
 	private String aliexpressExchangeRate;
 
-	@Column(name = "date")
-	private Date date;
+	@Column(name = "CREATION_DATE")
+	private Date creationDate;
 }

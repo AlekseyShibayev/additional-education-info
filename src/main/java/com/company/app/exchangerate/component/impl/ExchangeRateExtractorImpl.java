@@ -35,7 +35,7 @@ public class ExchangeRateExtractorImpl implements ExchangeRateExtractor {
 	public ExchangeRate extract() {
 		ExchangeRate exchange = ExchangeRate.builder()
 				.aliexpressExchangeRate(getExchangeRate(dataExtractorTool.getHtmlResponse(aliexpressUrl)))
-				.date(new Date())
+				.creationDate(new Date())
 				.build();
 		exchangeRepository.save(exchange);
 

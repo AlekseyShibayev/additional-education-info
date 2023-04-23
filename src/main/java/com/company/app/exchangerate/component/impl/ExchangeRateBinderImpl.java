@@ -28,7 +28,7 @@ public class ExchangeRateBinderImpl implements ExchangeRateBinder {
 
 	@Override
 	public void bind(BinderContainer binderContainer) {
-		Optional<ExchangeRate> optional = exchangeRepository.findOneByOrderByDateDesc();
+		Optional<ExchangeRate> optional = exchangeRepository.findOneByOrderByCreationDateDesc();
 		if (optional.isPresent()) {
 			telegramFacade.write(optional.get());
 		} else {

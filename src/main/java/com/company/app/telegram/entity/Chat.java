@@ -6,6 +6,12 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * К чему я пришел:
+ * 1. fetch и cascade указываю явно, чтобы не помнить, что там у связей в default
+ * 2. имена таблиц и колонок указываю явно и в верхнем регистре, чтобы разделять sql и java миры
+ * 3. todo: в @ManyToMany промежуточную таблицу указывать явно
+ */
 @Getter
 @Setter
 @Builder

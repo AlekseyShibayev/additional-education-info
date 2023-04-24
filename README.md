@@ -173,9 +173,10 @@
 
 [Spring Boot + Kafka](https://habr.com/ru/articles/440400/)
 
-select * from chat;
-select * from history;
-select * from user_info;
+select * from CHAT;
+select * from HISTORY;
+select * from USER_INFO;
 select * from CHATS_SUBSCRIPTIONS;
 select * from SUBSCRIPTION;
 select * from LOT;
+select * from EXCHANGE_RATE;

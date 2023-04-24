@@ -1,10 +1,10 @@
 package com.company.app.telegram.component.impl;
 
-import com.company.app.telegram.component.data.ButtonAndCommandRegistry;
 import com.company.app.telegram.component.api.BinderExecutor;
 import com.company.app.telegram.component.api.ChatActivationService;
 import com.company.app.telegram.component.api.IncomingMessageHandler;
 import com.company.app.telegram.component.api.TelegramBotConfig;
+import com.company.app.telegram.component.data.ButtonAndCommandRegistry;
 import com.company.app.telegram.entity.Chat;
 import com.company.app.telegram.service.api.ChatService;
 import com.company.app.telegram.service.api.HistoryService;

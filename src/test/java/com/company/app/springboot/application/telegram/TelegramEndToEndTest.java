@@ -8,7 +8,6 @@ import com.company.app.telegram.controller.TelegramController;
 import com.company.app.telegram.dto.ChatDto;
 import com.company.app.telegram.entity.Chat;
 import com.company.app.telegram.entity.History;
-import com.company.app.telegram.entity.Subscription;
 import com.company.app.telegram.entity.UserInfo;
 import com.company.app.telegram.repository.ChatRepository;
 import com.company.app.telegram.service.api.ChatService;
@@ -21,12 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.Set;
 
-/**
- * https://api.telegram.org/bot1585428394:AAH2XP_r0-IUQr3nPKqp-KH6I2z2W_rEC1s/getMe
- * https://api.telegram.org/bot1585428394:AAH2XP_r0-IUQr3nPKqp-KH6I2z2W_rEC1s/sendMessage?chat_id=653606407&text=TG
- */
 class TelegramEndToEndTest extends ApplicationSpringBootTestContext {
 
 	@Autowired

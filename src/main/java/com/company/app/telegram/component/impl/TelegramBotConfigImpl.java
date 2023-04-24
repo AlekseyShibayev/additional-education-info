@@ -1,8 +1,8 @@
 package com.company.app.telegram.component.impl;
 
-import com.company.app.telegram.component.data.ButtonAndCommandRegistry;
 import com.company.app.telegram.component.api.TelegramBotConfig;
 import com.company.app.telegram.component.api.TelegramService;
+import com.company.app.telegram.component.data.ButtonAndCommandRegistry;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

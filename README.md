@@ -158,7 +158,9 @@
 
 [Евгений Борисов — Power of Gradle](https://www.youtube.com/watch?v=NZJTYPLb0iE&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
-* Kafka
+* Интеграция (Kafka)
+
+[Как мы жили до Kafka](https://www.youtube.com/watch?v=p45WDeEky_o&ab_channel=SergeyNemchinskiy)
 
 [Теория](https://www.youtube.com/watch?v=-AZOi3kP9Js&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80%D0%91%D0%BE%D0%B3%D0%B4%D0%B0%D0%BD%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9)
 

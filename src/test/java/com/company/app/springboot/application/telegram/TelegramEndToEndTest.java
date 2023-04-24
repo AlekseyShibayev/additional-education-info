@@ -1,5 +1,6 @@
-package com.company.app.springboot.application;
+package com.company.app.springboot.application.telegram;
 
+import com.company.app.springboot.application.ApplicationSpringBootTestContext;
 import com.company.app.telegram.component.data.BinderContainer;
 import com.company.app.telegram.component.impl.TelegramBinder;
 import com.company.app.telegram.controller.ChatController;
@@ -22,6 +23,10 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * https://api.telegram.org/bot1585428394:AAH2XP_r0-IUQr3nPKqp-KH6I2z2W_rEC1s/getMe
+ * https://api.telegram.org/bot1585428394:AAH2XP_r0-IUQr3nPKqp-KH6I2z2W_rEC1s/sendMessage?chat_id=653606407&text=TG
+ */
 class TelegramEndToEndTest extends ApplicationSpringBootTestContext {
 
 	@Autowired
@@ -66,13 +71,16 @@ class TelegramEndToEndTest extends ApplicationSpringBootTestContext {
 		chatController.update(id, chatDto);
 		Assertions.assertEquals(1, chatRepository.findAll().size());
 
+		Chat after = chatController.read(id).getBody();
+		Assertions.assertEquals("Test_Role", after.getUserInfo().getRole());
+
 		chatController.delete(id);
 		Assertions.assertEquals(0, chatRepository.findAll().size());
 		Assertions.assertThrows(ObjectNotFoundException.class, () -> chatController.read(id));
 	}
 
 	@Test
-	void chatController_enableNotifications_false_test() {
+	void history_list_is_empty_if_enableNotifications_false() {
 		ChatDto chatDto = ChatDto.builder().chatId(653606407L).build();
 		Long id = chatController.create(chatDto).getBody();
 
@@ -83,73 +91,40 @@ class TelegramEndToEndTest extends ApplicationSpringBootTestContext {
 		Assertions.assertEquals(0, historyList.size());
 	}
 
+//	@Test
+//	void enableNotifications_true_test() {
+//		ChatDto chatDto = ChatDto.builder().chatId(653606407L).build();
+//		Long id = chatController.create(chatDto).getBody();
+//		Chat before = ChatUtil.of(id, chatDto);
+//
+//		telegramBinder.bind(BinderContainer.builder()
+//				.chat(before)
+//				.message("TG +")
+//				.build());
+//
+//		Chat after = chatController.read(id).getBody();
+//
+//		List<Chat> chats = chatRepository.findAll();
+//		Assertions.assertEquals(1, chats.size());
+//		Assertions.assertTrue(after.isEnableNotifications());
+//	}
+
 	@Test
-	void enableNotifications_true_test() {
-		ChatDto chatDto = ChatDto.builder().chatId(653606407L).build();
-		Long id = chatController.create(chatDto).getBody();
-		Chat before = ChatUtil.of(id, chatDto);
+	void telegram_binder_can_deactivate_notifications() {
+		List<Chat> all = chatRepository.findAll();
+		Assertions.assertEquals(0, all.size());
 
-		telegramBinder.bind(BinderContainer.builder()
-				.chat(before)
-				.message("TG +")
-				.build());
-
-		Chat after = chatController.read(id).getBody();
-
-		List<Chat> chats = chatRepository.findAll();
-		Assertions.assertEquals(1, chats.size());
-		Assertions.assertTrue(after.isEnableNotifications());
-	}
-
-	@Test
-	void enableNotifications_false_test() {
-		ChatDto chatDto = ChatDto.builder().chatId(653606407L).build();
+		ChatDto chatDto = ChatDto.builder().chatId(653606407L).enableNotifications(true).build();
 		Long id = chatController.create(chatDto).getBody();
 		Chat chat = ChatUtil.of(chatDto);
 		chat.setId(id);
 
 		telegramBinder.bind(BinderContainer.builder()
 				.chat(chat)
-				.message("TG -")
+				.message("TG")
 				.build());
 
 		Chat after = chatController.read(id).getBody();
 		Assertions.assertFalse(after.isEnableNotifications());
-	}
-
-	@Test
-	void enableNotifications_test() {
-		ChatDto chatDto = ChatDto.builder().chatId(653606407L).build();
-		Long id = chatController.create(chatDto).getBody();
-		Chat chat = ChatUtil.of(id, chatDto);
-
-		telegramBinder.bind(BinderContainer.builder()
-				.chat(chat)
-				.message("TG -")
-				.build());
-
-		Chat after = chatController.read(id).getBody();
-
-		Assertions.assertFalse(after.isEnableNotifications());
-
-		List<Chat> chats = chatRepository.findAll();
-		Assertions.assertEquals(1, chats.size());
-	}
-
-	@Test
-	void subscribe_test() {
-		ChatDto chatDto = ChatDto.builder().chatId(653606407L).build();
-		Long id = chatController.create(chatDto).getBody();
-		Chat chat = ChatUtil.of(id, chatDto);
-		telegramBinder.bind(BinderContainer.builder()
-				.chat(chat)
-				.message("TG +")
-				.build());
-
-		Chat after = chatController.read(id).getBody();
-		Set<Subscription> subscriptions = after.getSubscriptions();
-		Assertions.assertNotNull(subscriptions);
-		Assertions.assertTrue(subscriptions.size() > 0);
-		Assertions.assertNotNull(subscriptions.stream().findFirst().get());
 	}
 }

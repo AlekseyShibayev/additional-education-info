@@ -11,7 +11,6 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -42,9 +41,9 @@ public class BinderExecutorImpl implements BinderExecutor {
 
 	@Override
 	public void execute(Chat chat, String text) {
-		String binderType = Arrays.stream(text.split(" ")).findFirst().orElseThrow();
+//		String binderType = Arrays.stream(text.split(" ")).findFirst().orElseThrow();
 
-		Binder binder = Optional.ofNullable(binders.get(binderType))
+		Binder binder = Optional.ofNullable(binders.get(text))
 				.orElseThrow(() -> new IllegalArgumentException(String.format("Не смог вытащить тип binderType из [%s].", text)));
 
 		BinderContainer binderContainer = BinderContainer.builder()

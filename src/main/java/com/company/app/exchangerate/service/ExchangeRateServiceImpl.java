@@ -18,7 +18,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 	@Transactional
 	@Override
 	public ExchangeRate getLast() {
-		Optional<ExchangeRate> optional = exchangeRepository.findOneByOrderByCreationDateDesc();
+		Optional<ExchangeRate> optional = exchangeRepository.findFirstByOrderByCreationDateDesc();
 		if (optional.isPresent()) {
 			return optional.get();
 		} else {

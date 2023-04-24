@@ -18,7 +18,8 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<telegram.version>5.0.1</telegram.version>
+<!--		<telegram.version>5.0.1</telegram.version>-->
+		<telegram.version>6.5.0</telegram.version>
 		<jacoco.version>0.8.8</jacoco.version>
 	</properties>
 
@@ -68,6 +69,18 @@
 			<groupId>org.telegram</groupId>
 			<artifactId>telegrambotsextensions</artifactId>
 			<version>${telegram.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180813</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>30.0-jre</version>
 		</dependency>
 
 		<dependency>

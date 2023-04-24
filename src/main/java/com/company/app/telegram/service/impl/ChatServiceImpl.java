@@ -58,6 +58,13 @@ public class ChatServiceImpl implements ChatService {
 
 	@Transactional
 	@Override
+	public Boolean update(Chat chat) {
+		chatRepository.save(chat);
+		return true;
+	}
+
+	@Transactional
+	@Override
 	public Boolean delete(Long id) {
 		chatRepository.deleteById(id);
 		return true;
@@ -65,7 +72,7 @@ public class ChatServiceImpl implements ChatService {
 
 	@Transactional
 	@Override
-	public Chat saveIfNotExistAndGet(Long chatId) {
+	public Chat getChatOrCreateIfNotExist(Long chatId) {
 		if (chatRepository.existsChatByChatId(chatId)) {
 			return chatRepository.findFirstByChatId(chatId).get();
 		} else {
@@ -77,6 +84,7 @@ public class ChatServiceImpl implements ChatService {
 		Chat chat = Chat.builder().chatId(chatId).build();
 		return chatRepository.save(chat);
 	}
+
 	@Transactional
 	@Override
 	public List<Chat> getAll() {

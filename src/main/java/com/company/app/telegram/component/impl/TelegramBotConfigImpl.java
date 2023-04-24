@@ -1,20 +1,25 @@
 package com.company.app.telegram.component.impl;
 
+import com.company.app.telegram.component.data.ButtonAndCommandRegistry;
 import com.company.app.telegram.component.api.TelegramBotConfig;
 import com.company.app.telegram.component.api.TelegramService;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-import javax.annotation.PostConstruct;
-
+@Slf4j
 @Component
 public class TelegramBotConfigImpl extends TelegramLongPollingCommandBot implements TelegramBotConfig {
 
@@ -26,10 +31,12 @@ public class TelegramBotConfigImpl extends TelegramLongPollingCommandBot impleme
 	@Autowired
 	private TelegramService telegramService;
 
-	@PostConstruct
+	@EventListener({ContextRefreshedEvent.class})
 	public void init() throws TelegramApiException {
+		this.execute(new SetMyCommands(ButtonAndCommandRegistry.LIST_OF_COMMANDS, new BotCommandScopeDefault(), null));
 		TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
 		botsApi.registerBot(this);
+		log.info("**********     телеграм бот создан     **********");
 	}
 
 	@Override

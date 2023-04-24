@@ -13,9 +13,11 @@ public interface ChatService {
 
 	Boolean update(Long id, ChatDto chatDto);
 
+	Boolean update(Chat chat);
+
 	Boolean delete(Long id);
 
-	Chat saveIfNotExistAndGet(Long chatId);
+	Chat getChatOrCreateIfNotExist(Long chatId);
 
 	List<Chat> getAll();
 }

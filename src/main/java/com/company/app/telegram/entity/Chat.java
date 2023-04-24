@@ -42,7 +42,7 @@ public class Chat {
 	private boolean enableNotifications;
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "USER_INFO_ID", referencedColumnName = "id")
+	@JoinColumn(name = "USER_INFO_ID")
 	private UserInfo userInfo;
 
 	@OneToMany(mappedBy = "chat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

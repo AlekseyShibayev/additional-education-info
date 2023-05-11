@@ -1,5 +1,6 @@
 package com.company.app;
 
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,7 @@ public class Application {
 	}
 
 	@Bean
+	@SneakyThrows
 	public ApplicationRunner runner() {
 		return args -> log.debug("*******************  The app has been started.  *******************");
 	}

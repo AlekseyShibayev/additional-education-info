@@ -14,6 +14,8 @@
 
 [Плейлист (канал Аве Кодер)](https://www.youtube.com/watch?v=PfyC39EzTmk&list=PLPPIc-4tm3YQsdhSV1qzAgDKTuMUNnPmp&index=3&ab_channel=%D0%90%D0%B2%D0%B5%D0%9A%D0%BE%D0%B4%D0%B5%D1%80)
 
+[Теория СУБД. Плейлист.](https://www.youtube.com/playlist?list=PLoij6udfBnchPPCzozzhqFPZOdiAmDv9i)
+
 * Spring Core
 
 [Базовый уровень, для тех кто слышит про Spring впервые](https://www.youtube.com/watch?v=6mXTY7RSAf0&ab_channel=%D0%9E%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD%D1%83%D1%80%D0%BE%D0%BA%D0%B8%D0%BF%D0%BEJava)
@@ -30,7 +32,11 @@
 
 [Немного теории](https://www.youtube.com/watch?v=C-wEZjEOhWc&list=LL&index=4&t=2224s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
+[Hibernate performance](https://www.youtube.com/watch?v=b52Qz6qlic0&list=LL&index=2&t=650s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
+
 [Spring Data puzzler](https://www.youtube.com/watch?v=o8LN6NOFa3c&t=2127s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
+
+[Spring Data. Евгений Борисов.](https://www.youtube.com/watch?v=nwM7A4TwU3M&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
 * Java Core Advanced
 
@@ -44,8 +50,6 @@
 
 [Обзорная лекция по книге Clean Code](https://www.youtube.com/watch?v=otrfSgeK3JI&ab_channel=SergeyNemchinskiy)
 
-[Что-то древнее от Немчинского, уже не вспомню годное или нет. Плейлист](https://www.youtube.com/watch?v=j38-ZSyOAvc&list=PLmqFxxywkatR5zj5M4WdUyyKyLoJSZZrQ&ab_channel=SergeyNemchinskiy)
-
 [Шаблоны проектирования. Плейлист](https://www.youtube.com/watch?v=k6oh9C_71mE&list=PLlsMRoVt5sTPgGbinwOVnaF1mxNeLAD7P&ab_channel=EugeneSuleimanov)
 
 [SOLID. Теория. Плейлист](https://www.youtube.com/watch?v=O4uhPCEDzSo&list=PLmqFxxywkatQNWLG1IZYUhKoQrnuZHqaK&ab_channel=SergeyNemchinskiy)
@@ -58,6 +62,8 @@
 
 [Евгений Борисов — Spring Patterns для взрослых](https://www.youtube.com/watch?v=GL1txFxswHA&t=2936s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
+[DDD](https://www.youtube.com/watch?v=JOy_SNK3qj4&ab_channel=DotNext)
+
 * Spring Boot
 
 [Как мы жили до Spring Boot. Плейлист](https://www.youtube.com/watch?v=P_W3NbkwdIM&list=PLVJtKDGxOX1V8NpyHUAkrdezZDvgDhe4b&ab_channel=FIXGroupofCompanies)
@@ -68,7 +74,11 @@
 
 [Spring AOP. Плейлист](https://www.youtube.com/watch?v=IDVHzrreYU4&list=PLqj7-hRTFl_p-t5F2zSUlG6_9UIoE2r70&index=25&ab_channel=%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%B0%D0%BD%D0%B8%D1%8F)
 
+[Spring Cloud. Евгений Борисов](https://www.youtube.com/watch?v=4tSyz_v9w7Q)
+
 * Test
+
+[JUnit + Hamcrest. Иван Головач. Плейлист.](https://www.youtube.com/playlist?list=PLoij6udfBncg1Gpny9K_Q1P_2xONR5c2R)
 
 [AspectJ](https://habr.com/ru/articles/675778/)
 
@@ -97,8 +107,6 @@
 [Как мы жили до Kafka](https://www.youtube.com/watch?v=p45WDeEky_o&ab_channel=SergeyNemchinskiy)
 
 [Теория](https://www.youtube.com/watch?v=-AZOi3kP9Js&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80%D0%91%D0%BE%D0%B3%D0%B4%D0%B0%D0%BD%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9)
-
-[Spring Boot + Kafka](https://habr.com/ru/articles/440400/)
 
 * Прочее
 

@@ -2,13 +2,21 @@
 
 ## Список полезной информации (не вся - только та что понравилась) для потомков, скопившейся за N лет разработки:
 
-* Java Core
+* Java Core Basic
 
 [Теория, просто включаем фоном и слушаем](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
  
 [Краткие примеры основных структур языка](https://www.youtube.com/watch?v=9GdtWiovvIQ&list=PLmqFxxywkatR3qNmxqcFIHF9MN2-_eteU)
 
 [Очень подробный просмотр основных структур языка. Выбираем любой понравившийся плейлист JavaCore](https://www.youtube.com/user/KharkovITCourses/playlists?view=50&sort=dd&shelf_id=12)
+
+* Java Core Advanced
+
+[Многоядерное программирование на Java Плейлист](https://www.youtube.com/watch?v=4YGqahTTWtQ&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=2&ab_channel=GolovachCourses)
+
+[Lambdas](https://www.youtube.com/watch?v=hqRVz_4wCrc&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=10&ab_channel=GolovachCourses)
+
+[Stream API](https://www.youtube.com/watch?v=D4CScx_4xUg&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=11&ab_channel=GolovachCourses)
 
 * Data Base + SQL
 
@@ -37,14 +45,6 @@
 [Spring Data puzzler](https://www.youtube.com/watch?v=o8LN6NOFa3c&t=2127s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
 [Spring Data. Евгений Борисов.](https://www.youtube.com/watch?v=nwM7A4TwU3M&ab_channel=JPoint%2CJoker%D0%B8JUGru)
-
-* Java Core Advanced
-
-[Многоядерное программирование на Java Плейлист](https://www.youtube.com/watch?v=4YGqahTTWtQ&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=2&ab_channel=GolovachCourses)
-
-[Lambdas](https://www.youtube.com/watch?v=hqRVz_4wCrc&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=10&ab_channel=GolovachCourses)
-
-[Stream API](https://www.youtube.com/watch?v=D4CScx_4xUg&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=11&ab_channel=GolovachCourses)
 
 * Refactoring
 

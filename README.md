@@ -1,5 +1,5 @@
 # Это не проект, это просто README, которым удобно делиться.
-
+* [Ссылка на самого себя:](https://github.com/AlekseyShibayev/additional-education-info)
 ## Список полезной информации (не вся - только та что понравилась) для потомков, скопившейся за N лет разработки:
 
 * Java Core Basic
@@ -61,6 +61,8 @@
 [Spring Patterns (Evgeny Borisov, Israel)](https://www.youtube.com/watch?v=zLFgvdHUlA0&ab_channel=jeeconf)
 
 [Евгений Борисов — Spring Patterns для взрослых](https://www.youtube.com/watch?v=GL1txFxswHA&t=2936s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
+
+[Про перебор с java8 (Optional, Lambda, Stream)](https://www.youtube.com/watch?v=7Iy1hVEXxsU&t=2666s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
 [DDD](https://www.youtube.com/watch?v=JOy_SNK3qj4&ab_channel=DotNext)
 

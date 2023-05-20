@@ -18,6 +18,8 @@
 
 [Stream API](https://www.youtube.com/watch?v=D4CScx_4xUg&list=PLoij6udfBncgyV-7Y0lEh0EwfkpcAoBeK&index=11&ab_channel=GolovachCourses)
 
+[Java 11 -> Java 17](https://www.youtube.com/watch?v=1WaQoBiIoK4&t=1724s&ab_channel=TechTrain)
+
 * Data Base + SQL
 
 [Плейлист (канал Аве Кодер)](https://www.youtube.com/watch?v=PfyC39EzTmk&list=PLPPIc-4tm3YQsdhSV1qzAgDKTuMUNnPmp&index=3&ab_channel=%D0%90%D0%B2%D0%B5%D0%9A%D0%BE%D0%B4%D0%B5%D1%80)
@@ -88,6 +90,8 @@
 
 [Spring Boot Test](https://www.youtube.com/watch?v=7mZqJShu_3c&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
+[Spring Data JPA. Антипаттерны тестирования](https://www.youtube.com/watch?v=Pa_tFjLyW8s&t=3916s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
+
 * Docker
 
 [Основы. Теория](https://www.youtube.com/watch?v=QF4ZF857m44&t=1700s&ab_channel=%D0%90%D1%80%D1%82%D0%B5%D0%BC%D0%9C%D0%B0%D1%82%D1%8F%D1%88%D0%BE%D0%B2)
@@ -109,6 +113,12 @@
 [Как мы жили до Kafka](https://www.youtube.com/watch?v=p45WDeEky_o&ab_channel=SergeyNemchinskiy)
 
 [Теория](https://www.youtube.com/watch?v=-AZOi3kP9Js&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80%D0%91%D0%BE%D0%B3%D0%B4%D0%B0%D0%BD%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9)
+
+* Болтовня
+
+[Про монолиты и микросервисы](https://www.youtube.com/watch?v=PG1hVPe6pWM&t=578s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
+
+[Про DevOps](https://www.youtube.com/watch?v=Pa_tFjLyW8s&t=3916s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
 
 * Прочее
 

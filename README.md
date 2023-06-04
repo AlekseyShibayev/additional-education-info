@@ -117,6 +117,12 @@
 
 [Теория](https://www.youtube.com/watch?v=-AZOi3kP9Js&ab_channel=%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80%D0%91%D0%BE%D0%B3%D0%B4%D0%B0%D0%BD%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9)
 
+[Лучшая теория подкапотки, что я встречал](https://www.youtube.com/watch?v=PtFTGQG2LwA&list=LL&index=2&t=1s&ab_channel=InterviewDone%21)
+
+* BigData
+
+[Евгений Борисов, spark](https://www.youtube.com/watch?v=XLSQJQjmFFw&t=2s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
+
 * Болтовня
 
 [Про монолиты и микросервисы](https://www.youtube.com/watch?v=PG1hVPe6pWM&t=578s&ab_channel=JPoint%2CJoker%D0%B8JUGru)
